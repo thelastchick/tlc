@@ -1,140 +1,153 @@
-let score=0;
-let playing=true;
+let player=document.getElementById("player");
 
-let cat=document.getElementById("cat");
+let enemy=document.getElementById("enemy");
+let mouse=document.getElementById("mouse");
+let rock=document.getElementById("rock");
 let lantern=document.getElementById("lantern");
-let light=document.getElementById("light");
+
+let points=document.getElementById("points");
+
+let score=0;
+let running=true;
 
 
-let catPosition=-80;
 
+document.onclick=function(){
 
-function moveCat(){
+if(!running)return;
 
-if(!playing)return;
+player.classList.remove("jump");
 
+void player.offsetWidth;
 
-catPosition+=3;
-
-cat.style.right=catPosition+"px";
-
-
-if(catPosition>650){
-
-gameOver();
-
-}
-
-
-requestAnimationFrame(moveCat);
+player.classList.add("jump");
 
 }
 
 
 
-function throwLantern(){
 
-if(!playing)return;
-
-
-lantern.style.display="block";
-light.style.display="block";
+function moveObject(obj,speed){
 
 
-let x=150;
+let x=parseInt(obj.style.right || -50);
 
 
-let move=setInterval(()=>{
+x+=speed;
 
 
-x+=15;
+obj.style.right=x+"px";
 
 
-lantern.style.left=x+"px";
-light.style.left=x+"px";
+if(x>1000){
+
+obj.style.right="-100px";
 
 
-let catX=cat.offsetLeft;
+if(obj==lantern){
 
+score+=10;
 
-if(x>catX-40){
-
-
-score++;
-
-
-document.getElementById("points").innerHTML=score;
-
-
-catPosition=-80;
-
-
-cat.style.right=catPosition+"px";
-
-
-lantern.style.display="none";
-light.style.display="none";
-
-
-clearInterval(move);
+points.innerHTML=score;
 
 
 }
 
 
-if(x>900){
+}
 
-clearInterval(move);
-
-lantern.style.display="none";
-light.style.display="none";
 
 }
+
+
+
+
+setInterval(()=>{
+
+
+if(!running)return;
+
+
+moveObject(enemy,8);
+
+moveObject(mouse,10);
+
+moveObject(rock,9);
+
+moveObject(lantern,7);
+
 
 
 },30);
 
 
-}
 
 
 
-document.getElementById("game").onclick=function(){
-
-throwLantern();
-
-}
+setInterval(()=>{
 
 
-
-function gameOver(){
-
-playing=false;
-
-document.getElementById("over").style.display="block";
-
-}
+let p=player.getBoundingClientRect();
 
 
-
-function restart(){
-
-score=0;
-
-document.getElementById("points").innerHTML=0;
-
-catPosition=-80;
-
-cat.style.right=catPosition+"px";
+let enemies=[
+enemy,
+mouse,
+rock
+];
 
 
-document.getElementById("over").style.display="none";
+enemies.forEach(e=>{
 
-playing=true;
 
-moveCat();
+let a=e.getBoundingClientRect();
+
+
+if(
+p.left<a.right &&
+p.right>a.left &&
+p.bottom>a.top
+)
+
+{
+
+running=false;
+
+document.getElementById("gameover").style.display="block";
 
 }
 
 
-moveCat();
+});
+
+
+
+let l=lantern.getBoundingClientRect();
+
+
+if(
+p.left<l.right &&
+p.right>l.left
+){
+
+score+=10;
+
+points.innerHTML=score;
+
+lantern.style.right="-600px";
+
+}
+
+
+},50);
+
+
+
+
+
+
+function restartGame(){
+
+location.reload();
+
+}
