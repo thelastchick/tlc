@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>The Last Chick</title>
+<title>TLC Into The Light</title>
 <link rel="stylesheet" href="game.css">
 </head>
 
@@ -10,30 +10,33 @@
 
 <div id="game">
 
-<div id="title">
-🐥 THE LAST CHICK
-<br>
-<span>The Journey to Hope</span>
+<div id="sky"></div>
+
+<div id="ground"></div>
+
+
+<div id="player">
+🐥
 </div>
 
 
-<div id="world">
-
-<div id="chick">🐥</div>
-
-<div id="lantern">
-🏮
-</div>
-
-<div id="cat">
+<div id="enemy">
 🐈
 </div>
 
 
-<div id="light">
+<div id="mouse">
+🐭
 </div>
 
 
+<div id="rock">
+🪨
+</div>
+
+
+<div id="lantern">
+🏮
 </div>
 
 
@@ -42,14 +45,19 @@ Hope: <span id="points">0</span>
 </div>
 
 
-<div id="over">
+<div id="gameover">
 GAME OVER
 <br>
-<button onclick="restart()">TRY AGAIN</button>
+<button onclick="restartGame()">TRY AGAIN</button>
 </div>
 
 
 </div>
+
+
+<p>
+Click to Jump 🐥
+</p>
 
 
 <script src="game.js"></script>
