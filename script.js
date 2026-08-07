@@ -1,74 +1,32 @@
-function copyContract(){
+const translations = {
+  fa: {
+    direction: "rtl",
+    title: "آخرین جوجه",
+    about: "درباره آخرین جوجه"
+  },
 
-const contract =
-"0x04B757D7Cb621BFb846d47B161857D5E59F5D40C";
+  ar: {
+    direction: "rtl",
+    title: "آخر كتكوت",
+    about: "عن آخر كتكوت"
+  },
 
-
-navigator.clipboard.writeText(contract);
-
-
-alert("Contract address copied!");
-
-}
-
-
+  en: {
+    direction: "ltr",
+    title: "THE LAST CHICK",
+    about: "About The Last Chick"
+  }
+};
 
 
 function changeLanguage(lang){
 
+  document.documentElement.dir = translations[lang].direction;
 
-if(lang==="fa"){
+  document.querySelector("h1").innerText =
+  translations[lang].title;
 
-document.documentElement.lang="fa";
-
-
-alert("نسخه فارسی به زودی فعال می‌شود.");
-
-}
-
-
-else if(lang==="ar"){
-
-
-document.documentElement.lang="ar";
-
-
-alert("Arabic version coming soon.");
+  document.querySelector("#about h2").innerText =
+  translations[lang].about;
 
 }
-
-
-else{
-
-
-document.documentElement.lang="en";
-
-
-}
-
-
-}
-
-
-
-
-window.addEventListener("load",()=>{
-
-
-setTimeout(()=>{
-
-
-const loader=document.getElementById("loader");
-
-
-if(loader){
-
-loader.style.display="none";
-
-}
-
-
-},2000);
-
-
-});
