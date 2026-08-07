@@ -429,3 +429,96 @@ footer {
         font-size: 12px;
     }
 }
+#loader{
+    background:#000;
+    overflow:hidden;
+}
+
+
+.chick-circle{
+
+    width:220px;
+    height:220px;
+
+    border-radius:50%;
+
+    overflow:hidden;
+
+    border:5px solid #ffd700;
+
+    box-shadow:
+    0 0 30px #ffd700,
+    0 0 80px rgba(255,215,0,.5);
+
+    animation:
+    floatChick 3s infinite ease-in-out;
+
+}
+
+
+
+.chick-circle img{
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+}
+
+
+
+@keyframes floatChick{
+
+0%,100%{
+transform:translateY(0);
+}
+
+50%{
+transform:translateY(-15px);
+}
+
+}
+
+
+
+
+.sparkle{
+
+position:absolute;
+
+width:8px;
+height:8px;
+
+background:#ffd700;
+
+border-radius:50%;
+
+pointer-events:none;
+
+animation:sparkleMove 1s forwards;
+
+}
+
+
+@keyframes sparkleMove{
+
+0%{
+opacity:1;
+transform:scale(1);
+}
+
+100%{
+
+opacity:0;
+
+transform:
+translate(
+var(--x),
+var(--y)
+)
+scale(0);
+
+}
+
+}
