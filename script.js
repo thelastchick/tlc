@@ -528,3 +528,66 @@ window.addEventListener("load", () => {
     if (loader) loader.classList.add("hidden");
   }, 1800);
 });
+const sparkleArea =
+document.getElementById("sparkle-area");
+
+
+document.addEventListener("mousemove",(e)=>{
+
+createSparkle(e.clientX,e.clientY);
+
+});
+
+
+document.addEventListener("click",(e)=>{
+
+for(let i=0;i<15;i++){
+
+createSparkle(
+e.clientX,
+e.clientY
+);
+
+}
+
+});
+
+
+
+function createSparkle(x,y){
+
+
+const s=document.createElement("span");
+
+s.className="sparkle";
+
+
+s.style.left=x+"px";
+s.style.top=y+"px";
+
+
+s.style.setProperty(
+"--x",
+(Math.random()*120-60)+"px"
+);
+
+
+s.style.setProperty(
+"--y",
+(Math.random()*120-60)+"px"
+);
+
+
+
+document.body.appendChild(s);
+
+
+
+setTimeout(()=>{
+
+s.remove();
+
+},1000);
+
+
+}
