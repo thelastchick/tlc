@@ -146,7 +146,23 @@ nav a:hover {
     padding: 130px 5% 60px;
     gap: 40px;
 }
-
+.hero-image {
+    width: 380px;
+    max-width: 100%;
+    border-radius: 32px;
+    filter: drop-shadow(0 0 40px rgba(255, 215, 0, 0.6));
+    
+    -webkit-mask-image: radial-gradient(
+        ellipse 85% 90% at center,
+        black 60%,
+        transparent 100%
+    );
+    mask-image: radial-gradient(
+        ellipse 85% 90% at center,
+        black 60%,
+        transparent 100%
+    );
+}
 .hero-content {
     max-width: 560px;
 }
