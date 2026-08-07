@@ -1,153 +1,138 @@
-let player=document.getElementById("player");
+let score = 0;
+let playing = false;
 
-let enemy=document.getElementById("enemy");
-let mouse=document.getElementById("mouse");
-let rock=document.getElementById("rock");
-let lantern=document.getElementById("lantern");
+const player = document.getElementById("player");
+const enemy = document.getElementById("enemy");
+const mouse = document.getElementById("mouse");
+const rock = document.getElementById("rock");
+const lantern = document.getElementById("lantern");
 
-let points=document.getElementById("points");
-
-let score=0;
-let running=true;
-
+const points = document.getElementById("points");
+const gameOver = document.getElementById("gameover");
 
 
-document.onclick=function(){
+let jumping = false;
 
-if(!running)return;
 
-player.classList.remove("jump");
+// شروع بازی
+document.onclick = function(){
 
-void player.offsetWidth;
+    if(!playing){
+        playing = true;
+        gameOver.style.display="none";
+    }
 
-player.classList.add("jump");
+    if(!jumping){
+
+        jumping=true;
+
+        player.classList.add("jump");
+
+        setTimeout(()=>{
+
+            player.classList.remove("jump");
+            jumping=false;
+
+        },650);
+
+    }
+
+};
+
+
+
+// فقط یک مانع فعال باشد
+let objects=[enemy,mouse,rock,lantern];
+
+function spawn(){
+
+    if(!playing) return;
+
+
+    objects.forEach(o=>{
+        o.style.right="-200px";
+    });
+
+
+    let random = Math.floor(Math.random()*4);
+
+    let obj = objects[random];
+
+
+    let position=-100;
+
+    obj.style.right=position+"px";
+
+
+    let move=setInterval(()=>{
+
+
+        if(!playing){
+
+            clearInterval(move);
+            return;
+
+        }
+
+
+        position+=6;
+
+        obj.style.right=position+"px";
+
+
+        let p=player.getBoundingClientRect();
+        let o=obj.getBoundingClientRect();
+
+
+
+        // برخورد دقیق‌تر
+        if(
+        p.left < o.right-20 &&
+        p.right > o.left+20 &&
+        p.bottom > o.top+20
+        ){
+
+            if(obj==lantern){
+
+                score+=10;
+                points.innerHTML=score;
+
+                obj.style.right="-500px";
+
+            }
+
+            else{
+
+                playing=false;
+                gameOver.style.display="block";
+
+            }
+
+
+            clearInterval(move);
+
+        }
+
+
+        if(position>900){
+
+            clearInterval(move);
+            obj.style.right="-300px";
+
+        }
+
+
+
+    },30);
+
 
 }
 
 
 
-
-function moveObject(obj,speed){
-
-
-let x=parseInt(obj.style.right || -50);
-
-
-x+=speed;
-
-
-obj.style.right=x+"px";
-
-
-if(x>1000){
-
-obj.style.right="-100px";
-
-
-if(obj==lantern){
-
-score+=10;
-
-points.innerHTML=score;
-
-
-}
-
-
-}
-
-
-}
-
-
-
-
+// هر چند ثانیه یک چیز جدید
 setInterval(()=>{
 
+    spawn();
 
-if(!running)return;
-
-
-moveObject(enemy,8);
-
-moveObject(mouse,10);
-
-moveObject(rock,9);
-
-moveObject(lantern,7);
-
-
-
-},30);
-
-
-
-
-
-setInterval(()=>{
-
-
-let p=player.getBoundingClientRect();
-
-
-let enemies=[
-enemy,
-mouse,
-rock
-];
-
-
-enemies.forEach(e=>{
-
-
-let a=e.getBoundingClientRect();
-
-
-if(
-p.left<a.right &&
-p.right>a.left &&
-p.bottom>a.top
-)
-
-{
-
-running=false;
-
-document.getElementById("gameover").style.display="block";
-
-}
-
-
-});
-
-
-
-let l=lantern.getBoundingClientRect();
-
-
-if(
-p.left<l.right &&
-p.right>l.left
-){
-
-score+=10;
-
-points.innerHTML=score;
-
-lantern.style.right="-600px";
-
-}
-
-
-},50);
-
-
-
-
-
-
-function restartGame(){
-
-location.reload();
-
-}
+},2500);
