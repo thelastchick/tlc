@@ -1,61 +1,59 @@
-body {
-    margin: 0;
-    background: #050505;
-    text-align: center;
-    font-family: Arial, sans-serif;
-    color: white;
+body{
+    margin:0;
+    background:#050505;
+    text-align:center;
+    font-family:Arial;
+    color:white;
 }
 
 
-#game {
-    height: 350px;
-    max-width: 900px;
-    margin: auto;
-    position: relative;
-    overflow: hidden;
+#game{
 
-    border-radius: 30px;
-    border: 2px solid gold;
+    height:350px;
+    max-width:900px;
+    margin:auto;
+
+    position:relative;
+    overflow:hidden;
+
+    border-radius:30px;
+    border:2px solid gold;
 
     background:
-    linear-gradient(#101827, #020202);
+    linear-gradient(#111827,#020202);
 
-    box-shadow: 0 0 30px rgba(255,215,0,.4);
 }
 
 
-/* پس زمینه آخرالزمانی */
-
-#sky {
+#sky{
 
     position:absolute;
     width:200%;
     height:220px;
 
     background:
-    radial-gradient(circle, #777 1px, transparent 2px);
+    radial-gradient(circle,#777 1px,transparent 2px);
 
-    animation: skyMove 10s linear infinite;
-
-}
-
-
-@keyframes skyMove {
-
-    from {
-        transform:translateX(0);
-    }
-
-    to {
-        transform:translateX(-400px);
-    }
+    animation:skyMove 10s linear infinite;
 
 }
 
 
-/* زمین */
+@keyframes skyMove{
 
-#ground {
+from{
+transform:translateX(0);
+}
+
+to{
+transform:translateX(-400px);
+}
+
+}
+
+
+
+#ground{
 
     position:absolute;
     bottom:0;
@@ -65,28 +63,11 @@ body {
 
     background:#292929;
 
-    animation: groundMove 2s linear infinite;
-
-}
-
-
-@keyframes groundMove {
-
-    from {
-        left:0;
-    }
-
-    to {
-        left:-300px;
-    }
-
 }
 
 
 
-/* جوجه */
-
-#player {
+#player{
 
     position:absolute;
 
@@ -102,9 +83,7 @@ body {
 
 
 
-/* پرش */
-
-.jump {
+.jump{
 
     animation:jump .65s;
 
@@ -112,24 +91,27 @@ body {
 
 
 
-@keyframes jump {
+@keyframes jump{
 
-    50% {
+    0%{
+        bottom:55px;
+    }
 
-        bottom:170px;
+    50%{
+        bottom:200px;
+    }
 
+    100%{
+        bottom:55px;
     }
 
 }
 
 
 
-/* همه موانع کوچکتر */
 
 #enemy,
-#mouse,
-#rock,
-#lantern {
+#lantern{
 
     position:absolute;
 
@@ -141,40 +123,22 @@ body {
 
 
 
-/* جای شروع */
-
-#enemy {
+#enemy{
 
     right:-100px;
 
 }
 
 
-#mouse {
+#lantern{
 
-    right:-350px;
-
-}
-
-
-#rock {
-
-    right:-550px;
-
-}
-
-
-#lantern {
-
-    right:-750px;
+    right:-300px;
 
 }
 
 
 
-/* امتیاز */
-
-#score {
+#score{
 
     position:absolute;
 
@@ -182,7 +146,7 @@ body {
 
     left:20px;
 
-    color:#ffd700;
+    color:gold;
 
     font-size:22px;
 
@@ -190,9 +154,7 @@ body {
 
 
 
-/* باخت */
-
-#gameover {
+#gameover{
 
     display:none;
 
@@ -210,18 +172,14 @@ body {
 
 
 
-button {
-
-    background:#ffd700;
-
-    border:none;
+button{
 
     padding:12px 35px;
 
     border-radius:30px;
 
-    cursor:pointer;
+    background:gold;
 
-    font-weight:bold;
+    border:0;
 
 }
