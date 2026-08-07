@@ -1,99 +1,156 @@
 body{
 
 margin:0;
-background:#020202;
-overflow:hidden;
+background:#050505;
+text-align:center;
 font-family:Arial;
+color:white;
+
 }
 
 
 #game{
 
 height:350px;
+max-width:900px;
+margin:auto;
+position:relative;
+overflow:hidden;
+
+border-radius:30px;
+border:2px solid gold;
+
 background:
 linear-gradient(#101827,#020202);
 
-border-radius:30px;
-
-border:2px solid gold;
-
-position:relative;
-
-overflow:hidden;
-
-cursor:pointer;
-
 }
 
 
 
-#title{
+#sky{
 
 position:absolute;
+width:200%;
+height:200px;
 
-top:15px;
+background:
+radial-gradient(circle,#555 1px,transparent 2px);
 
-width:100%;
-
-text-align:center;
-
-font-size:28px;
-
-color:#ffd700;
-
-z-index:5;
-
-text-shadow:0 0 15px gold;
-
-}
-
-
-#title span{
-
-font-size:18px;
-color:white;
+animation:skyMove 8s linear infinite;
 
 }
 
 
 
-#world{
+@keyframes skyMove{
+
+from{
+transform:translateX(0);
+}
+
+to{
+transform:translateX(-300px);
+}
+
+}
+
+
+
+#ground{
 
 position:absolute;
-
 bottom:0;
 
-width:100%;
+height:60px;
+width:200%;
 
-height:250px;
+background:#292929;
+
+animation:groundMove 2s linear infinite;
+
+}
+
+
+@keyframes groundMove{
+
+from{
+left:0;
+}
+
+to{
+left:-300px;
+}
 
 }
 
 
 
-#chick{
+#player{
 
 position:absolute;
 
-left:70px;
+left:100px;
 
-bottom:50px;
+bottom:55px;
 
 font-size:70px;
 
+transform:scaleX(-1);
+
 }
 
 
 
-#cat{
+.jump{
+
+animation:jump .6s;
+
+}
+
+
+
+@keyframes jump{
+
+50%{
+
+bottom:170px;
+
+}
+
+}
+
+
+
+#enemy,#mouse,#rock,#lantern{
 
 position:absolute;
 
+bottom:55px;
+
+font-size:55px;
+
+}
+
+
+
+#enemy{
+
 right:-80px;
 
-bottom:50px;
+}
 
-font-size:65px;
+
+#mouse{
+
+right:-250px;
+
+}
+
+
+
+#rock{
+
+right:-400px;
 
 }
 
@@ -101,41 +158,7 @@ font-size:65px;
 
 #lantern{
 
-position:absolute;
-
-display:none;
-
-left:150px;
-
-bottom:90px;
-
-font-size:45px;
-
-z-index:3;
-
-}
-
-
-
-#light{
-
-position:absolute;
-
-display:none;
-
-width:120px;
-
-height:120px;
-
-border-radius:50%;
-
-background:rgba(255,220,80,.5);
-
-bottom:60px;
-
-left:220px;
-
-filter:blur(15px);
+right:-600px;
 
 }
 
@@ -146,20 +169,17 @@ filter:blur(15px);
 position:absolute;
 
 top:20px;
-
 left:20px;
 
-color:white;
+color:gold;
 
-font-size:20px;
-
-z-index:6;
+font-size:22px;
 
 }
 
 
 
-#over{
+#gameover{
 
 display:none;
 
@@ -169,13 +189,9 @@ top:120px;
 
 width:100%;
 
-text-align:center;
-
 font-size:35px;
 
 color:red;
-
-z-index:10;
 
 }
 
@@ -189,7 +205,5 @@ border-radius:30px;
 background:gold;
 
 border:0;
-
-font-size:18px;
 
 }
