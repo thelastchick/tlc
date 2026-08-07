@@ -1,17 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>The Last Chick (TLC)</title>
-
 <meta name="description" content="The Last Chick (TLC) - A community driven Web3 ecosystem built on hope, resilience and purpose.">
-
 <link rel="stylesheet" href="style.css">
-
 </head>
-
 <body>
 
 <!-- Loader -->
@@ -20,491 +15,205 @@
     <h1>TLC</h1>
 </div>
 
-
 <!-- Header -->
 <header>
+    <div class="logo">THE LAST CHICK</div>
 
-<div class="logo">
-THE LAST CHICK
-</div>
+    <nav id="navMenu">
+        <a href="#about" data-i18n="nav_about">About</a>
+        <a href="#story" data-i18n="nav_story">Story</a>
+        <a href="#token" data-i18n="nav_token">Token</a>
+        <a href="#roadmap" data-i18n="nav_roadmap">Roadmap</a>
+    </nav>
 
+    <div class="header-right">
+        <div class="language">
+            <select id="languageSelect">
+                <option value="en">🇺🇸 English</option>
+                <option value="fa">🇮🇷 فارسی</option>
+                <option value="ar">🇸🇦 العربية</option>
+                <option value="es">🇪🇸 Español</option>
+                <option value="fr">🇫🇷 Français</option>
+                <option value="de">🇩🇪 Deutsch</option>
+                <option value="tr">🇹🇷 Türkçe</option>
+                <option value="pt">🇧🇷 Português</option>
+                <option value="ru">🇷🇺 Русский</option>
+                <option value="zh">🇨🇳 中文</option>
+                <option value="ja">🇯🇵 日本語</option>
+                <option value="hi">🇮🇳 हिन्दी</option>
+            </select>
+        </div>
 
-<nav>
-<a href="#about">About</a>
-<a href="#story">Story</a>
-<a href="#token">Token</a>
-<a href="#roadmap">Roadmap</a>
-</nav>
-
-
-<div class="language">
-
-<select id="languageSelect" onchange="changeLanguage(this.value)">
-
-<option value="en">
-🇺🇸 English
-</option>
-
-<option value="fa">
-🇮🇷 فارسی
-</option>
-
-<option value="ar">
-🇸🇦 العربية
-</option>
-
-</select>
-
-</div>
-
+        <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
 </header>
 
-
-
 <!-- Hero -->
-
 <section class="hero">
+    <div class="hero-content">
+        <h1 data-i18n="hero_title">THE LAST CHICK <span>(TLC)</span></h1>
+        <p class="hero-title" data-i18n="hero_subtitle">The last survivor.<br>The first legend.</p>
+        <p class="small-text" data-i18n="hero_desc">More than a meme coin — a community-driven Web3 movement built on hope, resilience and purpose.</p>
 
-<div class="hero-content">
-
-<h1>
-THE LAST CHICK
-<span>(TLC)</span>
-</h1>
-
-
-<p class="hero-title">
-The last survivor.<br>
-The first legend.
-</p>
-
-
-<p class="small-text">
-More than a meme coin — a community-driven Web3 movement built on hope, resilience and purpose.
-</p>
-
-
-
-<div class="buttons">
-
-<a href="#buy" class="btn">
-BUY TLC
-</a>
-
-
-<a href="https://t.me/TheLastChick" target="_blank" class="btn">
-Telegram
-</a>
-
-
-<a href="https://x.com/The_Last_Chick" target="_blank" class="btn">
-X
-</a>
-
-
-</div>
-
-</div>
-
-
-
-<img class="hero-image" src="assets/tlc1.png" alt="The Last Chick">
-
+        <div class="buttons">
+            <a href="#buy" class="btn" data-i18n="btn_buy">BUY TLC</a>
+            <a href="https://t.me/TheLastChick" target="_blank" class="btn">Telegram</a>
+            <a href="https://x.com/The_Last_Chick" target="_blank" class="btn">X</a>
+            <a href="https://www.instagram.com/" target="_blank" class="btn">Instagram</a>
+        </div>
+    </div>
+    <img class="hero-image" src="assets/tlc1.png" alt="The Last Chick">
 </section>
-
-
-
 
 <!-- About -->
-
 <section id="about">
-
-<h2>
-About The Last Chick
-</h2>
-
-
-<p>
-The Last Chick (TLC) is more than a meme coin — it is the beginning of a community-driven movement built on hope, resilience, and purpose.
-</p>
-
-
-<p>
-Built on the Base network, TLC combines meme culture, NFTs and Web3 experiences into one growing ecosystem.
-</p>
-
-
+    <h2 data-i18n="about_title">About The Last Chick</h2>
+    <p data-i18n="about_p1">The Last Chick (TLC) is more than a meme coin — it is the beginning of a community-driven movement built on hope, resilience, and purpose.</p>
+    <p data-i18n="about_p2">Built on the Base network, TLC combines meme culture, NFTs and Web3 experiences into one growing ecosystem.</p>
 </section>
 
-
-
-
 <!-- Story -->
-
 <section id="story">
-
-<img src="assets/tlc2.png" alt="TLC Story">
-
-
-<div>
-
-<h2>
-The Story
-</h2>
-
-
-<p>
-The Last Chick represents the smallest light that refuses to disappear.
-</p>
-
-
-<p>
-A symbol of hope, courage, resilience and new beginnings.
-</p>
-
-
-<p>
-Sometimes the smallest light is the one that survives the darkness.
-</p>
-
-
-</div>
-
+    <img src="assets/tlc2.png" alt="TLC Story">
+    <div>
+        <h2 data-i18n="story_title">The Story</h2>
+        <p data-i18n="story_p1">The Last Chick represents the smallest light that refuses to disappear.</p>
+        <p data-i18n="story_p2">A symbol of hope, courage, resilience and new beginnings.</p>
+        <p data-i18n="story_p3">Sometimes the smallest light is the one that survives the darkness.</p>
+    </div>
 </section>
 
 <!-- Values -->
-
 <section class="values">
-
-<h2>
-Our Core Values
-</h2>
-
-
-<div class="cards">
-
-
-<div class="card">
-<h3>✨ Creativity</h3>
-<p>
-Creating unique experiences and ideas beyond ordinary projects.
-</p>
-</div>
-
-
-<div class="card">
-<h3>🤝 Community</h3>
-<p>
-Growing together with supporters and believers.
-</p>
-</div>
-
-
-<div class="card">
-<h3>❤️ Compassion</h3>
-<p>
-Building something positive with real impact.
-</p>
-</div>
-
-
-<div class="card">
-<h3>🚀 Development</h3>
-<p>
-Creating a long-term ecosystem beyond hype.
-</p>
-</div>
-
-
-</div>
-
+    <h2 data-i18n="values_title">Our Core Values</h2>
+    <div class="cards">
+        <div class="card">
+            <h3 data-i18n="value1_title">✨ Creativity</h3>
+            <p data-i18n="value1_desc">Creating unique experiences and ideas beyond ordinary projects.</p>
+        </div>
+        <div class="card">
+            <h3 data-i18n="value2_title">🤝 Community</h3>
+            <p data-i18n="value2_desc">Growing together with supporters and believers.</p>
+        </div>
+        <div class="card">
+            <h3 data-i18n="value3_title">❤️ Compassion</h3>
+            <p data-i18n="value3_desc">Building something positive with real impact.</p>
+        </div>
+        <div class="card">
+            <h3 data-i18n="value4_title">🚀 Development</h3>
+            <p data-i18n="value4_desc">Creating a long-term ecosystem beyond hype.</p>
+        </div>
+    </div>
 </section>
-
-
-
 
 <!-- Gallery -->
-
 <section class="gallery">
-
-<h2>
-TLC Universe
-</h2>
-
-
-<img src="assets/tlc3.png" alt="TLC">
-<img src="assets/tlc4.png" alt="TLC">
-<img src="assets/tlc5.png" alt="TLC">
-
-
+    <h2 data-i18n="gallery_title">TLC Universe</h2>
+    <img src="assets/tlc3.png" alt="TLC">
+    <img src="assets/tlc4.png" alt="TLC">
+    <img src="assets/tlc5.png" alt="TLC">
 </section>
-
-
-
-
 
 <!-- Token -->
-
 <section id="token">
-
-<h2>
-TLC Token
-</h2>
-
-
-<div class="token-card">
-
-
-<p>
-<strong>Name:</strong>
-The Last Chick
-</p>
-
-
-<p>
-<strong>Symbol:</strong>
-TLC
-</p>
-
-
-<p>
-<strong>Network:</strong>
-Base
-</p>
-
-
-<p>
-<strong>Contract:</strong>
-<br>
-
-<span class="contract-address">
-0x04B757D7Cb621BFb846d47B161857D5E59F5D40C
-</span>
-
-</p>
-
-
-<button onclick="copyContract()">
-COPY ADDRESS
-</button>
-
-
-</div>
-
+    <h2 data-i18n="token_title">TLC Token</h2>
+    <div class="token-card">
+        <p><strong data-i18n="token_name">Name:</strong> The Last Chick</p>
+        <p><strong data-i18n="token_symbol">Symbol:</strong> TLC</p>
+        <p><strong data-i18n="token_network">Network:</strong> Base</p>
+        <p><strong data-i18n="token_contract">Contract:</strong><br>
+            <span class="contract-address" id="contractAddress">0x04B757D7Cb621BFb846d47B161857D5E59F5D40C</span>
+        </p>
+        <button onclick="copyContract()" data-i18n="btn_copy">COPY ADDRESS</button>
+    </div>
 </section>
-
-
-
-
 
 <!-- Tokenomics -->
-
 <section id="tokenomics">
-
-<h2>
-Tokenomics
-</h2>
-
-
-<div class="cards">
-
-
-<div class="card">
-<h3>🐥 Token</h3>
-<p>
-The Last Chick (TLC)
-</p>
-</div>
-
-
-<div class="card">
-<h3>🌐 Network</h3>
-<p>
-Base Chain
-</p>
-</div>
-
-
-<div class="card">
-<h3>💎 Utility</h3>
-<p>
-Web3 Ecosystem + NFT + Games
-</p>
-</div>
-
-
-<div class="card">
-<h3>🤝 Community</h3>
-<p>
-Community Driven Growth
-</p>
-</div>
-
-
-</div>
-
+    <h2 data-i18n="tokenomics_title">Tokenomics</h2>
+    <div class="cards">
+        <div class="card">
+            <h3 data-i18n="tok1_title">🐥 Token</h3>
+            <p data-i18n="tok1_desc">The Last Chick (TLC)</p>
+        </div>
+        <div class="card">
+            <h3 data-i18n="tok2_title">🌐 Network</h3>
+            <p data-i18n="tok2_desc">Base Chain</p>
+        </div>
+        <div class="card">
+            <h3 data-i18n="tok3_title">💎 Utility</h3>
+            <p data-i18n="tok3_desc">Web3 Ecosystem + NFT + Games</p>
+        </div>
+        <div class="card">
+            <h3 data-i18n="tok4_title">🤝 Community</h3>
+            <p data-i18n="tok4_desc">Community Driven Growth</p>
+        </div>
+    </div>
 </section>
-
-
-
 
 <!-- NFT -->
-
 <section id="nft">
-
-<h2>
-TLC Genesis NFT
-</h2>
-
-
-<p>
-A digital collection inspired by the final light of hope in a dark world.
-</p>
-
-
-
-<div class="gallery">
-
-<img src="assets/tlc3.png" alt="NFT">
-<img src="assets/tlc4.png" alt="NFT">
-<img src="assets/tlc5.png" alt="NFT">
-
-</div>
-
-
+    <h2 data-i18n="nft_title">TLC Genesis NFT</h2>
+    <p data-i18n="nft_desc">A digital collection inspired by the final light of hope in a dark world.</p>
+    <div class="gallery">
+        <img src="assets/tlc3.png" alt="NFT">
+        <img src="assets/tlc4.png" alt="NFT">
+        <img src="assets/tlc5.png" alt="NFT">
+    </div>
 </section>
 
-
-
-
 <!-- Buy -->
-
 <section id="buy">
-
-<h2>
-Buy The Last Chick (TLC)
-</h2>
-
-
-<div class="contract-box">
-
-
-<p>
-Contract Address:
-</p>
-
-
-<input 
-class="contract-input"
-value="0x04B757D7Cb621BFb846d47B161857D5E59F5D40C"
-readonly>
-
-
-<button onclick="copyContract()">
-COPY ADDRESS
-</button>
-
-
-</div>
-
-
-<a href="#" class="buy-btn">
-BUY TLC
-</a>
-
-
+    <h2 data-i18n="buy_title">Buy The Last Chick (TLC)</h2>
+    <div class="contract-box">
+        <p data-i18n="buy_contract">Contract Address:</p>
+        <input class="contract-input" id="contractInput" value="0x04B757D7Cb621BFb846d47B161857D5E59F5D40C" readonly>
+        <button onclick="copyContract()" data-i18n="btn_copy">COPY ADDRESS</button>
+    </div>
+    <a href="#" class="buy-btn" data-i18n="btn_buy">BUY TLC</a>
 </section>
 
 <!-- Roadmap -->
-
 <section id="roadmap">
-
-<h2>
-Roadmap
-</h2>
-
-
-<div class="cards">
-
-
-<div class="card">
-<h3>Phase 1</h3>
-<p>
-Birth of TLC
-</p>
-</div>
-
-
-<div class="card">
-<h3>Phase 2</h3>
-<p>
-Community Growth
-</p>
-</div>
-
-
-<div class="card">
-<h3>Phase 3</h3>
-<p>
-NFT & Web3 Expansion
-</p>
-</div>
-
-
-<div class="card">
-<h3>Phase 4</h3>
-<p>
-The Last Chick Ecosystem
-</p>
-</div>
-
-
-</div>
-
+    <h2 data-i18n="roadmap_title">Roadmap</h2>
+    <div class="cards">
+        <div class="card">
+            <h3 data-i18n="phase1_title">Phase 1</h3>
+            <p data-i18n="phase1_desc">Birth of TLC</p>
+        </div>
+        <div class="card">
+            <h3 data-i18n="phase2_title">Phase 2</h3>
+            <p data-i18n="phase2_desc">Community Growth</p>
+        </div>
+        <div class="card">
+            <h3 data-i18n="phase3_title">Phase 3</h3>
+            <p data-i18n="phase3_desc">NFT & Web3 Expansion</p>
+        </div>
+        <div class="card">
+            <h3 data-i18n="phase4_title">Phase 4</h3>
+            <p data-i18n="phase4_desc">The Last Chick Ecosystem</p>
+        </div>
+    </div>
 </section>
-
-
-
-
 
 <!-- Community -->
-
 <section class="community">
-
-<h2>
-Join The Community
-</h2>
-
-
-<a class="btn" href="https://t.me/TheLastChick" target="_blank">
-Telegram
-</a>
-
-
-<a class="btn" href="https://x.com/The_Last_Chick" target="_blank">
-X
-</a>
-
-
+    <h2 data-i18n="community_title">Join The Community</h2>
+    <div class="social-buttons">
+        <a class="btn" href="https://t.me/TheLastChick" target="_blank">Telegram</a>
+        <a class="btn" href="https://x.com/The_Last_Chick" target="_blank">X</a>
+        <a class="btn" href="https://www.instagram.com/" target="_blank">Instagram</a>
+    </div>
 </section>
 
-
-
-
-
 <footer>
-
-<p>
-© The Last Chick (TLC)
-</p>
-
+    <p data-i18n="footer">© The Last Chick (TLC)</p>
 </footer>
 
-
-
-
 <script src="script.js"></script>
-
-
 </body>
 </html>
