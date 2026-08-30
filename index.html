@@ -6,9 +6,9 @@
 <title>The Last Chick (TLC)</title>
 <meta name="description" content="The Last Chick (TLC) - A community driven Web3 ecosystem built on hope, resilience and purpose.">
 <link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/ethers@6.13.4/dist/ethers.umd.min.js"></script>
 </head>
 <body>
-
 <!-- Loader -->
 <div id="loader">
     <div id="sparkle-area">
@@ -22,14 +22,13 @@
 <!-- Header -->
 <header>
     <div class="logo">THE LAST CHICK</div>
-
     <nav id="navMenu">
         <a href="#about" data-i18n="nav_about">About</a>
         <a href="#story" data-i18n="nav_story">Story</a>
         <a href="#token" data-i18n="nav_token">Token</a>
+        <a href="#presale">Presale</a>
         <a href="#roadmap" data-i18n="nav_roadmap">Roadmap</a>
     </nav>
-
     <div class="header-right">
         <div class="language">
             <select id="languageSelect">
@@ -47,7 +46,6 @@
                 <option value="hi">🇮🇳 हिन्दी</option>
             </select>
         </div>
-
         <button class="menu-toggle" id="menuToggle" aria-label="Menu">
             <span></span>
             <span></span>
@@ -62,6 +60,9 @@
         <h1 data-i18n="hero_title">THE LAST CHICK <span>(TLC)</span></h1>
         <p class="hero-title" data-i18n="hero_subtitle">The last survivor.<br>The first legend.</p>
         <p class="small-text" data-i18n="hero_desc">More than a meme coin — a community-driven Web3 movement built on hope, resilience and purpose.</p>
+        <div class="buttons">
+            <a href="#presale" class="buy-btn">BUY TLC</a>
+        </div>
     </div>
     <img class="hero-image" src="assets/tlc1.png" alt="The Last Chick">
 </section>
@@ -69,21 +70,13 @@
 <!-- About -->
 <section id="about">
     <h2 data-i18n="about_title">About The Last Chick</h2>
-
     <p data-i18n="about_p1"><strong>The Last Chick (TLC)</strong> is more than a meme coin—it is the beginning of a community-driven movement built on hope, resilience, and purpose.</p>
-
     <p data-i18n="about_p2">Built on the Base network, the journey begins with a meme coin and an NFT collection inspired by the final light of hope in an end-of-days world. From there, our vision is to grow into a complete Web3 ecosystem featuring blockchain games, interactive digital experiences, and innovative utilities that create lasting value for our community.</p>
-
     <p data-i18n="about_p3">The Last Chick is founded on four core values: <strong>Creativity, Community, Compassion, and Long-Term Development.</strong></p>
-
     <p data-i18n="about_p4">The name <strong>The Last Chick</strong> represents something much greater than a character. It symbolizes the smallest light that refuses to fade—the final spark of hope when everything else seems lost. Though small and fragile, it stands for resilience, new beginnings, courage, and the belief that hope always deserves another chance.</p>
-
     <p data-i18n="about_p5">Every person who joins the TLC ecosystem becomes part of that story. By supporting the project, community members help strengthen the ecosystem, expand its possibilities, and build the foundation needed to bring our long-term vision to life.</p>
-
     <p data-i18n="about_p6">Our ambition reaches beyond blockchain technology. As the ecosystem grows, we aspire to create meaningful opportunities to support children living in hardship and improve the welfare of animals in need. We believe that innovation has its greatest value when it creates a positive impact in the real world.</p>
-
     <p data-i18n="about_p7">The Last Chick is not simply about owning a token. It is about building a community that believes even the smallest act of hope can inspire meaningful change.</p>
-
     <p data-i18n="about_p8"><strong>Because sometimes... the smallest light is the one that survives the darkness.</strong></p>
 </section>
 
@@ -145,151 +138,104 @@
 
 <!-- Tokenomics -->
 <section id="tokenomics" class="tokenomics">
-
-<h2>TLC Tokenomics</h2>
-
-<p class="token-subtitle">
-Transparent token distribution designed for community growth and long-term ecosystem development.
-</p>
-
-<div class="token-chart">
-
-<div class="center-token">
-<img src="assets/tlc1.png">
-<h3>TLC</h3>
-<strong>1,000,000,000</strong>
-<span>Total Supply</span>
-</div>
-
-<div class="slice presale">
-<b>10%</b>
-<span>Presale</span>
-</div>
-
-<div class="slice liquidity">
-<b>25%</b>
-<span>Liquidity</span>
-</div>
-
-<div class="slice marketing">
-<b>20%</b>
-<span>Marketing</span>
-</div>
-
-<div class="slice development">
-<b>15%</b>
-<span>Development</span>
-</div>
-
-<div class="slice ecosystem">
-<b>20%</b>
-<span>Ecosystem</span>
-</div>
-
-<div class="slice team">
-<b>10%</b>
-<span>Team</span>
-</div>
-
-</div>
-
-<div class="token-info">
-
-<div>
-<h3>💧 Liquidity</h3>
-<p>25%</p>
-</div>
-
-<div>
-<h3>🐥 Presale</h3>
-<p>10%</p>
-</div>
-
-<div>
-<h3>📢 Marketing</h3>
-<p>20%</p>
-</div>
-
-<div>
-<h3>🛠 Development</h3>
-<p>15%</p>
-</div>
-
-<div>
-<h3>🌎 Ecosystem</h3>
-<p>20%</p>
-</div>
-
-<div>
-<h3>👥 Team</h3>
-<p>10%</p>
-</div>
-
-</div>
-
+    <h2>TLC Tokenomics</h2>
+    <p class="token-subtitle">
+        Transparent token distribution designed for community growth and long-term ecosystem development.
+    </p>
+    <div class="token-chart">
+        <div class="center-token">
+            <img src="assets/tlc1.png">
+            <h3>TLC</h3>
+            <strong>1,000,000,000</strong>
+            <span>Total Supply</span>
+        </div>
+        <div class="slice presale"><b>10%</b><span>Presale</span></div>
+        <div class="slice liquidity"><b>25%</b><span>Liquidity</span></div>
+        <div class="slice marketing"><b>20%</b><span>Marketing</span></div>
+        <div class="slice development"><b>15%</b><span>Development</span></div>
+        <div class="slice ecosystem"><b>20%</b><span>Ecosystem</span></div>
+        <div class="slice team"><b>10%</b><span>Team</span></div>
+    </div>
+    <div class="token-info">
+        <div><h3>💧 Liquidity</h3><p>25%</p></div>
+        <div><h3>🐥 Presale</h3><p>10%</p></div>
+        <div><h3>📢 Marketing</h3><p>20%</p></div>
+        <div><h3>🛠 Development</h3><p>15%</p></div>
+        <div><h3>🌎 Ecosystem</h3><p>20%</p></div>
+        <div><h3>👥 Team</h3><p>10%</p></div>
+    </div>
 </section>
 
 <!-- Public Presale -->
-
 <section id="presale" class="presale-section">
+    <h2>🐥 TLC Public Presale</h2>
+    <h3>The First Step of The Last Chick Journey</h3>
+    <p class="presale-text">
+        The TLC Public Presale is the first opportunity for early supporters 
+        to become part of the TLC ecosystem.
+    </p>
+    <p class="presale-text">
+        From the total supply of 
+        <strong>1,000,000,000 TLC</strong>,
+        a limited allocation of 
+        <strong>100,000,000 TLC (10%)</strong>
+        is reserved for the public presale phase.
+    </p>
 
-<h2>🐥 TLC Public Presale</h2>
+    <div class="presale-card">
+        <div class="presale-item">
+            <span>🐥 Allocation</span>
+            <strong>100,000,000 TLC</strong>
+        </div>
+        <div class="presale-item">
+            <span>📊 Supply</span>
+            <strong>10%</strong>
+        </div>
+        <div class="presale-item">
+            <span>💎 Price</span>
+            <strong>1 TLC = 0.001 USDC</strong>
+        </div>
+        <div class="presale-item">
+            <span>🌐 Network</span>
+            <strong>Base Chain</strong>
+        </div>
+    </div>
 
-<h3>
-The First Step of The Last Chick Journey
-</h3>
+    <!-- Buy Widget -->
+    <div class="buy-widget">
+        <h3>Buy TLC Now</h3>
+        
+        <div class="wallet-status" id="walletStatus">
+            <button id="connectBtn" class="buy-btn">Connect Wallet</button>
+        </div>
 
-<p class="presale-text">
-The TLC Public Presale is the first opportunity for early supporters 
-to become part of the TLC ecosystem.
-</p>
+        <div id="buyForm" style="display:none;">
+            <div class="input-group">
+                <label>You Pay (USDC)</label>
+                <input type="number" id="usdcAmount" placeholder="0.00" min="1" step="0.01">
+            </div>
 
-<p class="presale-text">
-From the total supply of 
-<strong>1,000,000,000 TLC</strong>,
-a limited allocation of 
-<strong>100,000,000 TLC (10%)</strong>
-is reserved for the public presale phase.
-</p>
+            <div class="input-group">
+                <label>You Receive (TLC)</label>
+                <input type="text" id="tlcAmount" readonly placeholder="0">
+            </div>
 
-<div class="presale-card">
+            <p class="price-info">1 USDC = 1,000 TLC</p>
 
-<div class="presale-item">
-<span>🐥 Allocation</span>
-<strong>100,000,000 TLC</strong>
-</div>
+            <button id="approveBtn" class="buy-btn" style="display:none;">Approve USDC</button>
+            <button id="buyBtn" class="buy-btn">Buy TLC</button>
 
-<div class="presale-item">
-<span>📊 Supply</span>
-<strong>10%</strong>
-</div>
+            <p id="txStatus" class="tx-status"></p>
+        </div>
+    </div>
 
-<div class="presale-item">
-<span>💎 Price</span>
-<strong>1 TLC = 0.001 USDC</strong>
-</div>
-
-<div class="presale-item">
-<span>🌐 Network</span>
-<strong>Base Chain</strong>
-</div>
-
-</div>
-
-<h3>Presale Purpose</h3>
-
-<div class="purpose-box">
-
-<p>🤝 Build the first TLC community</p>
-
-<p>🌱 Support early ecosystem growth</p>
-
-<p>💧 Prepare for liquidity expansion</p>
-
-<p>🚀 Support future development</p>
-
-</div>
-
+    <h3 style="margin-top:50px;">Presale Purpose</h3>
+    <div class="purpose-box">
+        <p>🤝 Build the first TLC community</p>
+        <p>🌱 Support early ecosystem growth</p>
+        <p>💧 Prepare for liquidity expansion</p>
+        <p>🚀 Support future development</p>
+    </div>
 </section>
 
 <!-- NFT -->
@@ -344,6 +290,5 @@ is reserved for the public presale phase.
 </footer>
 
 <script src="script.js"></script>
-
 </body>
 </html>
