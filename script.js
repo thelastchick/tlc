@@ -618,6 +618,40 @@ const approveBtn = document.getElementById("approveBtn");
 const buyBtn     = document.getElementById("buyBtn");
 const txStatus   = document.getElementById("txStatus");
 
+// Wallet / presale button handlers
+if (connectBtn) {
+  connectBtn.addEventListener("click", connectWallet);
+}
+
+if (approveBtn) {
+  approveBtn.addEventListener("click", async () => {
+    try {
+      if (!signer) {
+        alert("Please connect your wallet first.");
+        return;
+      }
+
+      const usdcValue = parseFloat(usdcInput?.value);
+      if (!usdcValue || usdcValue <= 0) {
+        alert("Enter a valid USDC amount");
+        return;
+      }
+
+      const amount = ethers.parseUnits(usdcValue.toString(), 6);
+      await approveUSDC(amount);
+    } catch (err) {
+      console.error("Approval failed:", err);
+      if (txStatus) {
+        txStatus.textContent = "Error: " + (err.reason || err.message || "Approval failed");
+      }
+    }
+  });
+}
+
+if (buyBtn) {
+  buyBtn.addEventListener("click", buyTLC);
+}
+
 if (usdcInput) {
   usdcInput.addEventListener("input", () => {
     const val = parseFloat(usdcInput.value) || 0;
