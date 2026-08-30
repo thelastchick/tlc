@@ -5,7 +5,7 @@ const CONTRACT_ADDRESS = "0x04B757D7Cb621BFb846d47B161857D5E59F5D40C";
 // 2) Create a project
 // 3) Copy the Project ID and paste it below
 // 4) In project settings, add your website domain
-const WALLETCONNECT_PROJECT_ID = "YOUR_PROJECT_ID";
+const WALLETCONNECT_PROJECT_ID = "b6b2c09a5c8ac5cb254ac684d7766a15";
 
 const translations = {
   en: {
