@@ -470,7 +470,6 @@ function setLanguage(lang) {
     }
   });
 
-  // Update copy button text if needed
   localStorage.setItem("tlc_lang", lang);
 }
 
@@ -490,10 +489,8 @@ function copyContract() {
     });
 }
 
-// Language selector
 const languageSelect = document.getElementById("languageSelect");
 if (languageSelect) {
-  // Load saved language
   const saved = localStorage.getItem("tlc_lang") || "en";
   languageSelect.value = saved;
   setLanguage(saved);
@@ -503,7 +500,6 @@ if (languageSelect) {
   });
 }
 
-// Mobile menu
 const menuToggle = document.getElementById("menuToggle");
 const navMenu = document.getElementById("navMenu");
 
@@ -521,76 +517,36 @@ if (menuToggle && navMenu) {
   });
 }
 
-// Loader
 window.addEventListener("load", () => {
   setTimeout(() => {
     const loader = document.getElementById("loader");
     if (loader) loader.classList.add("hidden");
   }, 1800);
 });
-const sparkleArea =
-document.getElementById("sparkle-area");
 
-
-document.addEventListener("mousemove",(e)=>{
-
-createSparkle(e.clientX,e.clientY);
-
+document.addEventListener("mousemove", (e) => {
+  createSparkle(e.clientX, e.clientY);
 });
 
-
-document.addEventListener("click",(e)=>{
-
-for(let i=0;i<15;i++){
-
-createSparkle(
-e.clientX,
-e.clientY
-);
-
-}
-
+document.addEventListener("click", (e) => {
+  for (let i = 0; i < 15; i++) {
+    createSparkle(e.clientX, e.clientY);
+  }
 });
 
-
-
-function createSparkle(x,y){
-
-
-const s=document.createElement("span");
-
-s.className="sparkle";
-
-
-s.style.left=x+"px";
-s.style.top=y+"px";
-
-
-s.style.setProperty(
-"--x",
-(Math.random()*120-60)+"px"
-);
-
-
-s.style.setProperty(
-"--y",
-(Math.random()*120-60)+"px"
-);
-
-
-
-document.body.appendChild(s);
-
-
-
-setTimeout(()=>{
-
-s.remove();
-
-},1000);
-
-
+function createSparkle(x, y) {
+  const s = document.createElement("span");
+  s.className = "sparkle";
+  s.style.left = x + "px";
+  s.style.top = y + "px";
+  s.style.setProperty("--x", (Math.random() * 120 - 60) + "px");
+  s.style.setProperty("--y", (Math.random() * 120 - 60) + "px");
+  document.body.appendChild(s);
+  setTimeout(() => {
+    s.remove();
+  }, 1000);
 }
+
 // ==================== PRESALE BUY ====================
 const SALE_CONTRACT = "0xb7fD96B6800dbEFD6Ba97A5a3c58e4209D7FA73A";
 const USDC_ADDRESS  = "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913";
@@ -608,7 +564,7 @@ const SALE_ABI = [
   "function buy(uint256 usdcAmount) external"
 ];
 
-let provider, signer, userAddress;
+let provider, signer, userAddress, ethereumProvider;
 
 const connectBtn = document.getElementById("connectBtn");
 const buyForm    = document.getElementById("buyForm");
@@ -618,7 +574,229 @@ const approveBtn = document.getElementById("approveBtn");
 const buyBtn     = document.getElementById("buyBtn");
 const txStatus   = document.getElementById("txStatus");
 
-// Wallet / presale button handlers
+window.tlcAnnouncedProviders = window.tlcAnnouncedProviders || [];
+window.addEventListener("eip6963:announceProvider", (event) => {
+  const detail = event.detail;
+  if (!detail?.provider) return;
+  const exists = window.tlcAnnouncedProviders.some(
+    (p) => p.info?.uuid === detail.info?.uuid
+  );
+  if (!exists) window.tlcAnnouncedProviders.push(detail);
+});
+window.dispatchEvent(new Event("eip6963:requestProvider"));
+
+function getEthereumProvider() {
+  const announced = window.tlcAnnouncedProviders || [];
+  if (announced.length) {
+    const metamask = announced.find((p) =>
+      p.info?.rdns === "io.metamask" ||
+      (p.info?.name || "").toLowerCase().includes("metamask")
+    );
+    return (metamask || announced[0]).provider;
+  }
+
+  const ethereum = window.ethereum;
+  if (!ethereum) return null;
+
+  if (Array.isArray(ethereum.providers) && ethereum.providers.length) {
+    return ethereum.providers.find((p) => p.isMetaMask && !p.isBraveWallet) || ethereum.providers[0];
+  }
+
+  return ethereum;
+}
+
+function setStatus(message) {
+  if (txStatus) txStatus.textContent = message || "";
+}
+
+function showConnected(address) {
+  if (!connectBtn || !buyForm) return;
+  connectBtn.style.display = "none";
+  buyForm.style.display = "block";
+  const walletStatus = document.getElementById("walletStatus");
+  if (walletStatus) {
+    walletStatus.innerHTML =
+      `<p style="color:#ffd700;font-size:14px;">
+        Connected: ${address.slice(0, 6)}...${address.slice(-4)}
+      </p>`;
+  }
+}
+
+function resetConnection() {
+  provider = null;
+  signer = null;
+  userAddress = null;
+  if (connectBtn) connectBtn.style.display = "block";
+  if (buyForm) buyForm.style.display = "none";
+  const walletStatus = document.getElementById("walletStatus");
+  if (walletStatus && connectBtn) {
+    walletStatus.innerHTML = "";
+    walletStatus.appendChild(connectBtn);
+  }
+}
+
+async function ensureBaseNetwork(ethereum) {
+  try {
+    await ethereum.request({
+      method: "wallet_switchEthereumChain",
+      params: [{ chainId: BASE_CHAIN_ID }]
+    });
+  } catch (switchError) {
+    if (switchError.code === 4902) {
+      await ethereum.request({
+        method: "wallet_addEthereumChain",
+        params: [{
+          chainId: BASE_CHAIN_ID,
+          chainName: "Base",
+          nativeCurrency: { name: "ETH", symbol: "ETH", decimals: 18 },
+          rpcUrls: ["https://mainnet.base.org"],
+          blockExplorerUrls: ["https://basescan.org"]
+        }]
+      });
+    } else if (switchError.code === 4001) {
+      throw new Error("Please approve switching to the Base network.");
+    } else {
+      throw switchError;
+    }
+  }
+}
+
+function attachWalletListeners(ethereum) {
+  if (!ethereum || ethereum.__tlcListenersAttached) return;
+  ethereum.__tlcListenersAttached = true;
+
+  ethereum.on?.("accountsChanged", async (accounts) => {
+    if (!accounts || accounts.length === 0) {
+      resetConnection();
+      return;
+    }
+    try {
+      provider = new ethers.BrowserProvider(ethereum);
+      signer = await provider.getSigner(accounts[0]);
+      userAddress = await signer.getAddress();
+      showConnected(userAddress);
+    } catch (err) {
+      console.error("Account change failed:", err);
+      resetConnection();
+    }
+  });
+
+  ethereum.on?.("chainChanged", () => {
+    window.location.reload();
+  });
+}
+
+async function connectWallet() {
+  try {
+    const ethereum = getEthereumProvider();
+    if (!ethereum) {
+      alert("Please install MetaMask or open this page inside a Web3 wallet browser.");
+      return;
+    }
+
+    ethereumProvider = ethereum;
+    attachWalletListeners(ethereum);
+
+    let accounts = [];
+    try {
+      accounts = await ethereum.request({ method: "eth_accounts" });
+    } catch (_) {
+      accounts = [];
+    }
+
+    if (!accounts || accounts.length === 0) {
+      try {
+        accounts = await ethereum.request({ method: "eth_requestAccounts" });
+      } catch (err) {
+        console.error("Wallet connection rejected:", err);
+        if (err.code === 4001) {
+          alert("Please unlock your wallet, select an account, and approve the connection.");
+        } else {
+          alert("Could not connect wallet: " + (err.reason || err.message || err));
+        }
+        return;
+      }
+    }
+
+    if (!accounts || accounts.length === 0) {
+      alert("No wallet account is available. Unlock your wallet, select an account, then try again.");
+      return;
+    }
+
+    await ensureBaseNetwork(ethereum);
+
+    provider = new ethers.BrowserProvider(ethereum);
+    signer = await provider.getSigner(accounts[0]);
+    userAddress = await signer.getAddress();
+
+    showConnected(userAddress);
+  } catch (err) {
+    console.error("Connection failed:", err);
+    if (err.code === 4001) {
+      alert("Please unlock your wallet, select an account, and approve the connection.");
+      return;
+    }
+    alert("Connection failed: " + (err.reason || err.shortMessage || err.message || "Unknown wallet error"));
+  }
+}
+
+function parseUsdcAmount() {
+  const raw = (usdcInput?.value || "").trim();
+  if (!raw || Number(raw) <= 0) {
+    throw new Error("Enter a valid USDC amount");
+  }
+  return ethers.parseUnits(raw, 6);
+}
+
+async function approveUSDC(amount) {
+  if (!signer) {
+    throw new Error("Please connect your wallet first.");
+  }
+  const usdc = new ethers.Contract(USDC_ADDRESS, USDC_ABI, signer);
+  setStatus("Approving USDC...");
+  const tx = await usdc.approve(SALE_CONTRACT, amount);
+  setStatus("Waiting for approval confirmation...");
+  await tx.wait();
+  setStatus("USDC approved. You can buy now.");
+}
+
+async function buyTLC() {
+  try {
+    if (!signer || !userAddress) {
+      alert("Please connect your wallet first.");
+      return;
+    }
+
+    const amount = parseUsdcAmount();
+    const usdc = new ethers.Contract(USDC_ADDRESS, USDC_ABI, signer);
+    const sale = new ethers.Contract(SALE_CONTRACT, SALE_ABI, signer);
+
+    const balance = await usdc.balanceOf(userAddress);
+    if (balance < amount) {
+      setStatus("Not enough USDC in your wallet on Base.");
+      return;
+    }
+
+    const allowance = await usdc.allowance(userAddress, SALE_CONTRACT);
+    if (allowance < amount) {
+      await approveUSDC(amount);
+    }
+
+    setStatus("Buying TLC...");
+    const tx = await sale.buy(amount);
+    setStatus("Waiting for confirmation...");
+    await tx.wait();
+    setStatus("Success! TLC purchased.");
+  } catch (err) {
+    console.error("Buy failed:", err);
+    if (err.code === 4001) {
+      setStatus("Transaction rejected in wallet.");
+      return;
+    }
+    setStatus("Error: " + (err.reason || err.shortMessage || err.message || "Buy failed"));
+  }
+}
+
 if (connectBtn) {
   connectBtn.addEventListener("click", connectWallet);
 }
@@ -630,20 +808,11 @@ if (approveBtn) {
         alert("Please connect your wallet first.");
         return;
       }
-
-      const usdcValue = parseFloat(usdcInput?.value);
-      if (!usdcValue || usdcValue <= 0) {
-        alert("Enter a valid USDC amount");
-        return;
-      }
-
-      const amount = ethers.parseUnits(usdcValue.toString(), 6);
+      const amount = parseUsdcAmount();
       await approveUSDC(amount);
     } catch (err) {
       console.error("Approval failed:", err);
-      if (txStatus) {
-        txStatus.textContent = "Error: " + (err.reason || err.message || "Approval failed");
-      }
+      setStatus("Error: " + (err.reason || err.shortMessage || err.message || "Approval failed"));
     }
   });
 }
@@ -655,91 +824,6 @@ if (buyBtn) {
 if (usdcInput) {
   usdcInput.addEventListener("input", () => {
     const val = parseFloat(usdcInput.value) || 0;
-    tlcInput.value = (val * 1000).toLocaleString();
+    if (tlcInput) tlcInput.value = (val * 1000).toLocaleString();
   });
-}
-
-async function connectWallet() {
-  try {
-    if (!window.ethereum) {
-      alert("Please install MetaMask or open this page inside a Web3 wallet browser.");
-      return;
-    }
-
-    provider = new ethers.BrowserProvider(window.ethereum);
-
-    let accounts = await window.ethereum.request({
-      method: "eth_accounts"
-    });
-
-    if (!accounts || accounts.length === 0) {
-      try {
-        accounts = await window.ethereum.request({
-          method: "eth_requestAccounts"
-        });
-      } catch (err) {
-        console.error("Wallet connection rejected:", err);
-
-        if (err.code === 4001) {
-          alert("Please unlock your wallet and select an account, then try again.");
-        } else {
-          alert("Could not connect wallet: " + (err.message || err));
-        }
-
-        return;
-      }
-    }
-
-    if (!accounts || accounts.length === 0) {
-      alert("No wallet account is available. Please create or unlock an account in your wallet.");
-      return;
-    }
-
-    try {
-      await window.ethereum.request({
-        method: "wallet_switchEthereumChain",
-        params: [{ chainId: BASE_CHAIN_ID }]
-      });
-    } catch (switchError) {
-      if (switchError.code === 4902) {
-        await window.ethereum.request({
-          method: "wallet_addEthereumChain",
-          params: [{
-            chainId: BASE_CHAIN_ID,
-            chainName: "Base",
-            nativeCurrency: {
-              name: "ETH",
-              symbol: "ETH",
-              decimals: 18
-            },
-            rpcUrls: ["https://mainnet.base.org"],
-            blockExplorerUrls: ["https://basescan.org"]
-          }]
-        });
-      } else {
-        throw switchError;
-      }
-    }
-
-    provider = new ethers.BrowserProvider(window.ethereum);
-
-    signer = await provider.getSigner();
-    userAddress = await signer.getAddress();
-
-    connectBtn.style.display = "none";
-    buyForm.style.display = "block";
-
-    document.getElementById("walletStatus").innerHTML =
-      `<p style="color:#ffd700;font-size:14px;">
-        Connected: ${userAddress.slice(0, 6)}...${userAddress.slice(-4)}
-      </p>`;
-
-  } catch (err) {
-    console.error("Connection failed:", err);
-
-    alert(
-      "Connection failed: " +
-      (err.reason || err.message || "Unknown wallet error")
-    );
-  }
 }
