@@ -1,5 +1,12 @@
 const CONTRACT_ADDRESS = "0x04B757D7Cb621BFb846d47B161857D5E59F5D40C";
 
+// REQUIRED for connecting wallets from Chrome/Safari on mobile (SafePal, Trust, MetaMask app, ...).
+// 1) Open https://cloud.reown.com  (free)
+// 2) Create a project
+// 3) Copy the Project ID and paste it below
+// 4) In project settings, add your website domain
+const WALLETCONNECT_PROJECT_ID = "YOUR_PROJECT_ID";
+
 const translations = {
   en: {
     nav_about: "About", nav_story: "Story", nav_token: "Token", nav_roadmap: "Roadmap",
@@ -564,7 +571,7 @@ const SALE_ABI = [
   "function buy(uint256 usdcAmount) external"
 ];
 
-let provider, signer, userAddress, ethereumProvider;
+let provider, signer, userAddress, ethereumProvider, wcProvider, usingWalletConnect;
 
 const connectBtn = document.getElementById("connectBtn");
 const buyForm    = document.getElementById("buyForm");
@@ -584,6 +591,10 @@ window.addEventListener("eip6963:announceProvider", (event) => {
   if (!exists) window.tlcAnnouncedProviders.push(detail);
 });
 window.dispatchEvent(new Event("eip6963:requestProvider"));
+
+function isMobileBrowser() {
+  return /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent || "");
+}
 
 function getEthereumProvider() {
   const announced = window.tlcAnnouncedProviders || [];
@@ -618,14 +629,26 @@ function showConnected(address) {
     walletStatus.innerHTML =
       `<p style="color:#ffd700;font-size:14px;">
         Connected: ${address.slice(0, 6)}...${address.slice(-4)}
-      </p>`;
+      </p>
+      <button type="button" id="disconnectBtn" class="buy-btn" style="margin-top:10px;background:#222;color:#ffd700;border:1px solid #ffd700;">Disconnect</button>`;
+    document.getElementById("disconnectBtn")?.addEventListener("click", disconnectWallet);
   }
+}
+
+async function disconnectWallet() {
+  try {
+    if (usingWalletConnect && wcProvider?.disconnect) {
+      await wcProvider.disconnect();
+    }
+  } catch (_) {}
+  resetConnection();
 }
 
 function resetConnection() {
   provider = null;
   signer = null;
   userAddress = null;
+  usingWalletConnect = false;
   if (connectBtn) connectBtn.style.display = "block";
   if (buyForm) buyForm.style.display = "none";
   const walletStatus = document.getElementById("walletStatus");
@@ -684,54 +707,173 @@ function attachWalletListeners(ethereum) {
   ethereum.on?.("chainChanged", () => {
     window.location.reload();
   });
+
+  ethereum.on?.("disconnect", () => {
+    resetConnection();
+  });
+}
+
+async function connectInjected(ethereum) {
+  ethereumProvider = ethereum;
+  attachWalletListeners(ethereum);
+
+  let accounts = [];
+  try {
+    accounts = await ethereum.request({ method: "eth_accounts" });
+  } catch (_) {
+    accounts = [];
+  }
+
+  if (!accounts || accounts.length === 0) {
+    accounts = await ethereum.request({ method: "eth_requestAccounts" });
+  }
+
+  if (!accounts || accounts.length === 0) {
+    throw new Error("No wallet account is available. Unlock your wallet, select an account, then try again.");
+  }
+
+  await ensureBaseNetwork(ethereum);
+
+  provider = new ethers.BrowserProvider(ethereum);
+  signer = await provider.getSigner(accounts[0]);
+  userAddress = await signer.getAddress();
+  usingWalletConnect = false;
+  showConnected(userAddress);
+}
+
+async function loadWalletConnectProvider() {
+  const urls = [
+    "https://esm.sh/@walletconnect/ethereum-provider@2.21.1?bundle",
+    "https://cdn.jsdelivr.net/npm/@walletconnect/ethereum-provider@2.21.1/+esm"
+  ];
+  let lastError;
+  for (const url of urls) {
+    try {
+      const mod = await import(url);
+      return mod.EthereumProvider || mod.default?.EthereumProvider || mod.default;
+    } catch (err) {
+      lastError = err;
+    }
+  }
+  throw lastError || new Error("Could not load WalletConnect");
+}
+
+async function connectWalletConnect() {
+  const projectId = (WALLETCONNECT_PROJECT_ID || "").trim();
+  if (!projectId || projectId === "YOUR_PROJECT_ID") {
+    alert(
+      "برای اتصال ولت از مرورگر گوشی (کروم/سافاری) باید یک Project ID رایگان بسازید:\n\n" +
+      "1) بروید به https://cloud.reown.com\n" +
+      "2) یک پروژه بسازید\n" +
+      "3) Project ID را کپی کنید\n" +
+      "4) در فایل script.js داخل WALLETCONNECT_PROJECT_ID بگذارید\n" +
+      "5) دامنه سایتتان را در تنظیمات پروژه اضافه کنید"
+    );
+    throw new Error("WalletConnect Project ID is missing");
+  }
+
+  setStatus("Opening wallet list...");
+
+  const EthereumProvider = await loadWalletConnectProvider();
+  if (!EthereumProvider?.init) {
+    throw new Error("WalletConnect failed to load. Check your internet connection.");
+  }
+
+  if (!wcProvider) {
+    wcProvider = await EthereumProvider.init({
+      projectId,
+      chains: [8453],
+      optionalChains: [8453, 1],
+      showQrModal: true,
+      methods: [
+        "eth_sendTransaction",
+        "eth_signTransaction",
+        "eth_sign",
+        "personal_sign",
+        "eth_signTypedData",
+        "eth_signTypedData_v4",
+        "wallet_switchEthereumChain",
+        "wallet_addEthereumChain"
+      ],
+      events: ["chainChanged", "accountsChanged", "disconnect"],
+      rpcMap: {
+        8453: "https://mainnet.base.org",
+        1: "https://eth.llamarpc.com"
+      },
+      metadata: {
+        name: "The Last Chick (TLC)",
+        description: "TLC Public Presale on Base",
+        url: window.location.origin,
+        icons: [`${window.location.origin}/assets/tlc1.png`]
+      },
+      qrModalOptions: {
+        themeMode: "dark",
+        themeVariables: {
+          "--wcm-z-index": "100000",
+          "--wcm-accent-color": "#ffd700"
+        },
+        explorerRecommendedWalletIds: [
+          "0b415a746fb9ee99cce155c2ceca0c6f6061b1dbca2d722b3ba16381d0562150",
+          "c57ca95b47569778a828d19178114f4db188b89b763c899ba0be274e97267d96",
+          "4622a2b2d6af1c9844944291e5e4951b405b5b8b460c2daec9c49536509c8ca3",
+          "fd20dc426fb37566d803205b19bbc1d4096b248ac04548e3bfb9b4fe5083c256",
+          "971e689d0a8cd342f627868cf8288c26d81ec19dc7ed7ff9bd4b9a245748f667",
+          "1ae92b26df02f0abca6304df07debccd18262fdf5fe82daa81593582dac9a369"
+        ]
+      }
+    });
+  }
+
+  attachWalletListeners(wcProvider);
+
+  if (!wcProvider.session) {
+    await wcProvider.connect();
+  }
+
+  const accounts = wcProvider.accounts || [];
+  if (!accounts.length) {
+    throw new Error("No wallet account is available.");
+  }
+
+  try {
+    await ensureBaseNetwork(wcProvider);
+  } catch (err) {
+    console.warn("Base switch via WalletConnect:", err);
+  }
+
+  ethereumProvider = wcProvider;
+  provider = new ethers.BrowserProvider(wcProvider);
+  signer = await provider.getSigner(accounts[0]);
+  userAddress = await signer.getAddress();
+  usingWalletConnect = true;
+  setStatus("");
+  showConnected(userAddress);
 }
 
 async function connectWallet() {
   try {
-    const ethereum = getEthereumProvider();
-    if (!ethereum) {
-      alert("Please install MetaMask or open this page inside a Web3 wallet browser.");
+    const injected = getEthereumProvider();
+    const mobile = isMobileBrowser();
+
+    if (injected && !mobile) {
+      await connectInjected(injected);
       return;
     }
 
-    ethereumProvider = ethereum;
-    attachWalletListeners(ethereum);
-
-    let accounts = [];
-    try {
-      accounts = await ethereum.request({ method: "eth_accounts" });
-    } catch (_) {
-      accounts = [];
-    }
-
-    if (!accounts || accounts.length === 0) {
+    if (injected && mobile) {
       try {
-        accounts = await ethereum.request({ method: "eth_requestAccounts" });
-      } catch (err) {
-        console.error("Wallet connection rejected:", err);
-        if (err.code === 4001) {
-          alert("Please unlock your wallet, select an account, and approve the connection.");
-        } else {
-          alert("Could not connect wallet: " + (err.reason || err.message || err));
-        }
+        await connectInjected(injected);
         return;
+      } catch (err) {
+        console.warn("Injected wallet failed on mobile, trying WalletConnect:", err);
       }
     }
 
-    if (!accounts || accounts.length === 0) {
-      alert("No wallet account is available. Unlock your wallet, select an account, then try again.");
-      return;
-    }
-
-    await ensureBaseNetwork(ethereum);
-
-    provider = new ethers.BrowserProvider(ethereum);
-    signer = await provider.getSigner(accounts[0]);
-    userAddress = await signer.getAddress();
-
-    showConnected(userAddress);
+    await connectWalletConnect();
   } catch (err) {
     console.error("Connection failed:", err);
+    setStatus("");
+    if (String(err.message || "").includes("Project ID is missing")) return;
     if (err.code === 4001) {
       alert("Please unlock your wallet, select an account, and approve the connection.");
       return;
@@ -739,6 +881,7 @@ async function connectWallet() {
     alert("Connection failed: " + (err.reason || err.shortMessage || err.message || "Unknown wallet error"));
   }
 }
+
 
 function parseUsdcAmount() {
   const raw = (usdcInput?.value || "").trim();
