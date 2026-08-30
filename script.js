@@ -591,3 +591,141 @@ s.remove();
 
 
 }
+// ==================== PRESALE BUY ====================
+const SALE_CONTRACT = "0xb7fD96B6800dbEFD6Ba97A5a3c58e4209D7FA73A";
+const USDC_ADDRESS  = "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913";
+const TLC_ADDRESS   = "0x04B757D7Cb621BFb846d47B161857D5E59F5D40C";
+const BASE_CHAIN_ID = "0x2105"; // 8453
+
+const USDC_ABI = [
+  "function approve(address spender, uint256 amount) returns (bool)",
+  "function allowance(address owner, address spender) view returns (uint256)",
+  "function balanceOf(address account) view returns (uint256)",
+  "function decimals() view returns (uint8)"
+];
+
+const SALE_ABI = [
+  "function buy(uint256 usdcAmount) external"
+];
+
+let provider, signer, userAddress;
+
+const connectBtn = document.getElementById("connectBtn");
+const buyForm    = document.getElementById("buyForm");
+const usdcInput  = document.getElementById("usdcAmount");
+const tlcInput   = document.getElementById("tlcAmount");
+const approveBtn = document.getElementById("approveBtn");
+const buyBtn     = document.getElementById("buyBtn");
+const txStatus   = document.getElementById("txStatus");
+
+if (usdcInput) {
+  usdcInput.addEventListener("input", () => {
+    const val = parseFloat(usdcInput.value) || 0;
+    tlcInput.value = (val * 1000).toLocaleString();
+  });
+}
+
+async function connectWallet() {
+  try {
+    if (!window.ethereum) {
+      alert("Please install MetaMask or open this page inside a Web3 wallet browser.");
+      return;
+    }
+
+    provider = new ethers.BrowserProvider(window.ethereum);
+    await provider.send("eth_requestAccounts", []);
+    
+    // Switch to Base
+    try {
+      await window.ethereum.request({
+        method: "wallet_switchEthereumChain",
+        params: [{ chainId: BASE_CHAIN_ID }],
+      });
+    } catch (switchError) {
+      if (switchError.code === 4902) {
+        await window.ethereum.request({
+          method: "wallet_addEthereumChain",
+          params: [{
+            chainId: BASE_CHAIN_ID,
+            chainName: "Base",
+            nativeCurrency: { name: "ETH", symbol: "ETH", decimals: 18 },
+            rpcUrls: ["https://mainnet.base.org"],
+            blockExplorerUrls: ["https://basescan.org"]
+          }],
+        });
+      }
+    }
+
+    signer = await provider.getSigner();
+    userAddress = await signer.getAddress();
+
+    connectBtn.style.display = "none";
+    buyForm.style.display = "block";
+    document.getElementById("walletStatus").innerHTML = 
+      `<p style="color:#ffd700;font-size:14px;">Connected: ${userAddress.slice(0,6)}...${userAddress.slice(-4)}</p>`;
+
+  } catch (err) {
+    console.error(err);
+    alert("Connection failed: " + (err.message || err));
+  }
+}
+
+async function checkAllowance(amount) {
+  const usdc = new ethers.Contract(USDC_ADDRESS, USDC_ABI, signer);
+  const allowance = await usdc.allowance(userAddress, SALE_CONTRACT);
+  return allowance >= amount;
+}
+
+async function approveUSDC(amount) {
+  const usdc = new ethers.Contract(USDC_ADDRESS, USDC_ABI, signer);
+  txStatus.textContent = "Approving USDC...";
+  const tx = await usdc.approve(SALE_CONTRACT, amount);
+  await tx.wait();
+  txStatus.textContent = "USDC Approved ✓";
+  approveBtn.style.display = "none";
+  buyBtn.style.display = "block";
+}
+
+async function buyTLC() {
+  try {
+    const usdcValue = parseFloat(usdcInput.value);
+    if (!usdcValue || usdcValue <= 0) {
+      alert("Enter a valid USDC amount");
+      return;
+    }
+
+    const amount = ethers.parseUnits(usdcValue.toString(), 6); // USDC has 6 decimals
+
+    const hasAllowance = await checkAllowance(amount);
+    if (!hasAllowance) {
+      approveBtn.style.display = "block";
+      buyBtn.style.display = "none";
+      await approveUSDC(amount);
+      return;
+    }
+
+    const sale = new ethers.Contract(SALE_CONTRACT, SALE_ABI, signer);
+    txStatus.textContent = "Confirm the transaction in your wallet...";
+    
+    // Call the buy function (selector 0x9c717d7c)
+    const tx = await sale.buy(amount);
+    txStatus.textContent = "Transaction sent... waiting for confirmation";
+    await tx.wait();
+    
+    txStatus.textContent = "✅ Successfully bought TLC!";
+    usdcInput.value = "";
+    tlcInput.value = "";
+
+  } catch (err) {
+    console.error(err);
+    txStatus.textContent = "Error: " + (err.reason || err.message || "Transaction failed");
+  }
+}
+
+if (connectBtn) connectBtn.addEventListener("click", connectWallet);
+if (buyBtn) buyBtn.addEventListener("click", buyTLC);
+if (approveBtn) approveBtn.addEventListener("click", async () => {
+  const usdcValue = parseFloat(usdcInput.value);
+  const amount = ethers.parseUnits(usdcValue.toString(), 6);
+  await approveUSDC(amount);
+});
