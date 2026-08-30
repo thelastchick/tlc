@@ -612,6 +612,10 @@ const TLC_ADDRESS =
 const BASE_CHAIN_ID = "0x2105";
 const BASE_CHAIN_DECIMAL = 8453;
 
+// ✅ RPC عمومی برای خواندن (حل مشکل SafePal و بقیه ولت‌ها)
+const PUBLIC_RPC = "https://mainnet.base.org";
+const readProvider = new ethers.JsonRpcProvider(PUBLIC_RPC);
+
 const USDC_ABI = [
   "function approve(address spender, uint256 amount) returns (bool)",
   "function allowance(address owner, address spender) view returns (uint256)",
@@ -696,9 +700,8 @@ function setStatus(message) {
 function getErrorMessage(err, fallback) {
   if (!err) return fallback;
 
-  // ✅ FIX: گرفتن ارور واقعی از receipt (حل «missing revert data»)
   if (err.receipt && err.receipt.status === 0) {
-    const errorLog = err.receipt.logs.find(log => log.topics[0] === "0x08c379a0");
+    const errorLog = err.receipt.logs?.find(log => log.topics?.[0] === "0x08c379a0");
     if (errorLog) {
       try {
         const reason = ethers.AbiCoder.defaultAbiCoder().decode(["string"], errorLog.data)[0];
@@ -954,19 +957,24 @@ async function verifyBaseNetwork() {
 }
 
 // ======================================================
-//                   APPROVE USDC
+//                   APPROVE USDC (FIXED)
 // ======================================================
 
 async function approveUSDC(amount) {
   if (!signer) throw new Error("Please connect your wallet first.");
   await verifyBaseNetwork();
+
+  const usdcRead = new ethers.Contract(USDC_ADDRESS, USDC_ABI, readProvider);
   const usdc = new ethers.Contract(USDC_ADDRESS, USDC_ABI, signer);
+
   setStatus("Checking USDC allowance...");
-  const allowance = await usdc.allowance(userAddress, SALE_CONTRACT);
+  const allowance = await usdcRead.allowance(userAddress, SALE_CONTRACT);
+
   if (allowance >= amount) {
     setStatus("USDC already approved.");
     return;
   }
+
   setStatus("Approving USDC...");
   const tx = await usdc.approve(SALE_CONTRACT, amount);
   setStatus("Waiting for approval confirmation...");
@@ -975,18 +983,30 @@ async function approveUSDC(amount) {
 }
 
 // ======================================================
-//              ESTIMATE TLC FROM USDC
+//              ESTIMATE TLC FROM USDC (FIXED)
 // ======================================================
 
 async function updateTlcAmount() {
   if (!usdcInput || !tlcInput) return;
+
   const raw = usdcInput.value.trim().replace(/,/g, "");
   const numeric = Number(raw);
+
   if (!raw || !Number.isFinite(numeric) || numeric <= 0) {
     tlcInput.value = "";
     return;
   }
-  tlcInput.value = (numeric * 1000).toLocaleString(undefined, { maximumFractionDigits: 18 });
+
+  try {
+    const saleRead = new ethers.Contract(SALE_CONTRACT, SALE_ABI, readProvider);
+    const usdcAmount = ethers.parseUnits(raw, 6);
+    const tlcAmount = await saleRead.quoteTlc(usdcAmount);
+    tlcInput.value = Number(ethers.formatUnits(tlcAmount, 18)).toLocaleString(undefined, {
+      maximumFractionDigits: 6
+    });
+  } catch (err) {
+    tlcInput.value = (numeric * 1000).toLocaleString(undefined, { maximumFractionDigits: 6 });
+  }
 }
 
 // ======================================================
@@ -995,35 +1015,45 @@ async function updateTlcAmount() {
 
 async function buyTLC() {
   try {
-    if (!signer || !userAddress) { alert("Please connect your wallet first."); return; }
+    if (!signer || !userAddress) {
+      alert("Please connect your wallet first.");
+      return;
+    }
+
     await verifyBaseNetwork();
+
     const amount = parseUsdcAmount();
     if (amount <= 0n) throw new Error("USDC amount must be greater than zero.");
+
+    const usdcRead = new ethers.Contract(USDC_ADDRESS, USDC_ABI, readProvider);
+    const saleRead = new ethers.Contract(SALE_CONTRACT, SALE_ABI, readProvider);
 
     const usdc = new ethers.Contract(USDC_ADDRESS, USDC_ABI, signer);
     const sale = new ethers.Contract(SALE_CONTRACT, SALE_ABI, signer);
 
-    // Check balance
-    const balance = await usdc.balanceOf(userAddress);
+    const balance = await usdcRead.balanceOf(userAddress);
     if (balance < amount) {
       setStatus("Not enough USDC in your wallet on Base.");
       return;
     }
 
-    // Check sale status
     try {
-      const live = await sale.isLive();
+      const live = await saleRead.isLive();
       if (!live) {
-        const over = await sale.isSaleOver();
+        const over = await saleRead.isSaleOver();
         if (over) throw new Error("The TLC sale is closed.");
         throw new Error("The TLC sale is not currently live.");
       }
-    } catch (statusError) { console.warn("Sale status check failed:", statusError); }
+    } catch (statusError) {
+      if (statusError?.message?.includes("closed") || statusError?.message?.includes("not currently live")) {
+        throw statusError;
+      }
+      console.warn("Sale status check failed:", statusError);
+    }
 
-    // Check wallet limit
     try {
-      const remainingForWallet = await sale.remainingForWallet(userAddress);
-      const expectedTlc = (amount * 1000000000000000000n) / 1000n;
+      const remainingForWallet = await saleRead.remainingForWallet(userAddress);
+      const expectedTlc = await saleRead.quoteTlc(amount);
       if (expectedTlc > remainingForWallet) {
         throw new Error("This purchase exceeds your remaining TLC wallet limit or the remaining sale supply.");
       }
@@ -1032,40 +1062,27 @@ async function buyTLC() {
       console.warn("Wallet limit check failed:", limitError);
     }
 
-    // Check / approve USDC
     setStatus("Checking USDC approval...");
-    let allowance = await usdc.allowance(userAddress, SALE_CONTRACT);
+    let allowance = await usdcRead.allowance(userAddress, SALE_CONTRACT);
+
     if (allowance < amount) {
-      await approveUSDC(amount);
-      allowance = await usdc.allowance(userAddress, SALE_CONTRACT);
+      setStatus("Approving USDC...");
+      const txApprove = await usdc.approve(SALE_CONTRACT, amount);
+      setStatus("Waiting for approval confirmation...");
+      await txApprove.wait();
+
+      allowance = await usdcRead.allowance(userAddress, SALE_CONTRACT);
       if (allowance < amount) throw new Error("USDC approval was not completed.");
     }
 
-    // FINAL PURCHASE
     setStatus("Preparing TLC purchase...");
-
-    let tx;
-    try {
-      tx = await sale.buyWithUsdc(amount);
-    } catch (sendError) {
-      console.error("buyWithUsdc transaction failed:", sendError);
-      throw sendError;
-    }
+    const tx = await sale.buyWithUsdc(amount);
 
     setStatus("Transaction submitted. Waiting for confirmation...");
-
     const receipt = await tx.wait();
-    if (!receipt || receipt.status !== 1) throw new Error("Transaction was not confirmed successfully.");
 
-    // ✅ Get real revert reason (fixes missing revert data)
-    const errorLog = receipt.logs.find(log => log.topics[0] === "0x08c379a0");
-    if (errorLog) {
-      try {
-        const reason = ethers.AbiCoder.defaultAbiCoder().decode(["string"], errorLog.data)[0];
-        throw new Error(`Purchase failed: ${reason}`);
-      } catch (decodeErr) {
-        throw new Error("Transaction reverted");
-      }
+    if (!receipt || receipt.status !== 1) {
+      throw new Error("Transaction was not confirmed successfully.");
     }
 
     setStatus("Success! TLC purchased successfully.");
@@ -1083,7 +1100,7 @@ async function buyTLC() {
 }
 
 // ======================================================
-//                 CONNECT BUTTON / APPROVE / BUY BUTTON
+//                 CONNECT / APPROVE / BUY BUTTONS
 // ======================================================
 
 if (connectBtn) connectBtn.addEventListener("click", connectWallet);
