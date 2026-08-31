@@ -103,7 +103,8 @@ const translations = {
     phase4_title: "Phase 4",
     phase4_desc: "The Last Chick Ecosystem",
     community_title: "Join The Community",
-    footer: "© The Last Chick (TLC)"
+    footer: "© The Last Chick (TLC)",
+    no_wallet: "Please install a wallet that supports the Base network.\n(e.g. MetaMask, Coinbase Wallet, SafePal, Rainbow, ...)"
   },
 
   fa: {
@@ -207,7 +208,8 @@ const translations = {
     phase4_title: "فاز ۴",
     phase4_desc: "اکوسیستم آخرین جوجه",
     community_title: "به جامعه بپیوندید",
-    footer: "© آخرین جوجه (TLC)"
+    footer: "© آخرین جوجه (TLC)",
+    no_wallet: "لطفاً یک کیف پول سازگار با شبکه Base نصب کنید.\n(مثل MetaMask، Coinbase Wallet، SafePal، Rainbow و ...)"
   },
 
   ar: {
@@ -311,7 +313,8 @@ const translations = {
     phase4_title: "المرحلة ٤",
     phase4_desc: "نظام آخر دجاجة البيئي",
     community_title: "انضم إلى المجتمع",
-    footer: "© آخر دجاجة (TLC)"
+    footer: "© آخر دجاجة (TLC)",
+    no_wallet: "يرجى تثبيت محفظة تدعم شبكة Base.\n(مثل MetaMask، Coinbase Wallet، SafePal، Rainbow وغيرها)"
   },
 
   es: {
@@ -415,7 +418,8 @@ const translations = {
     phase4_title: "Fase 4",
     phase4_desc: "Ecosistema The Last Chick",
     community_title: "Únete a la Comunidad",
-    footer: "© The Last Chick (TLC)"
+    footer: "© The Last Chick (TLC)",
+    no_wallet: "Por favor, instala una billetera compatible con la red Base.\n(ej. MetaMask, Coinbase Wallet, SafePal, Rainbow, ...)"
   },
 
   fr: {
@@ -519,7 +523,8 @@ const translations = {
     phase4_title: "Phase 4",
     phase4_desc: "Écosystème The Last Chick",
     community_title: "Rejoignez la Communauté",
-    footer: "© The Last Chick (TLC)"
+    footer: "© The Last Chick (TLC)",
+    no_wallet: "Veuillez installer un portefeuille compatible avec le réseau Base.\n(ex. MetaMask, Coinbase Wallet, SafePal, Rainbow, ...)"
   },
 
   de: {
@@ -623,7 +628,8 @@ const translations = {
     phase4_title: "Phase 4",
     phase4_desc: "The Last Chick Ökosystem",
     community_title: "Tritt der Community bei",
-    footer: "© The Last Chick (TLC)"
+    footer: "© The Last Chick (TLC)",
+    no_wallet: "Bitte installiere eine Wallet, die das Base-Netzwerk unterstützt.\n(z.B. MetaMask, Coinbase Wallet, SafePal, Rainbow, ...)"
   },
 
   tr: {
@@ -727,7 +733,8 @@ const translations = {
     phase4_title: "Faz 4",
     phase4_desc: "The Last Chick Ekosistemi",
     community_title: "Topluluğa Katıl",
-    footer: "© The Last Chick (TLC)"
+    footer: "© The Last Chick (TLC)",
+    no_wallet: "Lütfen Base ağını destekleyen bir cüzdan yükleyin.\n(ör. MetaMask, Coinbase Wallet, SafePal, Rainbow, ...)"
   },
 
   pt: {
@@ -831,7 +838,8 @@ const translations = {
     phase4_title: "Fase 4",
     phase4_desc: "Ecossistema The Last Chick",
     community_title: "Junte-se à Comunidade",
-    footer: "© The Last Chick (TLC)"
+    footer: "© The Last Chick (TLC)",
+    no_wallet: "Por favor, instale uma carteira compatível com a rede Base.\n(ex. MetaMask, Coinbase Wallet, SafePal, Rainbow, ...)"
   },
 
   ru: {
@@ -935,7 +943,8 @@ const translations = {
     phase4_title: "Фаза 4",
     phase4_desc: "Экосистема The Last Chick",
     community_title: "Присоединяйтесь к сообществу",
-    footer: "© The Last Chick (TLC)"
+    footer: "© The Last Chick (TLC)",
+    no_wallet: "Пожалуйста, установите кошелёк, поддерживающий сеть Base.\n(например MetaMask, Coinbase Wallet, SafePal, Rainbow, ...)"
   },
 
   zh: {
@@ -1039,7 +1048,8 @@ const translations = {
     phase4_title: "阶段 4",
     phase4_desc: "The Last Chick 生态系统",
     community_title: "加入社区",
-    footer: "© The Last Chick (TLC)"
+    footer: "© The Last Chick (TLC)",
+    no_wallet: "请安装支持 Base 网络的钱包。\n（例如 MetaMask、Coinbase Wallet、SafePal、Rainbow 等）"
   },
 
   ja: {
@@ -1143,7 +1153,8 @@ const translations = {
     phase4_title: "フェーズ 4",
     phase4_desc: "The Last Chickエコシステム",
     community_title: "コミュニティに参加",
-    footer: "© The Last Chick (TLC)"
+    footer: "© The Last Chick (TLC)",
+    no_wallet: "Baseネットワークに対応したウォレットをインストールしてください。\n（例：MetaMask、Coinbase Wallet、SafePal、Rainbowなど）"
   },
 
   hi: {
@@ -1235,7 +1246,7 @@ const translations = {
     value3_title: "❤️ करुणा",
     value3_desc: "वास्तविक प्रभाव के साथ कुछ सकारात्मक बनाना।",
     value4_title: "🚀 विकास",
-    value4_desc: "हाइप से परे दीर्घकालिक इکوसिस्टम बनाना।",
+    value4_desc: "हाइप से परे दीर्घकालिक इकोसिस्टम बनाना।",
     gallery_title: "TLC ब्रह्मांड",
     roadmap_title: "रोडमैप",
     phase1_title: "चरण 1",
@@ -1245,9 +1256,10 @@ const translations = {
     phase3_title: "चरण 3",
     phase3_desc: "NFT और Web3 विस्तार",
     phase4_title: "चरण 4",
-    phase4_desc: "The Last Chick इकोسیस्टम",
+    phase4_desc: "The Last Chick इकोसिस्टम",
     community_title: "समुदाय से जुड़ें",
-    footer: "© The Last Chick (TLC)"
+    footer: "© The Last Chick (TLC)",
+    no_wallet: "कृपया Base नेटवर्क को सपोर्ट करने वाला वॉलेट इंस्टॉल करें।\n(जैसे MetaMask, Coinbase Wallet, SafePal, Rainbow आदि)"
   }
 };
 
@@ -1689,7 +1701,17 @@ async function connectWallet() {
     const mobile = isMobileBrowser();
     const injected = getEthereumProvider();
 
-    // روی موبایل مستقیم برو سراغ WalletConnect (سریع‌تر و پایدارتر)
+    // ========== چک کردن وجود کیف پول ==========
+    if (!injected && !mobile) {
+      const lang = document.documentElement.lang || "en";
+      const t = translations[lang] || translations.en;
+      alert(t.no_wallet || "Please install a wallet that supports the Base network.");
+      setStatus("");
+      return;
+    }
+    // ========================================
+
+    // روی موبایل مستقیم برو سراغ WalletConnect
     if (mobile) {
       await connectWalletConnect();
       return;
@@ -1719,22 +1741,14 @@ async function connectWallet() {
       return;
     }
 
-    // پیام خطای بهتر
     const msg = getErrorMessage(err, "Unknown wallet error");
     alert("Connection failed: " + msg);
   }
 }
 
-// بقیه توابع (parseUsdcAmount, approveUSDC, buyTLC و ...) رو همون قبلی نگه دار
-// فقط تابع connectWallet و بخش‌های مرتبط رو عوض کن
-
 if (connectBtn) {
   connectBtn.addEventListener("click", connectWallet);
 }
-
-// بقیه event listenerها رو همون قبلی نگه دار...
-
-
 
 function parseUsdcAmount() {
   const raw = (usdcInput?.value || "").trim().replace(/,/g, "");
