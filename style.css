@@ -642,3 +642,98 @@ footer {
     height: auto;
     margin: -10px 0 0 0;
 }
+
+
+/* ================= PLAY GAME BUTTON ================= */
+
+.play-game {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px auto 5px;
+}
+
+.play-btn {
+    display: inline-block;
+    padding: 12px 28px;
+    min-width: 150px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: bold;
+    color: #000;
+    border-radius: 30px;
+    animation: playColorChange 14s ease-in-out infinite;
+    transition: transform 0.3s ease;
+}
+
+.play-btn:hover {
+    transform: scale(1.08);
+}
+
+@keyframes playColorChange {
+
+    0%,
+    12% {
+        background: #ffd700;
+        box-shadow:
+            0 0 10px rgba(255, 215, 0, 0.5),
+            0 0 30px rgba(255, 215, 0, 0.25);
+    }
+
+    12%,
+    25% {
+        background: #008cff;
+        box-shadow:
+            0 0 10px rgba(0, 140, 255, 0.5),
+            0 0 30px rgba(0, 140, 255, 0.25);
+    }
+
+    25%,
+    37% {
+        background: #9b00ff;
+        box-shadow:
+            0 0 10px rgba(155, 0, 255, 0.5),
+            0 0 30px rgba(155, 0, 255, 0.25);
+    }
+
+    37%,
+    50% {
+        background: #ff1493;
+        box-shadow:
+            0 0 10px rgba(255, 20, 147, 0.5),
+            0 0 30px rgba(255, 20, 147, 0.25);
+    }
+
+    50%,
+    62% {
+        background: #00c853;
+        box-shadow:
+            0 0 10px rgba(0, 200, 83, 0.5),
+            0 0 30px rgba(0, 200, 83, 0.25);
+    }
+
+    62%,
+    75% {
+        background: #ff7b00;
+        box-shadow:
+            0 0 10px rgba(255, 123, 0, 0.5),
+            0 0 30px rgba(255, 123, 0, 0.25);
+    }
+
+    75%,
+    87% {
+        background: #ff0055;
+        box-shadow:
+            0 0 10px rgba(255, 0, 85, 0.5),
+            0 0 30px rgba(255, 0, 85, 0.25);
+    }
+
+    87%,
+    100% {
+        background: #ffd700;
+        box-shadow:
+            0 0 10px rgba(255, 215, 0, 0.5),
+            0 0 30px rgba(255, 215, 0, 0.25);
+    }
+}
