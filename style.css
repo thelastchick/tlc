@@ -635,3 +635,11 @@ footer {
         padding: 25px 20px;
     }
 }
+
+.buy-chick-image {
+    display: block;
+    width: 180px;
+    max-width: 100%;
+    height: auto;
+    margin: 20px auto 0;
+}
