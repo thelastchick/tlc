@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
@@ -9,6 +10,7 @@
 <script src="https://cdn.jsdelivr.net/npm/ethers@6.13.4/dist/ethers.umd.min.js"></script>
 </head>
 <body>
+
 <!-- Loader -->
 <div id="loader">
     <div id="sparkle-area">
@@ -18,6 +20,7 @@
     </div>
     <h1>TLC</h1>
 </div>
+
 <!-- Header -->
 <header>
     <div class="logo">THE LAST CHICK</div>
@@ -52,28 +55,30 @@
         </button>
     </div>
 </header>
+
 <!-- Hero -->
 <section class="hero">
     <div class="hero-content">
         <h1 data-i18n="hero_title">THE LAST CHICK <span>(TLC)</span></h1>
         <p class="hero-title" data-i18n="hero_subtitle">The last survivor.<br>The first legend.</p>
         <p class="small-text" data-i18n="hero_desc">More than a meme coin — a community-driven Web3 movement built on hope, resilience and purpose.</p>
-<div class="buttons">
-    <a href="#presale" class="buy-btn">BUY TLC</a>
-</div>
 
-<img src="assets/tlc-buy-chick.png" alt="The Last Chick" class="buy-chick-image">
+        <div class="buttons">
+            <a href="#presale" class="buy-btn">BUY TLC</a>
+        </div>
+
+        <img src="assets/tlc-buy-chick.png" alt="The Last Chick" class="buy-chick-image">
     </div>
+
     <img class="hero-image" src="assets/tlc1.png" alt="The Last Chick">
 </section>
 
-   <!-- Play Game -->
+<!-- Play Game -->
 <div class="play-game">
     <a href="https://the-last-chick-game.thelastchick1.workers.dev" target="_blank" rel="noopener noreferrer" class="play-btn">
         🐥 PLAY 🐥
     </a>
-</div> 
-    
+</div>
 
 <!-- About -->
 <section id="about">
@@ -101,8 +106,6 @@
 
     <p><strong>Because sometimes... the smallest light is the one that survives the darkness.</strong></p>
 </section>
-
-
 
 <!-- Story -->
 <section id="story">
@@ -185,37 +188,8 @@
         <div><h3>🌎 Ecosystem</h3><p>20%</p></div>
         <div><h3>👥 Team</h3><p>10%</p></div>
     </div>
-</section>    
+</section>
 
-<!-- Values -->
-<section class="values">
-    <h2 data-i18n="values_title">Our Core Values</h2>
-    <div class="cards">
-        <div class="card">
-            <h3 data-i18n="value1_title">✨ Creativity</h3>
-            <p data-i18n="value1_desc">Creating unique experiences and ideas beyond ordinary projects.</p>
-        </div>
-        <div class="card">
-            <h3 data-i18n="value2_title">🤝 Community</h3>
-            <p data-i18n="value2_desc">Growing together with supporters and believers.</p>
-        </div>
-        <div class="card">
-            <h3 data-i18n="value3_title">❤️ Compassion</h3>
-            <p data-i18n="value3_desc">Building something positive with real impact.</p>
-        </div>
-        <div class="card">
-            <h3 data-i18n="value4_title">🚀 Development</h3>
-            <p data-i18n="value4_desc">Creating a long-term ecosystem beyond hype.</p>
-        </div>
-    </div>
-</section>
-<!-- Gallery -->
-<section class="gallery">
-    <h2 data-i18n="gallery_title">TLC Universe</h2>
-    <img src="assets/tlc3.png" alt="TLC">
-    <img src="assets/tlc4.png" alt="TLC">
-    <img src="assets/tlc5.png" alt="TLC">
-</section>
 <!-- Token -->
 <section id="token">
     <h2 data-i18n="token_title">TLC Token</h2>
@@ -264,6 +238,7 @@
             <strong>Base Chain</strong>
         </div>
     </div>
+
     <!-- Buy Widget -->
     <div class="buy-widget">
         <h3>Buy TLC Now</h3>
@@ -271,21 +246,26 @@
         <div class="wallet-status" id="walletStatus">
             <button id="connectBtn" class="buy-btn">Connect Wallet</button>
         </div>
+
         <div id="buyForm" style="display:none;">
             <div class="input-group">
                 <label>You Pay (USDC)</label>
                 <input type="number" id="usdcAmount" placeholder="0.00" min="1" step="0.01">
             </div>
+
             <div class="input-group">
                 <label>You Receive (TLC)</label>
                 <input type="text" id="tlcAmount" readonly placeholder="0">
             </div>
+
             <p class="price-info">1 USDC = 1,000 TLC</p>
+
             <button id="approveBtn" class="buy-btn" style="display:none;">Approve USDC</button>
             <button id="buyBtn" class="buy-btn">Buy TLC</button>
             <p id="txStatus" class="tx-status"></p>
         </div>
     </div>
+
     <h3 style="margin-top:50px;">Presale Purpose</h3>
     <div class="purpose-box">
         <p>🤝 Build the first TLC community</p>
@@ -294,6 +274,7 @@
         <p>🚀 Support future development</p>
     </div>
 </section>
+
 <!-- NFT -->
 <section id="nft">
     <h2 data-i18n="nft_title">TLC Genesis NFT</h2>
@@ -304,6 +285,38 @@
         <img src="assets/tlc5.png" alt="NFT">
     </div>
 </section>
+
+<!-- Values -->
+<section class="values">
+    <h2 data-i18n="values_title">Our Core Values</h2>
+    <div class="cards">
+        <div class="card">
+            <h3 data-i18n="value1_title">✨ Creativity</h3>
+            <p data-i18n="value1_desc">Creating unique experiences and ideas beyond ordinary projects.</p>
+        </div>
+        <div class="card">
+            <h3 data-i18n="value2_title">🤝 Community</h3>
+            <p data-i18n="value2_desc">Growing together with supporters and believers.</p>
+        </div>
+        <div class="card">
+            <h3 data-i18n="value3_title">❤️ Compassion</h3>
+            <p data-i18n="value3_desc">Building something positive with real impact.</p>
+        </div>
+        <div class="card">
+            <h3 data-i18n="value4_title">🚀 Development</h3>
+            <p data-i18n="value4_desc">Creating a long-term ecosystem beyond hype.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Gallery -->
+<section class="gallery">
+    <h2 data-i18n="gallery_title">TLC Universe</h2>
+    <img src="assets/tlc3.png" alt="TLC">
+    <img src="assets/tlc4.png" alt="TLC">
+    <img src="assets/tlc5.png" alt="TLC">
+</section>
+
 <!-- Roadmap -->
 <section id="roadmap">
     <h2 data-i18n="roadmap_title">Roadmap</h2>
@@ -326,6 +339,7 @@
         </div>
     </div>
 </section>
+
 <!-- Community -->
 <section class="community">
     <h2 data-i18n="community_title">Join The Community</h2>
@@ -338,9 +352,12 @@
         <a class="btn" href="https://www.linkedin.com/in/thelastchick/" target="_blank">LinkedIn</a>
     </div>
 </section>
+
 <footer>
     <p data-i18n="footer">© The Last Chick (TLC)</p>
 </footer>
+
 <script src="script.js"></script>
 </body>
 </html>
+```
