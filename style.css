@@ -638,8 +638,7 @@ footer {
 
 .buy-chick-image {
     display: block;
-    width: 180px;
-    max-width: 100%;
+    width: 150px;
     height: auto;
-    margin: 20px auto 0;
+    margin: 8px auto 0;
 }
