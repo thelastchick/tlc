@@ -806,3 +806,35 @@ footer {
 .buy-widget > section#token {
     margin: 10px 0 8px !important;
 }
+
+
+/* ===== Fix spacing in Buy Widget ===== */
+.buy-widget section#token {
+    padding: 10px 0 !important;
+    margin: 8px 0 12px !important;
+}
+
+.buy-widget section#token h2 {
+    margin-bottom: 12px !important;
+    font-size: 28px;
+}
+
+.buy-widget .token-card {
+    padding: 16px !important;
+    margin-bottom: 0;
+}
+
+.buy-widget .token-card button {
+    margin-top: 12px !important;
+}
+
+.buy-widget .wallet-status {
+    margin-top: 12px !important;
+    margin-bottom: 8px !important;
+}
+
+.buy-widget .network-warning {
+    margin-bottom: 10px;
+    font-size: 14px;
+    line-height: 1.5;
+}
