@@ -12,6 +12,7 @@ body {
     color: white;
     line-height: 1.6;
 }
+
 /* Loader */
 #loader {
     position: fixed;
@@ -28,23 +29,19 @@ body {
     transition: opacity 2s ease, visibility 0s linear 2s;
     overflow: hidden;
 }
-
 #loader.hidden {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
 }
-
 #loader img {
     width: 180px;
 }
-
 #loader h1 {
     font-size: 50px;
     color: #ffd700;
     margin-top: 15px;
 }
-
 .chick-circle {
     width: 220px;
     height: 220px;
@@ -54,7 +51,6 @@ body {
     box-shadow: 0 0 30px #ffd700, 0 0 80px rgba(255, 215, 0, 0.5);
     animation: floatChick 3s infinite ease-in-out;
 }
-
 .chick-circle img {
     width: 100%;
     height: 100%;
@@ -80,56 +76,94 @@ body {
         transform: translate(var(--x), var(--y)) scale(0);
     }
 }
-/* Header */
+
+/* ========================================
+   HEADER - Apocalyptic Style (Full)
+   ======================================== */
 header {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
+    height: 120px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 18px 5%;
-    background: rgba(0, 0, 0, 0.8);
-    backdrop-filter: blur(12px);
+    padding: 0 4%;
+    background: url('assets/header-bg.png') center 50% / cover no-repeat;
+    background-color: #0a0500;
+    border-bottom: 1px solid rgba(255, 90, 0, 0.4);
+    box-shadow: 0 6px 30px rgba(255, 50, 0, 0.35);
     z-index: 1000;
 }
-.logo {
-    font-size: 18px;
-    font-weight: bold;
-    color: #ffd700;
+
+header .logo,
+a.logo {
+    font-size: 22px;
+    font-weight: 800;
+    color: #ff6a00 !important;
+    text-shadow: 0 0 12px #ff4500, 0 0 25px rgba(255, 100, 0, 0.7);
+    letter-spacing: 1px;
     white-space: nowrap;
-}
-nav {
-    display: flex;
-    gap: 6px;
-}
-nav a {
-    color: white;
     text-decoration: none;
-    margin: 0 8px;
+    z-index: 2;
     transition: 0.3s;
+}
+
+header .logo:hover,
+a.logo:hover {
+    color: #ffaa00 !important;
+    opacity: 1;
+}
+
+header nav {
+    display: flex;
+    gap: 4px;
+    z-index: 2;
+}
+
+header nav a {
+    color: #ffb347 !important;
+    text-decoration: none;
     font-size: 14px;
+    font-weight: 600;
+    padding: 8px 11px;
+    margin: 0 2px;
+    text-shadow: 0 0 8px rgba(255, 100, 0, 0.5);
+    transition: all 0.25s ease;
+    border-radius: 6px;
 }
-nav a:hover {
-    color: #ffd700;
+
+header nav a:hover {
+    color: #ffdd88 !important;
+    text-shadow: 0 0 14px #ff6a00;
+    background: rgba(255, 80, 0, 0.12);
 }
+
 .header-right {
     display: flex;
     align-items: center;
     gap: 12px;
+    z-index: 5;
 }
+
 .language select {
-    background: #111;
-    color: white;
-    padding: 7px 10px;
+    background: rgba(0, 0, 0, 0.65);
+    color: #ffaa00;
+    padding: 7px 11px;
     border-radius: 8px;
-    border: 1px solid #333;
+    border: 1px solid rgba(255, 120, 0, 0.45);
     cursor: pointer;
     font-size: 13px;
-    max-width: 160px;
+    outline: none;
+    max-width: 150px;
+    transition: 0.25s;
 }
-/* Hamburger */
+
+.language select:hover {
+    border-color: #ff6a00;
+}
+
 .menu-toggle {
     display: none;
     flex-direction: column;
@@ -141,30 +175,35 @@ nav a:hover {
     cursor: pointer;
     padding: 0;
 }
+
 .menu-toggle span {
     display: block;
     height: 2.5px;
     width: 100%;
-    background: #ffd700;
+    background: #ff8800;
     border-radius: 2px;
     transition: 0.3s;
 }
+
 .menu-toggle.active span:nth-child(1) {
     transform: translateY(7.5px) rotate(45deg);
 }
+
 .menu-toggle.active span:nth-child(2) {
     opacity: 0;
 }
+
 .menu-toggle.active span:nth-child(3) {
     transform: translateY(-7.5px) rotate(-45deg);
 }
+
 /* Hero */
 .hero {
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 130px 5% 60px;
+    padding: 150px 5% 60px;
     gap: 40px;
 }
 .hero-image {
@@ -217,6 +256,7 @@ nav a:hover {
 .buy-btn:hover {
     transform: scale(1.05);
 }
+
 /* Sections */
 section {
     padding: 70px 5%;
@@ -315,6 +355,7 @@ footer {
     border-top: 1px solid #333;
     color: #aaa;
 }
+
 /* Tokenomics */
 .tokenomics {
     background: #050505;
@@ -431,6 +472,7 @@ footer {
     font-size: 30px;
     color: #ffd700;
 }
+
 /* Presale */
 .presale-section {
     padding: 80px 20px;
@@ -490,17 +532,17 @@ footer {
 .purpose-box p {
     margin: 15px;
 }
-/* ========== Buy Widget ========== */
+
+/* Buy Widget */
 .buy-widget {
     max-width: 480px;
-    margin: 30px auto 0;          /* قبلاً 60px بود */
+    margin: 25px auto 0 !important;
     background: #111;
     border: 1px solid #ffd700;
     border-radius: 24px;
-    padding: 25px 25px;           /* قبلاً 35px 30px بود */
+    padding: 20px 22px 18px !important;
     box-shadow: 0 0 30px rgba(255, 215, 0, 0.25);
     text-align: center;
-}
 }
 .buy-widget h3 {
     color: #ffd700;
@@ -556,45 +598,142 @@ footer {
 #connectBtn {
     width: 100%;
 }
+
+/* Play Game */
+.play-game {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px auto 5px;
+}
+.play-btn {
+    display: inline-block;
+    padding: 12px 28px;
+    min-width: 150px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: bold;
+    color: #000;
+    border-radius: 30px;
+    animation: playColorChange 14s ease-in-out infinite;
+    transition: transform 0.3s ease;
+}
+.play-btn:hover {
+    transform: scale(1.08);
+}
+@keyframes playColorChange {
+    0%, 12% { background: #ffd700; box-shadow: 0 0 10px rgba(255, 215, 0, 0.5), 0 0 30px rgba(255, 215, 0, 0.25); }
+    12%, 25% { background: #008cff; box-shadow: 0 0 10px rgba(0, 140, 255, 0.5), 0 0 30px rgba(0, 140, 255, 0.25); }
+    25%, 37% { background: #9b00ff; box-shadow: 0 0 10px rgba(155, 0, 255, 0.5), 0 0 30px rgba(155, 0, 255, 0.25); }
+    37%, 50% { background: #ff1493; box-shadow: 0 0 10px rgba(255, 20, 147, 0.5), 0 0 30px rgba(255, 20, 147, 0.25); }
+    50%, 62% { background: #00c853; box-shadow: 0 0 10px rgba(0, 200, 83, 0.5), 0 0 30px rgba(0, 200, 83, 0.25); }
+    62%, 75% { background: #ff7b00; box-shadow: 0 0 10px rgba(255, 123, 0, 0.5), 0 0 30px rgba(255, 123, 0, 0.25); }
+    75%, 87% { background: #ff0055; box-shadow: 0 0 10px rgba(255, 0, 85, 0.5), 0 0 30px rgba(255, 0, 85, 0.25); }
+    87%, 100% { background: #ffd700; box-shadow: 0 0 10px rgba(255, 215, 0, 0.5), 0 0 30px rgba(255, 215, 0, 0.25); }
+}
+
+.buy-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+}
+.buy-title h3 {
+    margin: 0;
+}
+.buy-title-chick {
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+}
+.presale-title-with-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+}
+.presale-coin-img {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 0 22px rgba(255, 215, 0, 0.65);
+    transition: transform 0.3s ease;
+}
+.presale-coin-img:hover {
+    transform: scale(1.1);
+}
+
+.buy-chick-image {
+    display: block;
+    width: 150px;
+    height: auto;
+    margin: -10px 0 0 0;
+}
+
+#buy {
+    scroll-margin-top: 90px;
+}
+
 /* Responsive */
-@media (max-width: 950px) {
-    .menu-toggle {
-        display: flex;
+@media (max-width: 1024px) {
+    header {
+        height: 80px;
+        padding: 0 4%;
+        background-position: center 45%;
     }
-    nav {
+
+    header .logo,
+    a.logo {
+        font-size: 16px;
+    }
+
+    header nav {
         position: fixed;
-        top: 68px;
+        top: 80px;
         right: -100%;
-        width: 250px;
-        height: calc(100vh - 68px);
-        background: rgba(0, 0, 0, 0.96);
+        width: 260px;
+        height: calc(100vh - 80px);
+        background: rgba(8, 4, 0, 0.97);
         flex-direction: column;
-        padding: 35px 20px;
-        gap: 18px;
+        padding: 30px 20px;
+        gap: 16px;
         transition: right 0.35s ease;
-        border-left: 1px solid #333;
+        border-left: 1px solid rgba(255, 100, 0, 0.3);
+        z-index: 999;
     }
-    html[dir="rtl"] nav {
+
+    html[dir="rtl"] header nav {
         right: auto;
         left: -100%;
         border-left: none;
-        border-right: 1px solid #333;
+        border-right: 1px solid rgba(255, 100, 0, 0.3);
     }
-    nav.active {
+
+    header nav.active {
         right: 0;
     }
-    html[dir="rtl"] nav.active {
+
+    html[dir="rtl"] header nav.active {
         left: 0;
         right: auto;
     }
-    nav a {
+
+    header nav a {
         margin: 0;
-        font-size: 17px;
+        font-size: 16px;
+        padding: 12px 10px;
     }
+
+    .menu-toggle {
+        display: flex;
+    }
+
     .hero {
         flex-direction: column-reverse;
         text-align: center;
-        padding-top: 110px;
+        padding-top: 120px;
     }
     .hero h1 {
         font-size: 38px;
@@ -613,7 +752,24 @@ footer {
         font-size: 30px;
     }
 }
-@media (max-width: 500px) {
+
+@media (max-width: 480px) {
+    header {
+        height: 70px;
+        background-position: 65% 50%;
+    }
+
+    header .logo,
+    a.logo {
+        font-size: 14px;
+    }
+
+    .language select {
+        max-width: 120px;
+        font-size: 12px;
+        padding: 6px 8px;
+    }
+
     .hero h1 {
         font-size: 30px;
     }
@@ -627,256 +783,8 @@ footer {
         padding: 11px 20px;
         font-size: 13px;
     }
-    .language select {
-        max-width: 130px;
-        font-size: 12px;
-    }
     .buy-widget {
         margin: 40px 15px 0;
         padding: 25px 20px;
     }
-}
-
-.buy-chick-image {
-    display: block;
-    width: 150px;
-    height: auto;
-    margin: -10px 0 0 0;
-}
-
-
-/* ================= PLAY GAME BUTTON ================= */
-
-.play-game {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 10px auto 5px;
-}
-
-.play-btn {
-    display: inline-block;
-    padding: 12px 28px;
-    min-width: 150px;
-    text-align: center;
-    text-decoration: none;
-    font-size: 15px;
-    font-weight: bold;
-    color: #000;
-    border-radius: 30px;
-    animation: playColorChange 14s ease-in-out infinite;
-    transition: transform 0.3s ease;
-}
-
-.play-btn:hover {
-    transform: scale(1.08);
-}
-
-@keyframes playColorChange {
-
-    0%,
-    12% {
-        background: #ffd700;
-        box-shadow:
-            0 0 10px rgba(255, 215, 0, 0.5),
-            0 0 30px rgba(255, 215, 0, 0.25);
-    }
-
-    12%,
-    25% {
-        background: #008cff;
-        box-shadow:
-            0 0 10px rgba(0, 140, 255, 0.5),
-            0 0 30px rgba(0, 140, 255, 0.25);
-    }
-
-    25%,
-    37% {
-        background: #9b00ff;
-        box-shadow:
-            0 0 10px rgba(155, 0, 255, 0.5),
-            0 0 30px rgba(155, 0, 255, 0.25);
-    }
-
-    37%,
-    50% {
-        background: #ff1493;
-        box-shadow:
-            0 0 10px rgba(255, 20, 147, 0.5),
-            0 0 30px rgba(255, 20, 147, 0.25);
-    }
-
-    50%,
-    62% {
-        background: #00c853;
-        box-shadow:
-            0 0 10px rgba(0, 200, 83, 0.5),
-            0 0 30px rgba(0, 200, 83, 0.25);
-    }
-
-    62%,
-    75% {
-        background: #ff7b00;
-        box-shadow:
-            0 0 10px rgba(255, 123, 0, 0.5),
-            0 0 30px rgba(255, 123, 0, 0.25);
-    }
-
-    75%,
-    87% {
-        background: #ff0055;
-        box-shadow:
-            0 0 10px rgba(255, 0, 85, 0.5),
-            0 0 30px rgba(255, 0, 85, 0.25);
-    }
-
-    87%,
-    100% {
-        background: #ffd700;
-        box-shadow:
-            0 0 10px rgba(255, 215, 0, 0.5),
-            0 0 30px rgba(255, 215, 0, 0.25);
-    }
-}
-
-.buy-title {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 14px;
-}
-
-.buy-title h3 {
-    margin: 0;
-}
-
-.buy-title-chick {
-    width: 42px;
-    height: 42px;
-    object-fit: contain;
-}
-
-
-.presale-title-with-image {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 14px;
-}
-
-.presale-coin-img {
-    width: 72px;
-    height: 72px;
-    border-radius: 50%;
-    object-fit: cover;
-    box-shadow: 0 0 22px rgba(255, 215, 0, 0.65);
-    transition: transform 0.3s ease;
-}
-
-.presale-coin-img:hover {
-    transform: scale(1.1);
-}
-
-/* ===== کاهش فاصله بخش خرید ===== */
-.buy-widget {
-    margin: 25px auto 0 !important;
-    padding: 20px 22px 18px !important;
-}
-
-.buy-widget h2,
-.buy-widget .token-card h2 {
-    margin: 8px 0 12px !important;
-    font-size: 26px !important;
-}
-
-.buy-widget .token-card {
-    padding: 14px 16px !important;
-    margin-bottom: 8px !important;
-}
-
-.buy-widget .wallet-status {
-    margin-top: 6px !important;
-    margin-bottom: 0 !important;
-}
-
-#connectBtn {
-    margin-top: 4px !important;
-}
-
-.buy-widget > section#token {
-    margin: 10px 0 8px !important;
-}
-
-
-/* ===== Fix spacing in Buy Widget ===== */
-.buy-widget section#token {
-    padding: 10px 0 !important;
-    margin: 8px 0 12px !important;
-}
-
-.buy-widget section#token h2 {
-    margin-bottom: 12px !important;
-    font-size: 28px;
-}
-
-.buy-widget .token-card {
-    padding: 16px !important;
-    margin-bottom: 0;
-}
-
-.buy-widget .token-card button {
-    margin-top: 12px !important;
-}
-
-.buy-widget .wallet-status {
-    margin-top: 12px !important;
-    margin-bottom: 8px !important;
-}
-
-.buy-widget .network-warning {
-    margin-bottom: 10px;
-    font-size: 14px;
-    line-height: 1.5;
-}
-
-#buy {
-    scroll-margin-top: 90px;
-}
-
-a.logo {
-    text-decoration: none;
-    color: #ffd700;
-    font-size: 18px;
-    font-weight: bold;
-    white-space: nowrap;
-    transition: 0.3s;
-}
-
-a.logo:hover {
-    opacity: 0.85;
-}
-
-
-/* ===== پس‌زمینه هدر آخرالزمانی ===== */
-header {
-    background: url('assets/header-bg.png') center center / cover no-repeat !important;
-    background-color: #0a0500 !important;
-    border-bottom: 1px solid rgba(255, 90, 0, 0.35);
-    box-shadow: 0 4px 25px rgba(255, 60, 0, 0.3);
-}
-
-/* لوگو رو آتشین‌تر کن (اختیاری ولی قشنگ‌تر می‌شه) */
-header .logo {
-    color: #ff6a00 !important;
-    text-shadow: 0 0 10px #ff4500, 0 0 20px rgba(255, 100, 0, 0.6);
-}
-
-/* منوها رو هماهنگ کن (اختیاری) */
-header nav a {
-    color: #ffb347 !important;
-    text-shadow: 0 0 6px rgba(255, 100, 0, 0.5);
-}
-
-header nav a:hover {
-    color: #ffdd88 !important;
 }
