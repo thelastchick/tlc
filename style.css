@@ -855,3 +855,28 @@ a.logo {
 a.logo:hover {
     opacity: 0.85;
 }
+
+
+/* ===== پس‌زمینه هدر آخرالزمانی ===== */
+header {
+    background: url('assets/header-bg.png') center center / cover no-repeat !important;
+    background-color: #0a0500 !important;
+    border-bottom: 1px solid rgba(255, 90, 0, 0.35);
+    box-shadow: 0 4px 25px rgba(255, 60, 0, 0.3);
+}
+
+/* لوگو رو آتشین‌تر کن (اختیاری ولی قشنگ‌تر می‌شه) */
+header .logo {
+    color: #ff6a00 !important;
+    text-shadow: 0 0 10px #ff4500, 0 0 20px rgba(255, 100, 0, 0.6);
+}
+
+/* منوها رو هماهنگ کن (اختیاری) */
+header nav a {
+    color: #ffb347 !important;
+    text-shadow: 0 0 6px rgba(255, 100, 0, 0.5);
+}
+
+header nav a:hover {
+    color: #ffdd88 !important;
+}
