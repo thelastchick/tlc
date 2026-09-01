@@ -842,3 +842,16 @@ footer {
 #buy {
     scroll-margin-top: 90px;
 }
+
+a.logo {
+    text-decoration: none;
+    color: #ffd700;
+    font-size: 18px;
+    font-weight: bold;
+    white-space: nowrap;
+    transition: 0.3s;
+}
+
+a.logo:hover {
+    opacity: 0.85;
+}
