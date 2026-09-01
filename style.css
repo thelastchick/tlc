@@ -838,3 +838,7 @@ footer {
     font-size: 14px;
     line-height: 1.5;
 }
+
+#buy {
+    scroll-margin-top: 90px;
+}
