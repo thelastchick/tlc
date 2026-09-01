@@ -737,3 +737,20 @@ footer {
             0 0 30px rgba(255, 215, 0, 0.25);
     }
 }
+
+.buy-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+}
+
+.buy-title h3 {
+    margin: 0;
+}
+
+.buy-title-chick {
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+}
