@@ -754,3 +754,24 @@ footer {
     height: 42px;
     object-fit: contain;
 }
+
+
+.presale-title-with-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+}
+
+.presale-coin-img {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 0 18px rgba(255, 215, 0, 0.55);
+    transition: transform 0.3s ease;
+}
+
+.presale-coin-img:hover {
+    transform: scale(1.1);
+}
