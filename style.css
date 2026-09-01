@@ -776,3 +776,22 @@ footer {
 .presale-coin-img:hover {
     transform: scale(1.1);
 }
+
+.buy-widget h2 {
+    margin: 10px 0 15px;
+    font-size: 28px;
+}
+
+.buy-widget .token-card {
+    padding: 18px 20px;
+    margin-bottom: 15px;
+}
+
+.buy-widget .wallet-status {
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+#connectBtn {
+    margin-top: 5px;
+}
