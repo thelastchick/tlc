@@ -777,21 +777,32 @@ footer {
     transform: scale(1.1);
 }
 
-.buy-widget h2 {
-    margin: 10px 0 15px;
-    font-size: 28px;
+/* ===== کاهش فاصله بخش خرید ===== */
+.buy-widget {
+    margin: 25px auto 0 !important;
+    padding: 20px 22px 18px !important;
+}
+
+.buy-widget h2,
+.buy-widget .token-card h2 {
+    margin: 8px 0 12px !important;
+    font-size: 26px !important;
 }
 
 .buy-widget .token-card {
-    padding: 18px 20px;
-    margin-bottom: 15px;
+    padding: 14px 16px !important;
+    margin-bottom: 8px !important;
 }
 
 .buy-widget .wallet-status {
-    margin-top: 10px;
-    margin-bottom: 0;
+    margin-top: 6px !important;
+    margin-bottom: 0 !important;
 }
 
 #connectBtn {
-    margin-top: 5px;
+    margin-top: 4px !important;
+}
+
+.buy-widget > section#token {
+    margin: 10px 0 8px !important;
 }
