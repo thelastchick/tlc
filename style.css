@@ -846,60 +846,79 @@ footer {
     }
 }
 
-/* Tokenomics mobile overflow fix */
+/* ===== Tokenomics Mobile Only Fix ===== */
 @media (max-width: 480px) {
-
     .tokenomics {
         overflow: hidden;
+        padding: 60px 15px;
     }
 
     .token-chart {
         width: 90vw;
         height: 90vw;
-        max-width: 420px;
-        max-height: 420px;
+        max-width: 340px;
+        max-height: 340px;
+    }
+
+    .center-token {
+        width: 165px;
+        height: 165px;
+    }
+
+    .center-token h3 {
+        font-size: 24px;
+    }
+
+    .center-token strong {
+        font-size: 15px;
     }
 
     .slice {
-        max-width: 145px;
-        padding: 10px 14px;
-        font-size: 14px;
-        box-sizing: border-box;
+        padding: 7px 11px;
+        font-size: 12px;
     }
 
     .slice b {
-        font-size: 22px;
+        font-size: 15px;
     }
 
+    /* Smaller distance so labels stay inside the screen */
     .presale {
-        top: -5px;
-        left: 50%;
-        margin-left: -72px;
-    }
-
-    .team {
-        top: 55px;
-        left: 0;
-    }
-
-    .ecosystem {
-        left: 0;
-        bottom: 105px;
+        --angle: 18deg;
+        transform: translate(-50%, -50%) rotate(var(--angle)) translateY(-140px) rotate(calc(-1 * var(--angle)));
     }
 
     .liquidity {
-        right: 0;
-        top: 105px;
+        --angle: 81deg;
+        transform: translate(-50%, -50%) rotate(var(--angle)) translateY(-140px) rotate(calc(-1 * var(--angle)));
     }
 
     .marketing {
-        right: 0;
-        bottom: 105px;
+        --angle: 162deg;
+        transform: translate(-50%, -50%) rotate(var(--angle)) translateY(-140px) rotate(calc(-1 * var(--angle)));
     }
 
     .development {
-        bottom: -5px;
-        left: 50%;
-        margin-left: -72px;
+        --angle: 225deg;
+        transform: translate(-50%, -50%) rotate(var(--angle)) translateY(-140px) rotate(calc(-1 * var(--angle)));
+    }
+
+    .ecosystem {
+        --angle: 288deg;
+        transform: translate(-50%, -50%) rotate(var(--angle)) translateY(-140px) rotate(calc(-1 * var(--angle)));
+    }
+
+    .team {
+        --angle: 342deg;
+        transform: translate(-50%, -50%) rotate(var(--angle)) translateY(-140px) rotate(calc(-1 * var(--angle)));
+    }
+
+    @keyframes floatLabel {
+        0%, 100% {
+            transform: translate(-50%, -50%) rotate(var(--angle)) translateY(-140px) rotate(calc(-1 * var(--angle)));
+        }
+        50% {
+            transform: translate(-50%, -50%) rotate(var(--angle)) translateY(-152px) rotate(calc(-1 * var(--angle)));
+        }
     }
 }
