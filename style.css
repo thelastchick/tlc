@@ -426,6 +426,9 @@ footer {
 }
 .slice {
     position: absolute;
+    top: 50%;
+    left: 50%;
+    width: max-content;
     color: white;
     font-weight: bold;
     background: rgba(0, 0, 0, 0.85);
@@ -435,7 +438,7 @@ footer {
     font-size: 14px;
     white-space: nowrap;
     z-index: 5;
-    animation: float 3s infinite ease-in-out;
+    transform-origin: center center;
 }
 
 .slice b {
@@ -445,46 +448,37 @@ footer {
     margin-bottom: 2px;
 }
 
-/* ===== Fixed positions (روی رنگ خودشون) ===== */
+/* ===== دقیق روی رنگ خودشون با زاویه ===== */
 
 /* Presale 10% - طلایی (بالا) */
 .presale {
-    top: -28px;
-    left: 50%;
-    transform: translateX(-50%);
+    transform: translate(-50%, -50%) rotate(18deg) translateY(-195px) rotate(-18deg);
 }
 
-/* Liquidity 25% - آبی (راست بالا) */
+/* Liquidity 25% - آبی */
 .liquidity {
-    top: 55px;
-    right: -75px;
+    transform: translate(-50%, -50%) rotate(81deg) translateY(-195px) rotate(-81deg);
 }
 
-/* Marketing 20% - بنفش (راست پایین) */
+/* Marketing 20% - بنفش */
 .marketing {
-    bottom: 55px;
-    right: -65px;
+    transform: translate(-50%, -50%) rotate(162deg) translateY(-195px) rotate(-162deg);
 }
 
-/* Development 15% - سبز (پایین) */
+/* Development 15% - سبز */
 .development {
-    bottom: -32px;
-    left: 50%;
-    transform: translateX(-50%);
+    transform: translate(-50%, -50%) rotate(225deg) translateY(-195px) rotate(-225deg);
 }
 
-/* Ecosystem 20% - نارنجی (چپ پایین) */
+/* Ecosystem 20% - نارنجی */
 .ecosystem {
-    bottom: 55px;
-    left: -75px;
+    transform: translate(-50%, -50%) rotate(288deg) translateY(-195px) rotate(-288deg);
 }
 
-/* Team 10% - قرمز (چپ بالا) */
+/* Team 10% - قرمز */
 .team {
-    top: 55px;
-    left: -65px;
+    transform: translate(-50%, -50%) rotate(342deg) translateY(-195px) rotate(-342deg);
 }
-
 @keyframes float {
     50% {
         transform: translateY(-10px);
