@@ -76,7 +76,13 @@ body {
         transform: translate(var(--x), var(--y)) scale(0);
     }
 }
-
+@font-face {
+    font-family: 'Apocalypse';
+    src: url('assets/fonts/Apocalypse-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
 /* HEADER */
 header {
     position: fixed;
