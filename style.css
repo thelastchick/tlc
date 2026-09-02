@@ -788,3 +788,7 @@ footer {
         padding: 25px 20px;
     }
 }
+
+#contract-section {
+    scroll-margin-top: 100px;
+}
