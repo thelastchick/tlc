@@ -922,3 +922,142 @@ footer {
         }
     }
 }
+
+
+/* =========================
+   TLC Genesis NFT
+========================= */
+
+.nft-section {
+    text-align: center;
+}
+
+.nft-desc {
+    max-width: 650px;
+    margin: 0 auto 28px;
+}
+
+.nft-gallery {
+    width: min(100%, 900px);
+    margin: 0 auto 24px;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+.nft-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-radius: 16px;
+    overflow: hidden;
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.nft-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255, 215, 100, 0.45);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.20);
+}
+
+.nft-image-wrap {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.15);
+}
+
+.nft-image {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+.nft-info {
+    padding: 13px 14px 15px;
+    text-align: left;
+}
+
+.nft-name {
+    margin: 0 0 7px;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.nft-price {
+    margin: 0;
+    font-size: 13px;
+    opacity: 0.78;
+}
+
+.nft-loading,
+.nft-error {
+    grid-column: 1 / -1;
+    padding: 25px;
+    text-align: center;
+    opacity: 0.75;
+}
+
+.nft-collection-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 10px 18px;
+    border-radius: 999px;
+
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 700;
+
+    border: 1px solid rgba(255, 215, 100, 0.35);
+    background: rgba(255, 215, 100, 0.08);
+    color: inherit;
+
+    transition: all 0.25s ease;
+}
+
+.nft-collection-btn:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 215, 100, 0.15);
+}
+
+
+/* Mobile */
+
+@media (max-width: 700px) {
+
+    .nft-gallery {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .nft-info {
+        padding: 10px 11px 12px;
+    }
+
+    .nft-name {
+        font-size: 13px;
+    }
+
+    .nft-price {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 430px) {
+
+    .nft-gallery {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+}
