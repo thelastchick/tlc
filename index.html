@@ -9,6 +9,7 @@
 <script src="https://cdn.jsdelivr.net/npm/ethers@6.13.4/dist/ethers.umd.min.js"></script>
 </head>
 <body>
+
 <!-- Loader -->
 <div id="loader">
     <div id="sparkle-area">
@@ -18,6 +19,7 @@
     </div>
     <h1>TLC</h1>
 </div>
+
 <!-- Header -->
 <header>
     <a href="#" class="logo">THE LAST CHICK</a>
@@ -52,6 +54,7 @@
         </button>
     </div>
 </header>
+
 <!-- Hero -->
 <section class="hero">
     <div class="hero-content">
@@ -65,12 +68,14 @@
     </div>
     <img class="hero-image" src="assets/tlc1.png" alt="The Last Chick">
 </section>
+
 <!-- Play Game -->
 <div class="play-game">
     <a href="https://the-last-chick-game.thelastchick1.workers.dev" target="_blank" rel="noopener noreferrer" class="play-btn" data-i18n="btn_play">
         🐥 PLAY 🐥
     </a>
 </div>
+
 <!-- About -->
 <section id="about">
     <h2 data-i18n="about_title">About The Last Chick</h2>
@@ -86,6 +91,7 @@
     <p data-i18n="about_p10">It is about being part of a community that believes even the smallest spark of hope can inspire meaningful change.</p>
     <p data-i18n="about_p11"><strong>Because sometimes... the smallest light is the one that survives the darkness.</strong></p>
 </section>
+
 <!-- Story -->
 <section id="story">
     <img src="assets/tlc2.png" alt="TLC Story">
@@ -111,6 +117,7 @@
         <p data-i18n="story_p18"><strong>Because sometimes, the smallest light is the one that survives the darkness.</strong></p>
     </div>
 </section>
+
 <!-- Tokenomics -->
 <section id="tokenomics" class="tokenomics">
     <h2 data-i18n="tokenomics_title">TLC Tokenomics</h2>
@@ -177,39 +184,41 @@
             <strong>Base Chain</strong>
         </div>
     </div>
+
     <!-- Buy Widget -->
     <div class="buy-widget" id="buy">
         <div class="buy-title">
-    <img src="assets/buy-tlc-left.png" class="buy-title-chick" alt="">
-    <h3 data-i18n="buy_now">Buy TLC Now</h3>
-    <img src="assets/buy-tlc-right.png" class="buy-title-chick" alt="">
-</div>
+            <img src="assets/buy-tlc-left.png" class="buy-title-chick" alt="">
+            <h3 data-i18n="buy_now">Buy TLC Now</h3>
+            <img src="assets/buy-tlc-right.png" class="buy-title-chick" alt="">
+        </div>
+
         <p class="network-warning" data-i18n="before_buying">
             <strong>Before buying:</strong> Make sure your wallet is connected to the
             <strong>Base network</strong> and has enough <strong>USDC on Base</strong>
             to complete your purchase. You’ll also need a small amount of
             <strong>ETH on Base</strong> to pay the network gas fee.
         </p>
-       
-            <!-- Token Info (moved near buy) -->
-    <section id="token" style="margin: 15px 0 10px;">
-        <h2 data-i18n="token_title">TLC Token</h2>
-        <div class="token-card">
-            <p><strong data-i18n="token_name">Name:</strong> The Last Chick</p>
-            <p><strong data-i18n="token_symbol">Symbol:</strong> TLC</p>
-            <p><strong data-i18n="token_network">Network:</strong> Base</p>
-            <p><strong data-i18n="token_decimals">Decimals:</strong> 18</p>
-            <p><strong data-i18n="token_contract">Contract:</strong><br>
-                <span class="contract-address" id="contractAddress">0x04B757D7Cb621BFb846d47B161857D5E59F5D40C</span>
-            </p>
-            <button onclick="copyContract()" data-i18n="btn_copy">COPY ADDRESS</button>
+
+        <!-- Token Info (fixed spacing) -->
+        <div id="token" class="token-info-box">
+            <h2 data-i18n="token_title">TLC Token</h2>
+            <div class="token-card">
+                <p><strong data-i18n="token_name">Name:</strong> The Last Chick</p>
+                <p><strong data-i18n="token_symbol">Symbol:</strong> TLC</p>
+                <p><strong data-i18n="token_network">Network:</strong> Base</p>
+                <p><strong data-i18n="token_decimals">Decimals:</strong> 18</p>
+                <p><strong data-i18n="token_contract">Contract:</strong><br>
+                    <span class="contract-address" id="contractAddress">0x04B757D7Cb621BFb846d47B161857D5E59F5D40C</span>
+                </p>
+                <button onclick="copyContract()" data-i18n="btn_copy">COPY ADDRESS</button>
+            </div>
         </div>
-    </section>
-        
-        
+
         <div class="wallet-status" id="walletStatus">
             <button id="connectBtn" class="buy-btn" data-i18n="connect_wallet">Connect Wallet</button>
         </div>
+
         <div id="buyForm" style="display:none;">
             <div class="input-group">
                 <label data-i18n="you_pay">You Pay (USDC)</label>
@@ -225,6 +234,7 @@
             <p id="txStatus" class="tx-status"></p>
         </div>
     </div>
+
     <h3 style="margin-top:50px;" data-i18n="purpose_title">Presale Purpose</h3>
     <div class="purpose-box">
         <p data-i18n="purpose1">🤝 Build the first TLC community</p>
@@ -233,6 +243,7 @@
         <p data-i18n="purpose4">🚀 Support future development</p>
     </div>
 </section>
+
 <!-- NFT -->
 <section id="nft">
     <h2 data-i18n="nft_title">TLC Genesis NFT</h2>
@@ -243,6 +254,7 @@
         <img src="assets/tlc5.png" alt="NFT">
     </div>
 </section>
+
 <!-- Values -->
 <section class="values">
     <h2 data-i18n="values_title">Our Core Values</h2>
@@ -288,6 +300,7 @@
         </div>
     </div>
 </section>
+
 <!-- Community -->
 <section class="community">
     <h2 data-i18n="community_title">Join The Community</h2>
@@ -300,9 +313,11 @@
         <a class="btn" href="https://www.linkedin.com/in/thelastchick/" target="_blank">LinkedIn</a>
     </div>
 </section>
+
 <footer>
     <p data-i18n="footer">© The Last Chick (TLC)</p>
 </footer>
+
 <script src="script.js"></script>
 </body>
 </html>
