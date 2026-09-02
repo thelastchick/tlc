@@ -428,47 +428,61 @@ footer {
     position: absolute;
     color: white;
     font-weight: bold;
-    background: #000c;
-    padding: 12px 20px;
-    border-radius: 20px;
+    background: rgba(0, 0, 0, 0.85);
+    padding: 10px 16px;
+    border-radius: 16px;
     border: 1px solid gold;
+    font-size: 14px;
+    white-space: nowrap;
+    z-index: 5;
     animation: float 3s infinite ease-in-out;
 }
+
 .slice b {
     display: block;
-    font-size: 25px;
+    font-size: 20px;
     color: #ffd700;
+    margin-bottom: 2px;
 }
-/* Tokenomics labels */
 
+/* ===== Fixed positions (روی رنگ خودشون) ===== */
+
+/* Presale 10% - طلایی (بالا) */
 .presale {
-    top: -30px;
-    left: 150px;
+    top: -28px;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
+/* Liquidity 25% - آبی (راست بالا) */
 .liquidity {
-    right: -60px;
-    top: 150px;
+    top: 55px;
+    right: -75px;
 }
 
+/* Marketing 20% - بنفش (راست پایین) */
 .marketing {
-    right: -20px;
-    bottom: 40px;
+    bottom: 55px;
+    right: -65px;
 }
 
+/* Development 15% - سبز (پایین) */
 .development {
-    bottom: -40px;
-    left: 130px;
+    bottom: -32px;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
+/* Ecosystem 20% - نارنجی (چپ پایین) */
 .ecosystem {
-    left: -60px;
-    bottom: 120px;
+    bottom: 55px;
+    left: -75px;
 }
 
+/* Team 10% - قرمز (چپ بالا) */
 .team {
-    left: 30px;
-    top: 50px;
+    top: 55px;
+    left: -65px;
 }
 
 @keyframes float {
