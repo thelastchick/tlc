@@ -439,36 +439,37 @@ footer {
     font-size: 25px;
     color: #ffd700;
 }
-/* Tokenomics labels */
+/* Tokenomics labels - aligned to chart */
 
 .presale {
-    top: -30px;
-    left: 150px;
+    top: 8%;
+    left: 62%;
 }
 
 .liquidity {
-    right: -60px;
-    top: 150px;
+    top: 35%;
+    right: -2%;
 }
 
 .marketing {
-    right: -20px;
-    bottom: 40px;
+    top: 72%;
+    right: 4%;
 }
 
 .development {
-    bottom: -40px;
-    left: 130px;
+    bottom: 2%;
+    left: 32%;
 }
 
 .ecosystem {
-    left: -60px;
-    bottom: 120px;
+    top: 63%;
+    left: 4%;
 }
 
 .team {
-    left: 30px;
-    top: 50px;
+    top: 18%;
+    left: 25%;
+}
 }
 @keyframes float {
     50% { transform: translateY(-10px); }
