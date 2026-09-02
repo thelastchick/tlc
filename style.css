@@ -799,3 +799,61 @@ footer {
         padding: 25px 20px;
     }
 }
+
+/* Tokenomics mobile overflow fix */
+@media (max-width: 480px) {
+
+    .tokenomics {
+        overflow: hidden;
+    }
+
+    .token-chart {
+        width: 90vw;
+        height: 90vw;
+        max-width: 420px;
+        max-height: 420px;
+    }
+
+    .slice {
+        max-width: 145px;
+        padding: 10px 14px;
+        font-size: 14px;
+        box-sizing: border-box;
+    }
+
+    .slice b {
+        font-size: 22px;
+    }
+
+    .presale {
+        top: -5px;
+        left: 50%;
+        margin-left: -72px;
+    }
+
+    .team {
+        top: 55px;
+        left: 0;
+    }
+
+    .ecosystem {
+        left: 0;
+        bottom: 105px;
+    }
+
+    .liquidity {
+        right: 0;
+        top: 105px;
+    }
+
+    .marketing {
+        right: 0;
+        bottom: 105px;
+    }
+
+    .development {
+        bottom: -5px;
+        left: 50%;
+        margin-left: -72px;
+    }
+}
