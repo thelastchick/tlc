@@ -439,6 +439,7 @@ footer {
     white-space: nowrap;
     z-index: 5;
     transform-origin: center center;
+    animation: floatLabel 3s ease-in-out infinite;
 }
 
 .slice b {
@@ -448,40 +449,49 @@ footer {
     margin-bottom: 2px;
 }
 
-/* ===== دقیق روی رنگ خودشون با زاویه ===== */
-
-/* Presale 10% - طلایی (بالا) */
+/* Presale 10% - Gold */
 .presale {
-    transform: translate(-50%, -50%) rotate(18deg) translateY(-195px) rotate(-18deg);
+    --angle: 18deg;
+    transform: translate(-50%, -50%) rotate(var(--angle)) translateY(-195px) rotate(calc(-1 * var(--angle)));
 }
 
-/* Liquidity 25% - آبی */
+/* Liquidity 25% - Blue */
 .liquidity {
-    transform: translate(-50%, -50%) rotate(81deg) translateY(-195px) rotate(-81deg);
+    --angle: 81deg;
+    transform: translate(-50%, -50%) rotate(var(--angle)) translateY(-195px) rotate(calc(-1 * var(--angle)));
 }
 
-/* Marketing 20% - بنفش */
+/* Marketing 20% - Purple */
 .marketing {
-    transform: translate(-50%, -50%) rotate(162deg) translateY(-195px) rotate(-162deg);
+    --angle: 162deg;
+    transform: translate(-50%, -50%) rotate(var(--angle)) translateY(-195px) rotate(calc(-1 * var(--angle)));
 }
 
-/* Development 15% - سبز */
+/* Development 15% - Green */
 .development {
-    transform: translate(-50%, -50%) rotate(225deg) translateY(-195px) rotate(-225deg);
+    --angle: 225deg;
+    transform: translate(-50%, -50%) rotate(var(--angle)) translateY(-195px) rotate(calc(-1 * var(--angle)));
 }
 
-/* Ecosystem 20% - نارنجی */
+/* Ecosystem 20% - Orange */
 .ecosystem {
-    transform: translate(-50%, -50%) rotate(288deg) translateY(-195px) rotate(-288deg);
+    --angle: 288deg;
+    transform: translate(-50%, -50%) rotate(var(--angle)) translateY(-195px) rotate(calc(-1 * var(--angle)));
 }
 
-/* Team 10% - قرمز */
+/* Team 10% - Red */
 .team {
-    transform: translate(-50%, -50%) rotate(342deg) translateY(-195px) rotate(-342deg);
+    --angle: 342deg;
+    transform: translate(-50%, -50%) rotate(var(--angle)) translateY(-195px) rotate(calc(-1 * var(--angle)));
 }
-@keyframes float {
+
+/* Floating animation */
+@keyframes floatLabel {
+    0%, 100% {
+        transform: translate(-50%, -50%) rotate(var(--angle)) translateY(-195px) rotate(calc(-1 * var(--angle)));
+    }
     50% {
-        transform: translateY(-10px);
+        transform: translate(-50%, -50%) rotate(var(--angle)) translateY(-210px) rotate(calc(-1 * var(--angle)));
     }
 }
 .token-info {
