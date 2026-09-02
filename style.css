@@ -78,7 +78,7 @@ body {
 }
 @font-face {
     font-family: 'Apocalypse';
-    src: url('fonts/Apocalypse-Regular.ttf') format('truetype');
+    src: url('Apocalypse-Regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
