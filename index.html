@@ -10,7 +10,6 @@
 </head>
 <body>
 
-<!-- Loader -->
 <div id="loader">
     <div id="sparkle-area">
         <div class="chick-circle">
@@ -20,7 +19,6 @@
     <h1>TLC</h1>
 </div>
 
-<!-- Header -->
 <header>
     <a href="#" class="logo">THE LAST CHICK</a>
     <nav id="navMenu">
@@ -55,7 +53,6 @@
     </div>
 </header>
 
-<!-- Hero -->
 <section class="hero">
     <div class="hero-content">
         <h1 data-i18n="hero_title">THE LAST CHICK <span>(TLC)</span></h1>
@@ -69,14 +66,12 @@
     <img class="hero-image" src="assets/tlc1.png" alt="The Last Chick">
 </section>
 
-<!-- Play Game -->
 <div class="play-game">
     <a href="https://the-last-chick-game.thelastchick1.workers.dev" target="_blank" rel="noopener noreferrer" class="play-btn" data-i18n="btn_play">
         🐥 PLAY 🐥
     </a>
 </div>
 
-<!-- About -->
 <section id="about">
     <h2 data-i18n="about_title">About The Last Chick</h2>
     <p data-i18n="about_p1"><strong>The Last Chick (TLC) is more than a meme coin — it is the beginning of a community-driven movement built on hope, resilience, and purpose.</strong></p>
@@ -92,7 +87,6 @@
     <p data-i18n="about_p11"><strong>Because sometimes... the smallest light is the one that survives the darkness.</strong></p>
 </section>
 
-<!-- Story -->
 <section id="story">
     <img src="assets/tlc2.png" alt="TLC Story">
     <div>
@@ -118,7 +112,6 @@
     </div>
 </section>
 
-<!-- Tokenomics -->
 <section id="tokenomics" class="tokenomics">
     <h2 data-i18n="tokenomics_title">TLC Tokenomics</h2>
     <p class="token-subtitle" data-i18n="tokenomics_subtitle">
@@ -148,7 +141,6 @@
     </div>
 </section>
 
-<!-- Public Presale -->
 <section id="presale" class="presale-section">
     <h2 class="presale-title-with-image">
         <img src="assets/tlc-presale-coin.png" alt="TLC Coin" class="presale-coin-img">
@@ -185,7 +177,6 @@
         </div>
     </div>
 
-    <!-- Buy Widget -->
     <div class="buy-widget" id="buy">
         <div class="buy-title">
             <img src="assets/buy-tlc-left.png" class="buy-title-chick" alt="">
@@ -200,7 +191,6 @@
             <strong>ETH on Base</strong> to pay the network gas fee.
         </p>
 
-        <!-- Token Info -->
         <div id="token" class="token-info-box">
             <h2 data-i18n="token_title">TLC Token</h2>
             <div class="token-card">
@@ -244,7 +234,6 @@
     </div>
 </section>
 
-<!-- NFT -->
 <section id="nft">
     <h2 data-i18n="nft_title">TLC Genesis NFT</h2>
     <p data-i18n="nft_desc">A digital collection inspired by the final light of hope in a dark world.</p>
@@ -255,7 +244,6 @@
     </div>
 </section>
 
-<!-- Values -->
 <section class="values">
     <h2 data-i18n="values_title">Our Core Values</h2>
     <div class="cards">
@@ -278,7 +266,6 @@
     </div>
 </section>
 
-<!-- Roadmap -->
 <section id="roadmap">
     <h2 data-i18n="roadmap_title">Roadmap</h2>
     <div class="cards">
@@ -301,7 +288,6 @@
     </div>
 </section>
 
-<!-- Community Impact Section Start -->
 <div id="tlc-community-impact-wrapper">
   <section class="ci-container">
     <h2 class="ci-title">Community Impact</h2>
@@ -310,7 +296,6 @@
     </p>
 
     <div class="ci-cards-grid">
-      <!-- Card 1 -->
       <div class="ci-card">
         <div class="ci-square-box ci-float-1">
           <svg class="ci-svg" viewBox="0 0 24 24">
@@ -323,7 +308,6 @@
         </p>
       </div>
 
-      <!-- Card 2 -->
       <div class="ci-card">
         <div class="ci-square-box ci-float-2">
           <svg class="ci-svg" viewBox="0 0 24 24">
@@ -336,7 +320,6 @@
         </p>
       </div>
 
-      <!-- Card 3 -->
       <div class="ci-card">
         <div class="ci-square-box ci-float-3">
           <svg class="ci-svg" viewBox="0 0 24 24">
@@ -350,7 +333,6 @@
       </div>
     </div>
 
-    <!-- Divider Line -->
     <div class="ci-divider">
       <span class="ci-line"></span>
       <div class="ci-chick-icon">🐥</div>
@@ -424,12 +406,15 @@
     transition: all 0.3s ease !important;
     box-sizing: border-box !important;
     margin-bottom: 15px !important;
+    cursor: pointer !important;
+    position: relative !important;
+    overflow: hidden !important;
   }
 
   #tlc-community-impact-wrapper .ci-card:hover .ci-square-box {
     transform: translateY(-5px) !important;
     border-color: rgba(255, 204, 0, 0.8) !important;
-    box-shadow: 0 12px 30px rgba(255, 204, 0, 0.2), inset 0 0 20px rgba(255, 204, 0, 0.05) !important;
+    box-shadow: 0 12px 30px rgba(255, 204, 0, 0.25), inset 0 0 20px rgba(255, 204, 0, 0.08) !important;
   }
 
   #tlc-community-impact-wrapper .ci-svg {
@@ -438,6 +423,7 @@
     fill: #ffcc00 !important;
     margin-bottom: 12px !important;
     filter: drop-shadow(0 0 8px rgba(255, 204, 0, 0.5)) !important;
+    pointer-events: none !important;
   }
 
   #tlc-community-impact-wrapper .ci-card-title {
@@ -446,6 +432,7 @@
     font-weight: 700 !important;
     margin: 0 !important;
     letter-spacing: 0.5px !important;
+    pointer-events: none !important;
   }
 
   #tlc-community-impact-wrapper .ci-card-text {
@@ -486,9 +473,6 @@
     margin: 0 12px !important;
   }
 </style>
-<!-- Community Impact Section End -->
-
-<!-- Newsletter Section -->
 <style>
   .newsletter-container {
     background-color: #000000;
@@ -653,7 +637,6 @@
   </div>
 </div>
 
-<!-- Community -->
 <section class="community">
     <h2 data-i18n="community_title">Join The Community</h2>
     <div class="social-buttons">
@@ -669,6 +652,58 @@
 <footer>
     <p data-i18n="footer">© The Last Chick (TLC)</p>
 </footer>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const boxes = document.querySelectorAll('#tlc-community-impact-wrapper .ci-square-box');
+  const colors = ['#ffd700', '#ff007f', '#00e5ff', '#a100ff', '#ff9900', '#00ffcc', '#ffffff'];
+
+  boxes.forEach(box => {
+    box.addEventListener('click', function(e) {
+      const rect = this.getBoundingClientRect();
+      const clickX = e.clientX - rect.left;
+      const clickY = e.clientY - rect.top;
+      const particleCount = 25; // تعداد ذرات درخشان
+
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        
+        // خصوصیات تصادفی برای ذرات اکلیل
+        const size = Math.random() * 7 + 4;
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        const destinationX = (Math.random() - 0.5) * 220;
+        const destinationY = (Math.random() - 0.5) * 220;
+        const rotation = Math.random() * 720;
+
+        particle.style.cssText = `
+          position: absolute;
+          left: ${clickX}px;
+          top: ${clickY}px;
+          width: ${size}px;
+          height: ${size}px;
+          background-color: ${color};
+          border-radius: ${Math.random() > 0.4 ? '50%' : '2px'};
+          box-shadow: 0 0 12px ${color}, 0 0 22px ${color};
+          pointer-events: none;
+          z-index: 999;
+          transition: transform 0.85s cubic-bezier(0.12, 0.8, 0.32, 1), opacity 0.85s ease-out;
+        `;
+
+        this.appendChild(particle);
+
+        requestAnimationFrame(() => {
+          particle.style.transform = `translate(${destinationX}px, ${destinationY}px) rotate(${rotation}deg) scale(0)`;
+          particle.style.opacity = '0';
+        });
+
+        setTimeout(() => {
+          particle.remove();
+        }, 850);
+      }
+    });
+  });
+});
+</script>
 
 <script src="script.js"></script>
 </body>
