@@ -346,7 +346,175 @@
     </div>
 </section>
 
+<style>
+  .newsletter-container {
+    background-color: #0d0d0d;
+    padding: 60px 20px 40px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
 
+  .newsletter-card {
+    position: relative;
+    background-color: #121315;
+    border: 1px solid rgba(255, 204, 0, 0.3);
+    border-radius: 20px;
+    padding: 40px 30px 30px 30px;
+    max-width: 650px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+  }
+
+  /* Badge / Icon at the top */
+  .newsletter-icon-badge {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 60px;
+    background-color: #121315;
+    border: 1px solid #ffcc00;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 15px rgba(255, 204, 0, 0.5);
+  }
+
+  .newsletter-icon-badge svg {
+    width: 28px;
+    height: 28px;
+    fill: #ffcc00;
+  }
+
+  .newsletter-title {
+    color: #ffcc00;
+    font-size: 26px;
+    font-weight: 700;
+    margin: 10px 0 12px 0;
+  }
+
+  .newsletter-description {
+    color: #a0a5b1;
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 25px;
+    padding: 0 10px;
+  }
+
+  /* Form Layout */
+  .newsletter-form {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  .newsletter-input {
+    flex: 1;
+    background-color: #181a1d;
+    border: 1px solid #2d3139;
+    border-radius: 10px;
+    padding: 14px 18px;
+    color: #ffffff;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .newsletter-input:focus {
+    border-color: #ffcc00;
+  }
+
+  .newsletter-input::placeholder {
+    color: #6c727f;
+  }
+
+  .newsletter-btn {
+    background-color: #ffcc00;
+    color: #000000;
+    border: none;
+    border-radius: 10px;
+    padding: 14px 32px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+  }
+
+  .newsletter-btn:hover {
+    background-color: #e6b800;
+  }
+
+  .newsletter-btn:active {
+    transform: scale(0.98);
+  }
+
+  /* Footer Note */
+  .newsletter-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: #a0a5b1;
+    font-size: 13px;
+  }
+
+  .newsletter-footer svg {
+    width: 16px;
+    height: 16px;
+    fill: #ffcc00;
+  }
+
+  /* Responsive styling for small screens */
+  @media (max-width: 500px) {
+    .newsletter-form {
+      flex-direction: column;
+    }
+    .newsletter-btn {
+      width: 100%;
+    }
+  }
+</style>
+
+<div class="newsletter-container">
+  <div class="newsletter-card">
+    
+    <div class="newsletter-icon-badge">
+      <svg viewBox="0 0 24 24">
+        <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+      </svg>
+    </div>
+
+    <h2 class="newsletter-title">Stay With The Last Chick</h2>
+    <p class="newsletter-description">
+      Join our community and receive important updates,<br>
+      project news, and new developments from The Last Chick.
+    </p>
+
+    <form class="newsletter-form" action="#" method="POST" onsubmit="event.preventDefault();">
+      <input 
+        type="email" 
+        class="newsletter-input" 
+        placeholder="Enter your email address" 
+        required
+      />
+      <button type="submit" class="newsletter-btn">Join</button>
+    </form>
+
+    <div class="newsletter-footer">
+      <svg viewBox="0 0 24 24">
+        <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/>
+      </svg>
+      <span>No spam. Only important updates from The Last Chick.</span>
+    </div>
+
+  </div>
+</div>
 
 <!-- Community -->
 <section class="community">
