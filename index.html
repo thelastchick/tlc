@@ -1264,9 +1264,79 @@
 </section>
 <footer>
     <p data-i18n="footer">
-        © The Last Chick (TLC)
+© The Last Chick (TLC)
     </p>
 </footer>
+
+<!-- ========== کد لایو از اینجا شروع میشه ========== -->
+<button id="liveBtn" class="live-button">
+  <span class="dot"></span> Live
+</button>
+
+<audio id="bgMusic" loop>
+  <source src="assets/music.mp3" type="audio/mpeg">
+</audio>
+
+<style>
+.live-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50px;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  margin: 20px; /* می‌تونی اینو حذف کنی */
+}
+
+.live-button .dot {
+  width: 8px;
+  height: 8px;
+  background: #ff3b3b;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #ff3b3b;
+}
+
+.live-button.active {
+  background: rgba(255, 59, 59, 0.15);
+  border-color: #ff3b3b;
+}
+
+.live-button.active .dot {
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(255, 59, 59, 0.7); }
+  70% { box-shadow: 0 0 0 10px rgba(255, 59, 59, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 59, 59, 0); }
+}
+</style>
+
+<script>
+const btn = document.getElementById('liveBtn');
+const audio = document.getElementById('bgMusic');
+
+btn.addEventListener('click', () => {
+  if (audio.paused) {
+    audio.play();
+    btn.classList.add('active');
+  } else {
+    audio.pause();
+    btn.classList.remove('active');
+  }
+});
+</script>
+<!-- ========== کد لایو اینجا تموم میشه ========== -->
+
+<script src="script.js"></script>
+</body>
+</html>
 <script src="script.js"></script>
 </body>
 </html>
