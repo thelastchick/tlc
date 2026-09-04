@@ -7,368 +7,6 @@
 <meta name="description" content="The Last Chick (TLC) - A community driven Web3 ecosystem built on hope, resilience and purpose.">
 <link rel="stylesheet" href="style.css">
 <script src="https://cdn.jsdelivr.net/npm/ethers@6.13.4/dist/ethers.umd.min.js"></script>
-<style>
-/* ========================================= */
-/* TLC FLOATING LIVE AUDIO PLAYER STYLES     */
-/* ========================================= */
-.tlc-live-player {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  background: rgba(16, 18, 22, 0.85);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 204, 0, 0.4);
-  padding: 8px 14px;
-  border-radius: 30px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6), 0 0 10px rgba(255, 215, 0, 0.15);
-  transition: all 0.3s ease;
-  user-select: none;
-}
-
-.tlc-live-player:hover {
-  border-color: #ffd700;
-  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.8), 0 0 15px rgba(255, 215, 0, 0.3);
-}
-
-.tlc-live-badge {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  background: rgba(255, 68, 68, 0.15);
-  border: 1px solid rgba(255, 68, 68, 0.3);
-  padding: 3px 8px;
-  border-radius: 12px;
-  cursor: pointer;
-}
-
-.tlc-pulse-dot {
-  width: 7px;
-  height: 7px;
-  background-color: #ff4444;
-  border-radius: 50%;
-  box-shadow: 0 0 8px #ff4444;
-  animation: tlcPulse 1.5s infinite;
-}
-
-.tlc-live-text {
-  color: #ff4444;
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 0.5px;
-  font-family: monospace, sans-serif;
-}
-
-.tlc-play-btn {
-  background: #ffd700;
-  border: none;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  color: #000;
-  font-size: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: transform 0.2s ease, background-color 0.2s ease;
-  padding-left: 2px;
-}
-
-.tlc-play-btn:hover {
-  transform: scale(1.08);
-  background: #ffffff;
-}
-
-.tlc-play-btn.playing {
-  padding-left: 0;
-}
-
-@keyframes tlcPulse {
-  0% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.3; transform: scale(1.2); }
-  100% { opacity: 1; transform: scale(1); }
-}
-
-@media (max-width: 600px) {
-  .tlc-live-player {
-    bottom: 15px;
-    right: 15px;
-    padding: 6px 12px;
-  }
-}
-
-#tlc-community-impact-wrapper {
-    background-color: #000000 !important;
-    padding: 55px 18px !important;
-    width: 100% !important;
-    box-sizing: border-box !important;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-}
-#tlc-community-impact-wrapper .ci-container {
-    max-width: 950px !important;
-    margin: 0 auto !important;
-    text-align: center !important;
-}
-#tlc-community-impact-wrapper .ci-title {
-    font-size: 32px !important;
-    font-weight: 800 !important;
-    color: #ffd700 !important;
-    margin: 0 0 10px 0 !important;
-    text-shadow: 0 0 15px rgba(255, 215, 0, 0.4) !important;
-    letter-spacing: 1px !important;
-}
-#tlc-community-impact-wrapper .ci-subtitle {
-    color: #8e94a0 !important;
-    font-size: 15px !important;
-    max-width: 580px !important;
-    margin: 0 auto 40px auto !important;
-    line-height: 1.5 !important;
-}
-#tlc-community-impact-wrapper .ci-cards-grid {
-    display: flex !important;
-    justify-content: center !important;
-    gap: 15px !important;
-    flex-wrap: wrap !important;
-}
-#tlc-community-impact-wrapper .ci-card {
-    flex: 1 !important;
-    min-width: 200px !important;
-    max-width: 240px !important;
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    box-sizing: border-box !important;
-}
-#tlc-community-impact-wrapper .ci-circle-box {
-    width: 170px !important;
-    height: 170px !important;
-    background: linear-gradient(145deg, #16181d 0%, #0c0d0f 100%) !important;
-    border: 2px solid rgba(255, 204, 0, 0.4) !important;
-    border-radius: 50% !important;
-    overflow: hidden !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    box-shadow:
-        0 0 20px rgba(255, 215, 0, 0.15),
-        inset 0 0 15px rgba(0, 0, 0, 0.8) !important;
-    transition: all 0.3s ease !important;
-    box-sizing: border-box !important;
-    margin-bottom: 12px !important;
-}
-#tlc-community-impact-wrapper .ci-card:hover .ci-circle-box {
-    transform: translateY(-6px) scale(1.03) !important;
-    border-color: #ffd700 !important;
-    box-shadow:
-        0 0 30px rgba(255, 215, 0, 0.4),
-        inset 0 0 20px rgba(255, 204, 0, 0.15) !important;
-}
-#tlc-community-impact-wrapper .ci-img-inside {
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: cover !important;
-    object-position: center !important;
-}
-#tlc-community-impact-wrapper .ci-card-title {
-    color: #ffffff !important;
-    font-size: 16px !important;
-    font-weight: 700 !important;
-    margin: 0 0 8px 0 !important;
-    letter-spacing: 0.5px !important;
-}
-#tlc-community-impact-wrapper .ci-card-text {
-    color: #a0a5b1 !important;
-    font-size: 15px !important;
-    font-weight: 400 !important;
-    line-height: 1.6 !important;
-    margin: 0 !important;
-    padding: 0 5px !important;
-}
-.ci-float-1 {
-    animation: ciFloat 3.5s ease-in-out infinite;
-}
-.ci-float-2 {
-    animation: ciFloat 3.5s ease-in-out 1.2s infinite;
-}
-.ci-float-3 {
-    animation: ciFloat 3.5s ease-in-out 2.4s infinite;
-}
-@keyframes ciFloat {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-5px);
-    }
-}
-#tlc-community-impact-wrapper .ci-divider {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    margin-top: 45px !important;
-    max-width: 700px !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-}
-#tlc-community-impact-wrapper .ci-line {
-    flex: 1 !important;
-    height: 1px !important;
-    background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(255, 204, 0, 0.4),
-        transparent
-    ) !important;
-}
-#tlc-community-impact-wrapper .ci-chick-icon {
-    font-size: 16px !important;
-    margin: 0 12px !important;
-}
-.presale-transparency {
-    position: relative;
-    max-width: 850px;
-    margin: 45px auto 40px auto;
-    padding: 35px 30px;
-    box-sizing: border-box;
-    text-align: center;
-    background:
-        linear-gradient(145deg, #16181d 0%, #0b0c0f 100%);
-    border: 1px solid rgba(255, 204, 0, 0.35);
-    border-radius: 20px;
-    box-shadow:
-        0 8px 30px rgba(0, 0, 0, 0.65),
-        inset 0 0 25px rgba(255, 204, 0, 0.025);
-    overflow: hidden;
-}
-.presale-transparency::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(
-        90deg,
-        transparent,
-        #ffcc00,
-        transparent
-    );
-    opacity: 0.75;
-}
-.transparency-icon {
-    width: 62px;
-    height: 62px;
-    margin: -5px auto 15px auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    background: #0c0d0f;
-    border: 1px solid rgba(255, 204, 0, 0.65);
-    box-shadow: 0 0 20px rgba(255, 204, 0, 0.18);
-    font-size: 28px;
-}
-.presale-transparency h3 {
-    margin: 0 0 8px 0;
-    color: #ffd700;
-    font-size: 26px;
-    font-weight: 800;
-}
-.presale-transparency h4 {
-    margin: 0 0 22px 0;
-    color: #ffffff;
-    font-size: 17px;
-    font-weight: 600;
-}
-.presale-transparency > p {
-    max-width: 720px;
-    margin: 0 auto 16px auto;
-    color: #a0a5b1;
-    font-size: 15px;
-    line-height: 1.8;
-}
-.presale-transparency > p strong {
-    color: #ffffff;
-}
-.transparency-points {
-    max-width: 650px;
-    margin: 25px auto;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-.transparency-point {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 10px;
-    text-align: left;
-    padding: 10px 14px;
-    background: rgba(255, 204, 0, 0.035);
-    border: 1px solid rgba(255, 204, 0, 0.08);
-    border-radius: 10px;
-}
-.transparency-point span {
-    flex-shrink: 0;
-    width: 22px;
-    height: 22px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    background: rgba(255, 204, 0, 0.12);
-    color: #ffd700;
-    font-weight: 800;
-    font-size: 13px;
-}
-.transparency-point p {
-    margin: 0;
-    color: #d0d3da;
-    font-size: 14px;
-    line-height: 1.5;
-}
-.transparency-quote {
-    max-width: 680px;
-    margin: 28px auto;
-    padding: 18px 20px;
-    box-sizing: border-box;
-    color: #ffd700;
-    font-size: 16px;
-    font-weight: 600;
-    font-style: italic;
-    line-height: 1.6;
-    border-left: 2px solid #ffcc00;
-    border-right: 2px solid #ffcc00;
-    background: rgba(255, 204, 0, 0.025);
-}
-.transparency-stats {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
-    margin: 28px auto 25px auto;
-}
-.transparency-stats > div {
-    padding: 15px 10px;
-    background: #101216;
-    border: 1px solid rgba(255, 204, 0, 0.12);
-    border-radius: 12px;
-    box-sizing: border-box;
-}
-.transparency-stats span {
-    display: block;
-    color: #858b97;
-    font-size: 12px;
-    margin-bottom: 7px;
-}
-.transparency-stats strong {
-    display: block;
-}
-</style>
 </head>
 <body>
 <div id="loader">
@@ -665,6 +303,9 @@
             <strong>Base Chain</strong>
         </div>
     </div>
+    <!-- ========================================= -->
+    <!-- TLC PRESALE TRANSPARENCY SECTION -->
+    <!-- ========================================= -->
     <div class="presale-transparency">
         <div class="transparency-icon">
             🔒
@@ -754,6 +395,9 @@
             🔎 Verify Presale Contract
         </a>
     </div>
+    <!-- ========================================= -->
+    <!-- BUY WIDGET -->
+    <!-- ========================================= -->
     <div class="buy-widget" id="buy">
         <div class="buy-title">
             <img src="assets/buy-tlc-left.png"
@@ -1053,47 +697,586 @@
         </div>
     </section>
 </div>
-
-<div class="tlc-live-player" id="tlcLivePlayer">
-  <div class="tlc-live-badge" id="tlcLiveBadge">
-    <span class="tlc-pulse-dot"></span>
-    <span class="tlc-live-text">LIVE</span>
-  </div>
-  <button id="tlcAudioToggle" class="tlc-play-btn" aria-label="Toggle Music">
-    <span id="tlcAudioIcon">▶</span>
-  </button>
-  <audio id="tlcBgAudio" loop preload="none">
-    <source src="assets/music.mp3" type="audio/mpeg">
-  </audio>
-</div>
-
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-  const audio = document.getElementById("tlcBgAudio");
-  const playBtn = document.getElementById("tlcAudioToggle");
-  const liveBadge = document.getElementById("tlcLiveBadge");
-  const icon = document.getElementById("tlcAudioIcon");
-
-  function togglePlay() {
-    if (audio.paused) {
-      audio.play().then(() => {
-        icon.textContent = "❚❚";
-        playBtn.classList.add("playing");
-      }).catch(err => {
-        console.log("Play failed:", err);
-      });
-    } else {
-      audio.pause();
-      icon.textContent = "▶";
-      playBtn.classList.remove("playing");
+<style>
+#tlc-community-impact-wrapper {
+    background-color: #000000 !important;
+    padding: 55px 18px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+}
+#tlc-community-impact-wrapper .ci-container {
+    max-width: 950px !important;
+    margin: 0 auto !important;
+    text-align: center !important;
+}
+#tlc-community-impact-wrapper .ci-title {
+    font-size: 32px !important;
+    font-weight: 800 !important;
+    color: #ffd700 !important;
+    margin: 0 0 10px 0 !important;
+    text-shadow: 0 0 15px rgba(255, 215, 0, 0.4) !important;
+    letter-spacing: 1px !important;
+}
+#tlc-community-impact-wrapper .ci-subtitle {
+    color: #8e94a0 !important;
+    font-size: 15px !important;
+    max-width: 580px !important;
+    margin: 0 auto 40px auto !important;
+    line-height: 1.5 !important;
+}
+#tlc-community-impact-wrapper .ci-cards-grid {
+    display: flex !important;
+    justify-content: center !important;
+    gap: 15px !important;
+    flex-wrap: wrap !important;
+}
+#tlc-community-impact-wrapper .ci-card {
+    flex: 1 !important;
+    min-width: 200px !important;
+    max-width: 240px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    box-sizing: border-box !important;
+}
+#tlc-community-impact-wrapper .ci-circle-box {
+    width: 170px !important;
+    height: 170px !important;
+    background: linear-gradient(145deg, #16181d 0%, #0c0d0f 100%) !important;
+    border: 2px solid rgba(255, 204, 0, 0.4) !important;
+    border-radius: 50% !important;
+    overflow: hidden !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-shadow:
+        0 0 20px rgba(255, 215, 0, 0.15),
+        inset 0 0 15px rgba(0, 0, 0, 0.8) !important;
+    transition: all 0.3s ease !important;
+    box-sizing: border-box !important;
+    margin-bottom: 12px !important;
+}
+#tlc-community-impact-wrapper .ci-card:hover .ci-circle-box {
+    transform: translateY(-6px) scale(1.03) !important;
+    border-color: #ffd700 !important;
+    box-shadow:
+        0 0 30px rgba(255, 215, 0, 0.4),
+        inset 0 0 20px rgba(255, 204, 0, 0.15) !important;
+}
+#tlc-community-impact-wrapper .ci-img-inside {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center !important;
+}
+#tlc-community-impact-wrapper .ci-card-title {
+    color: #ffffff !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    margin: 0 0 8px 0 !important;
+    letter-spacing: 0.5px !important;
+}
+#tlc-community-impact-wrapper .ci-card-text {
+    color: #a0a5b1 !important;
+    font-size: 15px !important;
+    font-weight: 400 !important;
+    line-height: 1.6 !important;
+    margin: 0 !important;
+    padding: 0 5px !important;
+}
+.ci-float-1 {
+    animation: ciFloat 3.5s ease-in-out infinite;
+}
+.ci-float-2 {
+    animation: ciFloat 3.5s ease-in-out 1.2s infinite;
+}
+.ci-float-3 {
+    animation: ciFloat 3.5s ease-in-out 2.4s infinite;
+}
+@keyframes ciFloat {
+    0%, 100% {
+        transform: translateY(0);
     }
-  }
-
-  // کلیک روی دکمه Play یا کلیک روی لِیبل LIVE موزیک را روشن/خاموش می‌کند
-  playBtn.addEventListener("click", togglePlay);
-  liveBadge.addEventListener("click", togglePlay);
-});
+    50% {
+        transform: translateY(-5px);
+    }
+}
+#tlc-community-impact-wrapper .ci-divider {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin-top: 45px !important;
+    max-width: 700px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+#tlc-community-impact-wrapper .ci-line {
+    flex: 1 !important;
+    height: 1px !important;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 204, 0, 0.4),
+        transparent
+    ) !important;
+}
+#tlc-community-impact-wrapper .ci-chick-icon {
+    font-size: 16px !important;
+    margin: 0 12px !important;
+}
+/* ========================================= */
+/* PRESALE TRANSPARENCY DESIGN */
+/* ========================================= */
+.presale-transparency {
+    position: relative;
+    max-width: 850px;
+    margin: 45px auto 40px auto;
+    padding: 35px 30px;
+    box-sizing: border-box;
+    text-align: center;
+    background:
+        linear-gradient(145deg, #16181d 0%, #0b0c0f 100%);
+    border: 1px solid rgba(255, 204, 0, 0.35);
+    border-radius: 20px;
+    box-shadow:
+        0 8px 30px rgba(0, 0, 0, 0.65),
+        inset 0 0 25px rgba(255, 204, 0, 0.025);
+    overflow: hidden;
+}
+.presale-transparency::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        #ffcc00,
+        transparent
+    );
+    opacity: 0.75;
+}
+.transparency-icon {
+    width: 62px;
+    height: 62px;
+    margin: -5px auto 15px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #0c0d0f;
+    border: 1px solid rgba(255, 204, 0, 0.65);
+    box-shadow: 0 0 20px rgba(255, 204, 0, 0.18);
+    font-size: 28px;
+}
+.presale-transparency h3 {
+    margin: 0 0 8px 0;
+    color: #ffd700;
+    font-size: 26px;
+    font-weight: 800;
+}
+.presale-transparency h4 {
+    margin: 0 0 22px 0;
+    color: #ffffff;
+    font-size: 17px;
+    font-weight: 600;
+}
+.presale-transparency > p {
+    max-width: 720px;
+    margin: 0 auto 16px auto;
+    color: #a0a5b1;
+    font-size: 15px;
+    line-height: 1.8;
+}
+.presale-transparency > p strong {
+    color: #ffffff;
+}
+.transparency-points {
+    max-width: 650px;
+    margin: 25px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.transparency-point {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    text-align: left;
+    padding: 10px 14px;
+    background: rgba(255, 204, 0, 0.035);
+    border: 1px solid rgba(255, 204, 0, 0.08);
+    border-radius: 10px;
+}
+.transparency-point span {
+    flex-shrink: 0;
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(255, 204, 0, 0.12);
+    color: #ffd700;
+    font-weight: 800;
+    font-size: 13px;
+}
+.transparency-point p {
+    margin: 0;
+    color: #d0d3da;
+    font-size: 14px;
+    line-height: 1.5;
+}
+.transparency-quote {
+    max-width: 680px;
+    margin: 28px auto;
+    padding: 18px 20px;
+    box-sizing: border-box;
+    color: #ffd700;
+    font-size: 16px;
+    font-weight: 600;
+    font-style: italic;
+    line-height: 1.6;
+    border-left: 2px solid #ffcc00;
+    border-right: 2px solid #ffcc00;
+    background: rgba(255, 204, 0, 0.025);
+}
+.transparency-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin: 28px auto 25px auto;
+}
+.transparency-stats > div {
+    padding: 15px 10px;
+    background: #101216;
+    border: 1px solid rgba(255, 204, 0, 0.12);
+    border-radius: 12px;
+    box-sizing: border-box;
+}
+.transparency-stats span {
+    display: block;
+    color: #858b97;
+    font-size: 12px;
+    margin-bottom: 7px;
+}
+.transparency-stats strong {
+    display: block;
+    color: #ffffff;
+    font-size: 13px;
+    word-break: break-word;
+}
+.verify-presale-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    padding: 13px 22px;
+    background: #ffcc00;
+    color: #000000 !important;
+    text-decoration: none !important;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 800;
+    transition:
+        transform 0.2s ease,
+        background-color 0.2s ease,
+        box-shadow 0.2s ease;
+    box-shadow: 0 0 15px rgba(255, 204, 0, 0.15);
+}
+.verify-presale-btn:hover {
+    background: #ffd633;
+    transform: translateY(-2px);
+    box-shadow: 0 0 22px rgba(255, 204, 0, 0.3);
+}
+@media (max-width: 768px) {
+    .presale-transparency {
+        margin: 35px 12px;
+        padding: 30px 20px;
+    }
+    .transparency-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .presale-transparency h3 {
+        font-size: 23px;
+    }
+}
+@media (max-width: 500px) {
+    .presale-transparency {
+        padding: 27px 15px;
+        border-radius: 16px;
+    }
+    .transparency-icon {
+        width: 55px;
+        height: 55px;
+        font-size: 24px;
+    }
+    .presale-transparency h3 {
+        font-size: 21px;
+    }
+    .presale-transparency h4 {
+        font-size: 15px;
+    }
+    .presale-transparency > p {
+        font-size: 14px;
+        line-height: 1.75;
+    }
+    .transparency-stats {
+        grid-template-columns: 1fr;
+    }
+    .transparency-point {
+        padding: 9px 10px;
+    }
+    .transparency-point p {
+        font-size: 13px;
+    }
+    .transparency-quote {
+        font-size: 14px;
+        padding: 15px;
+    }
+    .verify-presale-btn {
+        width: 100%;
+        box-sizing: border-box;
+    }
+}
+</style>
+<style>
+.newsletter-container {
+    background-color: #000000;
+    padding: 80px 20px 40px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+.newsletter-card {
+    position: relative;
+    background: linear-gradient(145deg, #16181d 0%, #0c0d0f 100%);
+    border: 1px solid rgba(255, 204, 0, 0.3);
+    border-radius: 20px;
+    padding: 40px 30px 30px 30px;
+    max-width: 720px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.9);
+    overflow: visible;
+}
+.newsletter-chick-img {
+    position: absolute;
+    left: -65px;
+    bottom: -10px;
+    width: 160px;
+    height: auto;
+    z-index: 5;
+    filter: drop-shadow(0 0 15px rgba(255, 204, 0, 0.35));
+}
+.newsletter-icon-badge {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 60px;
+    background-color: #0c0d0f;
+    border: 1px solid #ffcc00;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 18px rgba(255, 215, 0, 0.4);
+}
+.newsletter-icon-badge svg {
+    width: 28px;
+    height: 28px;
+    fill: #ffcc00;
+}
+.newsletter-title {
+    color: #ffd700;
+    font-size: 26px;
+    font-weight: 700;
+    margin: 10px 0 12px 0;
+}
+.newsletter-description {
+    color: #a0a5b1;
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 25px;
+    padding: 0 10px;
+}
+.newsletter-form {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+.newsletter-input {
+    flex: 1;
+    background-color: #181a1d;
+    border: 1px solid #2d3139;
+    border-radius: 10px;
+    padding: 14px 18px;
+    color: #ffffff;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+.newsletter-input:focus {
+    border-color: #ffcc00;
+}
+.newsletter-input::placeholder {
+    color: #6c727f;
+}
+.newsletter-btn {
+    background-color: #ffcc00;
+    color: #000000;
+    border: none;
+    border-radius: 10px;
+    padding: 14px 32px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+}
+.newsletter-btn:hover {
+    background-color: #e6b800;
+}
+.newsletter-btn:active {
+    transform: scale(0.98);
+}
+.newsletter-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: #a0a5b1;
+    font-size: 13px;
+}
+.newsletter-footer svg {
+    width: 16px;
+    height: 16px;
+    fill: #ffcc00;
+}
+@media (max-width: 768px) {
+    .newsletter-chick-img {
+        display: none;
+    }
+}
+@media (max-width: 500px) {
+    .newsletter-form {
+        flex-direction: column;
+    }
+    .newsletter-btn {
+        width: 100%;
+    }
+}
+</style>
+<div class="newsletter-container">
+    <div class="newsletter-card">
+        <img
+            src="assets/tlc-buy-chick.png"
+            alt="The Last Chick"
+            class="newsletter-chick-img">
+        <div class="newsletter-icon-badge">
+            <svg viewBox="0 0 24 24">
+                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+            </svg>
+        </div>
+        <h2 class="newsletter-title" data-i18n="newsletter_title">
+            Stay With The Last Chick
+        </h2>
+        <p class="newsletter-description" data-i18n="newsletter_desc">
+            Join our community and receive important updates,<br>
+            project news, and new developments from The Last Chick.
+        </p>
+        <form
+            class="newsletter-form"
+            action="#"
+            method="POST"
+            onsubmit="event.preventDefault();">
+            <input
+                type="email"
+                class="newsletter-input"
+                placeholder="Enter your email address"
+                required>
+            <button
+                type="submit"
+                class="newsletter-btn"
+                data-i18n="newsletter_btn">
+                Join
+            </button>
+        </form>
+        <div class="newsletter-footer">
+            <svg viewBox="0 0 24 24">
+                <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/>
+            </svg>
+            <span data-i18n="newsletter_footer">
+                No spam. Only important updates from The Last Chick.
+            </span>
+        </div>
+    </div>
+</div>
+<section class="community">
+    <h2 data-i18n="community_title">
+        Join The Community
+    </h2>
+    <div class="social-buttons">
+        <a
+            class="btn"
+            href="https://t.me/TheLastChick"
+            target="_blank">
+            Telegram
+        </a>
+        <a
+            class="btn"
+            href="https://x.com/TheLastChickTLC"
+            target="_blank">
+            X
+        </a>
+        <a
+            class="btn"
+            href="https://www.instagram.com/thelastchicktlc"
+            target="_blank">
+            Instagram
+        </a>
+        <a
+            class="btn"
+            href="https://www.youtube.com/@thelastchickTLC"
+            target="_blank">
+            YouTube
+        </a>
+        <a
+            class="btn"
+            href="https://discord.gg/sq4BWn9VC"
+            target="_blank">
+            Discord
+        </a>
+        <a
+            class="btn"
+            href="https://www.linkedin.com/in/thelastchick/"
+            target="_blank">
+            LinkedIn
+        </a>
+    </div>
+</section>
+<footer>
+    <p data-i18n="footer">
+        © The Last Chick (TLC)
+    </p>
+</footer>
+<script src="script.js"></script>
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    setTimeout(() => {
+      const loader = document.getElementById('loader');
+      if (loader) {
+        loader.classList.add('hidden');
+      }
+    }, 1500);
+  });
 </script>
-
 </body>
 </html>
