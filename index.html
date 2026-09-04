@@ -3,8 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TLC Music Player</title>
+    <title>THE LAST CHICK ($TLC) - Meme Coin</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        tlcYellow: '#FFC800',
+                        tlcDarkYellow: '#E6B200',
+                        tlcDark: '#0b0b0d',
+                        tlcCard: '#131318',
+                    },
+                    fontFamily: {
+                        sans: ['Rubik', 'Tahoma', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts & FontAwesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
+        body {
+            background-color: #0b0b0d;
+            color: #ffffff;
+            font-family: 'Rubik', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .yellow-glow {
+            box-shadow: 0 0 25px rgba(255, 200, 0, 0.4);
+        }
+
+        .yellow-glow-lg {
+            box-shadow: 0 0 50px rgba(255, 200, 0, 0.6);
+        }
+
+        .text-glow {
+            text-shadow: 0 0 15px rgba(255, 200, 0, 0.6);
+        }
+
+        .egg-bg {
+            background: radial-gradient(circle, rgba(255,200,0,0.15) 0%, rgba(11,11,13,1) 70%);
+        }
+
+        .custom-border {
+            border: 2px solid rgba(255, 200, 0, 0.3);
+        }
+
+        .custom-border:hover {
+            border-color: #FFC800;
+        }
+
+        /* انیمیشن چرخش لوگو در هدر */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(2deg); }
+        }
+
+        .floating-img {
+            animation: float 4s ease-in-out infinite;
+        }
+
         /* ========================================= */
         /* TLC MUSIC PLAYER STYLES (NEON GLASS)      */
         /* ========================================= */
@@ -16,15 +80,15 @@
             background: rgba(16, 18, 22, 0.85);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 215, 0, 0.35);
+            border: 1px solid rgba(255, 200, 0, 0.4);
             border-radius: 20px;
             padding: 18px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 
-                        0 0 15px rgba(255, 215, 0, 0.15);
+                        0 0 20px rgba(255, 200, 0, 0.2);
             z-index: 9999;
             box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            direction: ltr; /* جهت قرارگیری المان‌های پلیر */
+            font-family: 'Rubik', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            direction: ltr;
         }
 
         .player-top {
@@ -38,9 +102,9 @@
             width: 48px;
             height: 48px;
             border-radius: 50%;
-            border: 2px solid #ffd700;
+            border: 2px solid #FFC800;
             overflow: hidden;
-            box-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
+            box-shadow: 0 0 10px rgba(255, 200, 0, 0.4);
             flex-shrink: 0;
         }
 
@@ -69,7 +133,7 @@
 
         .track-info p {
             margin: 3px 0 0 0;
-            color: #ffd700;
+            color: #FFC800;
             font-size: 11px;
             opacity: 0.85;
         }
@@ -87,7 +151,7 @@
         .equalizer-bars .bar {
             width: 4px;
             height: 6px;
-            background: linear-gradient(180deg, #ffd700 0%, #ff8c00 100%);
+            background: linear-gradient(180deg, #FFC800 0%, #FF8C00 100%);
             border-radius: 3px;
             transition: height 0.2s ease;
         }
@@ -111,13 +175,12 @@
 
         @keyframes eqBounce {
             0% { height: 6px; }
-            100% { height: 28px; box-shadow: 0 0 8px rgba(255, 215, 0, 0.8); }
+            100% { height: 28px; box-shadow: 0 0 8px rgba(255, 200, 0, 0.8); }
         }
 
-        /* نوار زمان */
         .progress-area input[type="range"] {
             width: 100%;
-            accent-color: #ffd700;
+            accent-color: #FFC800;
             cursor: pointer;
             height: 4px;
         }
@@ -130,7 +193,6 @@
             margin-top: 4px;
         }
 
-        /* کنترل‌ها */
         .player-controls {
             display: flex;
             align-items: center;
@@ -149,14 +211,14 @@
         }
 
         .ctrl-btn:hover {
-            color: #ffd700;
+            color: #FFC800;
         }
 
         .play-btn {
             width: 42px;
             height: 42px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #ffd700 0%, #ff9900 100%);
+            background: linear-gradient(135deg, #FFC800 0%, #FF9900 100%);
             border: none;
             color: #000;
             font-size: 16px;
@@ -164,17 +226,113 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+            box-shadow: 0 0 15px rgba(255, 200, 0, 0.5);
             transition: transform 0.2s, box-shadow 0.2s;
         }
 
         .play-btn:hover {
             transform: scale(1.08);
-            box-shadow: 0 0 22px rgba(255, 215, 0, 0.8);
+            box-shadow: 0 0 22px rgba(255, 200, 0, 0.8);
         }
     </style>
 </head>
-<body style="background-color: #0a0b0d; margin: 0; min-height: 100vh;">
+<body class="bg-tlcDark text-white">
+
+    <!-- Header / Navbar -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-tlcDark/80 backdrop-blur-md border-b border-tlcYellow/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <img src="assets/tlc-loader.png" alt="TLC Logo" class="w-10 h-10 rounded-full border border-tlcYellow">
+                <span class="text-xl font-extrabold text-tlcYellow tracking-wider">TLC</span>
+            </div>
+            
+            <nav class="hidden md:flex items-center gap-8 text-sm font-semibold">
+                <a href="#about" class="hover:text-tlcYellow transition-colors">درباره ما</a>
+                <a href="#tokenomics" class="hover:text-tlcYellow transition-colors">توکنومیکس</a>
+                <a href="#roadmap" class="hover:text-tlcYellow transition-colors">نقشه راه</a>
+                <a href="#community" class="hover:text-tlcYellow transition-colors">جامعه</a>
+            </nav>
+
+            <a href="https://pump.fun" target="_blank" class="bg-tlcYellow text-black font-bold px-5 py-2.5 rounded-full hover:bg-tlcDarkYellow transition-all yellow-glow transform hover:scale-105">
+                خرید $TLC
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen pt-32 pb-20 flex items-center justify-center egg-bg relative">
+        <div class="max-w-5xl mx-auto px-4 text-center z-10">
+            <div class="mb-8 relative inline-block">
+                <img src="assets/tlc-loader.png" alt="The Last Chick" class="w-48 h-48 sm:w-64 sm:h-64 mx-auto rounded-full border-4 border-tlcYellow yellow-glow-lg floating-img">
+            </div>
+            
+            <h1 class="text-5xl sm:text-7xl font-black text-tlcYellow text-glow mb-4 tracking-tight">
+                THE LAST CHICK
+            </h1>
+            <p class="text-xl sm:text-2xl text-gray-300 max-w-2xl mx-auto font-semibold mb-8">
+                آخرین جوجه‌ای که در بازار کریپتو زنده باقی می‌ماند! 🐥🚀
+            </p>
+
+            <div class="flex flex-wrap justify-center gap-4 mb-12">
+                <a href="https://x.com" target="_blank" class="bg-tlcCard border custom-border px-6 py-3 rounded-xl flex items-center gap-3 hover:bg-tlcYellow/10 transition-all">
+                    <i class="fab font-bold fa-twitter text-tlcYellow text-xl"></i>
+                    <span class="font-bold">توییتر (X)</span>
+                </a>
+                <a href="https://t.me" target="_blank" class="bg-tlcCard border custom-border px-6 py-3 rounded-xl flex items-center gap-3 hover:bg-tlcYellow/10 transition-all">
+                    <i class="fab fa-telegram-plane text-tlcYellow text-xl"></i>
+                    <span class="font-bold">تلگرام</span>
+                </a>
+                <a href="https://dexscreener.com" target="_blank" class="bg-tlcCard border custom-border px-6 py-3 rounded-xl flex items-center gap-3 hover:bg-tlcYellow/10 transition-all">
+                    <i class="fas fa-chart-line text-tlcYellow text-xl"></i>
+                    <span class="font-bold">دکس اسکرینر</span>
+                </a>
+            </div>
+
+            <!-- CA Box -->
+            <div class="max-w-xl mx-auto bg-tlcCard p-4 rounded-2xl border border-tlcYellow/30 flex items-center justify-between gap-2">
+                <span class="text-xs sm:text-sm text-gray-400 font-mono truncate" id="caText">0x000000000000000000000000000000000000pump</span>
+                <button onclick="copyCA()" class="bg-tlcYellow/20 text-tlcYellow hover:bg-tlcYellow hover:text-black font-bold px-4 py-2 rounded-xl text-sm transition-all flex-shrink-0">
+                    کپی آدرس
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-tlcDark border-t border-tlcYellow/10">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-tlcYellow mb-6">درباره TLC</h2>
+            <p class="text-gray-300 text-lg leading-relaxed">
+                در میان نوسانات شدید بازار، **The Last Chick ($TLC)** متولد شده تا نماد استقامت و قدرت جامعه کریپتو باشد. ما اینجا هستیم تا نشان دهیم حتی آخرین جوجه هم می‌تواند به اوج برسد!
+            </p>
+        </div>
+    </section>
+
+    <!-- Tokenomics -->
+    <section id="tokenomics" class="py-20 bg-tlcCard">
+        <div class="max-w-5xl mx-auto px-4">
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-tlcYellow text-center mb-12">توکنومیکس</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-tlcDark p-8 rounded-2xl border custom-border text-center">
+                    <h3 class="text-gray-400 mb-2">کل عرضه</h3>
+                    <p class="text-2xl font-black text-tlcYellow">1,000,000,000</p>
+                </div>
+                <div class="bg-tlcDark p-8 rounded-2xl border custom-border text-center">
+                    <h3 class="text-gray-400 mb-2">مالیات (Tax)</h3>
+                    <p class="text-2xl font-black text-tlcYellow">0% / 0%</p>
+                </div>
+                <div class="bg-tlcDark p-8 rounded-2xl border custom-border text-center">
+                    <h3 class="text-gray-400 mb-2">لیکوئیدیتی</h3>
+                    <p class="text-2xl font-black text-tlcYellow">100% سوزانده شده</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 bg-tlcDark border-t border-tlcYellow/10 text-center text-gray-500 text-sm">
+        <p>© 2026 THE LAST CHICK ($TLC). تمامی حقوق محفوظ است.</p>
+    </footer>
 
     <!-- ========================================= -->
     <!-- TLC NEON EQUALIZER MUSIC PLAYER           -->
@@ -224,11 +382,20 @@
             <button class="ctrl-btn" id="nextBtn">⏭</button>
         </div>
 
-        <!-- فایل صوتی (مسیر فایل صوتی خود را جایگزین کنید) -->
+        <!-- فایل صوتی (مسیر آهنگ خود را در صورت تغییر قرار دهید) -->
         <audio id="tlcAudio" src="assets/music.mp3" preload="metadata"></audio>
     </div>
 
+    <!-- Scripts -->
     <script>
+        // کپی آدرس قرارداد
+        function copyCA() {
+            const caText = document.getElementById('caText').innerText;
+            navigator.clipboard.writeText(caText);
+            alert('آدرس قرارداد کپی شد!');
+        }
+
+        // اسکریپت موزیک پلیر
         const audio = document.getElementById('tlcAudio');
         const playBtn = document.getElementById('mainPlayBtn');
         const playIcon = document.getElementById('playIcon');
@@ -238,7 +405,6 @@
         const currentTimeEl = document.getElementById('currentTime');
         const durationTimeEl = document.getElementById('durationTime');
 
-        // پخش / توقف
         playBtn.addEventListener('click', () => {
             if (audio.paused) {
                 audio.play();
@@ -253,7 +419,6 @@
             }
         });
 
-        // به‌روزرسانی نوار پیشرفت و زمان
         audio.addEventListener('timeupdate', () => {
             if (audio.duration) {
                 const progressPercent = (audio.currentTime / audio.duration) * 100;
@@ -271,7 +436,6 @@
             }
         });
 
-        // جابه‌جایی در زمان موزیک با اسلایدر
         progressBar.addEventListener('input', () => {
             const seekTime = (progressBar.value / 100) * audio.duration;
             audio.currentTime = seekTime;
