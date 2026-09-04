@@ -2256,3 +2256,12 @@ async function restoreWalletConnection() {
   } catch (err) { console.warn("Wallet auto-restore failed:", err); }
 }
 window.addEventListener("load", () => setTimeout(restoreWalletConnection, 500));
+
+function toggleAudio() {
+  const audio = document.getElementById('bg-music');
+  if (audio.paused) {
+    audio.play();
+  } else {
+    audio.pause();
+  }
+}
