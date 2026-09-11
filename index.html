@@ -9,6 +9,11 @@
 <script src="https://cdn.jsdelivr.net/npm/ethers@6.13.4/dist/ethers.umd.min.js"></script>
 </head>
 <body>
+
+<!-- ========== PARTICLES CANVAS (شروع) ========== -->
+<canvas id="particles-canvas" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;"></canvas>
+<!-- ========== PARTICLES CANVAS (پایان) ========== -->
+
 <div id="loader">
     <div id="sparkle-area">
         <div class="chick-circle">
@@ -1267,23 +1272,19 @@
 © The Last Chick (TLC)
     </p>
 </footer>
-
 <!-- ========== کد لایو از اینجا شروع میشه ========== -->
 <button id="liveBtn" class="live-button">
   <span class="dot"></span> Live
 </button>
-
 <audio id="bgMusic" loop>
   <source src="assets/music.mp3" type="audio/mpeg">
 </audio>
-
 <style>
 .live-button {
   position: fixed;                 /* ثابت می‌مونه موقع اسکرول */
   bottom: 30px;                    /* فاصله از پایین */
   right: 30px;                     /* فاصله از راست */
   z-index: 9999;                   /* بالاتر از همه چیز */
-
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -1299,7 +1300,6 @@
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
   transition: all 0.3s ease;
 }
-
 /* نقطه قرمز */
 .live-button .dot {
   width: 9px;
@@ -1308,37 +1308,31 @@
   border-radius: 50%;
   box-shadow: 0 0 10px #ff3b3b;
 }
-
 /* وقتی فعال میشه */
 .live-button.active {
   background: rgba(255, 59, 59, 0.18);
   border-color: #ff3b3b;
   box-shadow: 0 0 20px rgba(255, 59, 59, 0.35);
 }
-
 .live-button.active .dot {
   animation: pulse 1.4s infinite;
 }
-
 /* انیمیشن پالس نقطه */
 @keyframes pulse {
   0%   { box-shadow: 0 0 0 0 rgba(255, 59, 59, 0.7); }
   70%  { box-shadow: 0 0 0 12px rgba(255, 59, 59, 0); }
   100% { box-shadow: 0 0 0 0 rgba(255, 59, 59, 0); }
 }
-
 /* وقتی موس روش میاد → یه کم تکون می‌خوره */
 .live-button:hover {
   transform: translateY(-4px) scale(1.05);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
 }
-
 /* وقتی کلیک می‌کنی → یه تکون کوچیک */
 .live-button:active {
   transform: scale(0.95);
   transition: transform 0.1s;
 }
-
 /* برای موبایل */
 @media (max-width: 600px) {
   .live-button {
@@ -1349,11 +1343,9 @@
   }
 }
 </style>
-
 <script>
 const btn = document.getElementById('liveBtn');
 const audio = document.getElementById('bgMusic');
-
 btn.addEventListener('click', () => {
   if (audio.paused) {
     audio.play();
@@ -1365,6 +1357,67 @@ btn.addEventListener('click', () => {
 });
 </script>
 <!-- ========== کد لایو اینجا تموم میشه ========== -->
+
+<!-- ========== PARTICLES SCRIPT (شروع) ========== -->
+<script>
+(function() {
+  const canvas = document.getElementById('particles-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let w, h;
+  const particles = [];
+  const COUNT = 65;
+
+  function resize() {
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  class Particle {
+    constructor() { this.reset(true); }
+    reset(initial = false) {
+      this.x = Math.random() * w;
+      this.y = initial ? Math.random() * h : h + 20;
+      this.size = Math.random() * 1.2 + 0.25;
+      this.vy = -(Math.random() * 0.25 + 0.04);
+      this.vx = (Math.random() - 0.5) * 0.2;
+      this.opacity = Math.random() * 0.38 + 0.1;
+      this.life = 0;
+      this.maxLife = 450 + Math.random() * 600;
+      this.warm = Math.random() > 0.72;
+    }
+    update() {
+      this.x += this.vx + Math.sin(this.life * 0.014) * 0.1;
+      this.y += this.vy;
+      this.life++;
+      if (this.y < -20 || this.life > this.maxLife || this.x < -40 || this.x > w + 40) this.reset();
+    }
+    draw() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.fillStyle = this.warm
+        ? `rgba(255, 215, 140, ${this.opacity})`
+        : `rgba(255, 255, 255, ${this.opacity})`;
+      ctx.fill();
+    }
+  }
+
+  for (let i = 0; i < COUNT; i++) particles.push(new Particle());
+
+  function animate() {
+    ctx.fillStyle = 'rgba(5, 5, 5, 0.2)';
+    ctx.fillRect(0, 0, w, h);
+    particles.forEach(p => { p.update(); p.draw(); });
+    requestAnimationFrame(animate);
+  }
+  ctx.fillStyle = '#050505';
+  ctx.fillRect(0, 0, w, h);
+  animate();
+})();
+</script>
+<!-- ========== PARTICLES SCRIPT (پایان) ========== -->
 
 <script src="script.js"></script>
 </body>
