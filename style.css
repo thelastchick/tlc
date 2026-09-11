@@ -955,6 +955,18 @@ footer {
 #tlc-ambient-particles span:nth-child(8)  { left: 86%; top: 76%; animation-duration: 22s; animation-delay: -18s; }
 #tlc-ambient-particles span:nth-child(9)  { left: 94%; top: 14%; animation-duration: 27s; animation-delay: -11s; }
 #tlc-ambient-particles span:nth-child(10) { left: 45%; top: 52%; animation-duration: 24s; animation-delay: -2s; }
+#tlc-ambient-particles span:nth-child(11) { left: 12%; top: 45%; animation-duration: 22s; animation-delay: -6s; }
+#tlc-ambient-particles span:nth-child(12) { left: 33%; top: 12%; animation-duration: 25s; animation-delay: -15s; }
+#tlc-ambient-particles span:nth-child(13) { left: 58%; top: 78%; animation-duration: 19s; animation-delay: -3s; }
+#tlc-ambient-particles span:nth-child(14) { left: 81%; top: 28%; animation-duration: 27s; animation-delay: -10s; }
+#tlc-ambient-particles span:nth-child(15) { left: 5%;  top: 88%; animation-duration: 21s; animation-delay: -8s; }
+#tlc-ambient-particles span:nth-child(16) { left: 47%; top: 6%;  animation-duration: 23s; animation-delay: -13s; }
+#tlc-ambient-particles span:nth-child(17) { left: 69%; top: 55%; animation-duration: 26s; animation-delay: -1s; }
+#tlc-ambient-particles span:nth-child(18) { left: 22%; top: 63%; animation-duration: 20s; animation-delay: -17s; }
+#tlc-ambient-particles span:nth-child(19) { left: 91%; top: 41%; animation-duration: 24s; animation-delay: -9s; }
+#tlc-ambient-particles span:nth-child(20) { left: 38%; top: 29%; animation-duration: 28s; animation-delay: -5s; }
+
+@keyframes tlcSoftParticle {
 
 @keyframes tlcSoftParticle {
     0%, 100% {
