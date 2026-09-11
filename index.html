@@ -9,11 +9,6 @@
 <script src="https://cdn.jsdelivr.net/npm/ethers@6.13.4/dist/ethers.umd.min.js"></script>
 </head>
 <body>
-
-<!-- ========== PARTICLES CANVAS (شروع) ========== -->
-<canvas id="particles-canvas" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;"></canvas>
-<!-- ========== PARTICLES CANVAS (پایان) ========== -->
-
 <div id="loader">
     <div id="sparkle-area">
         <div class="chick-circle">
@@ -1357,68 +1352,6 @@ btn.addEventListener('click', () => {
 });
 </script>
 <!-- ========== کد لایو اینجا تموم میشه ========== -->
-
-<!-- ========== PARTICLES SCRIPT (شروع) ========== -->
-<script>
-(function() {
-  const canvas = document.getElementById('particles-canvas');
-  if (!canvas) return;
-  const ctx = canvas.getContext('2d');
-  let w, h;
-  const particles = [];
-  const COUNT = 65;
-
-  function resize() {
-    w = canvas.width = window.innerWidth;
-    h = canvas.height = window.innerHeight;
-  }
-  window.addEventListener('resize', resize);
-  resize();
-
-  class Particle {
-    constructor() { this.reset(true); }
-    reset(initial = false) {
-      this.x = Math.random() * w;
-      this.y = initial ? Math.random() * h : h + 20;
-      this.size = Math.random() * 1.2 + 0.25;
-      this.vy = -(Math.random() * 0.25 + 0.04);
-      this.vx = (Math.random() - 0.5) * 0.2;
-      this.opacity = Math.random() * 0.38 + 0.1;
-      this.life = 0;
-      this.maxLife = 450 + Math.random() * 600;
-      this.warm = Math.random() > 0.72;
-    }
-    update() {
-      this.x += this.vx + Math.sin(this.life * 0.014) * 0.1;
-      this.y += this.vy;
-      this.life++;
-      if (this.y < -20 || this.life > this.maxLife || this.x < -40 || this.x > w + 40) this.reset();
-    }
-    draw() {
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-      ctx.fillStyle = this.warm
-        ? `rgba(255, 215, 140, ${this.opacity})`
-        : `rgba(255, 255, 255, ${this.opacity})`;
-      ctx.fill();
-    }
-  }
-
-  for (let i = 0; i < COUNT; i++) particles.push(new Particle());
-
-  function animate() {
-    ctx.fillStyle = 'rgba(5, 5, 5, 0.2)';
-    ctx.fillRect(0, 0, w, h);
-    particles.forEach(p => { p.update(); p.draw(); });
-    requestAnimationFrame(animate);
-  }
-  ctx.fillStyle = '#050505';
-  ctx.fillRect(0, 0, w, h);
-  animate();
-})();
-</script>
-<!-- ========== PARTICLES SCRIPT (پایان) ========== -->
-
 <script src="script.js"></script>
 </body>
 </html>
