@@ -2423,4 +2423,72 @@ async function restoreWalletConnection() {
     if (accounts && accounts.length) await connectInjected(injected);
   } catch (err) { console.warn("Wallet auto-restore failed:", err); }
 }
+
+// ==================== CONTACT FORM + TOAST ====================
+const contactForm = document.getElementById("contactForm");
+const toast = document.getElementById("toast");
+const toastClose = document.getElementById("toastClose");
+
+function showToast() {
+  if (!toast) return;
+  toast.classList.add("show");
+
+  clearTimeout(window.toastTimer);
+  window.toastTimer = setTimeout(() => {
+    toast.classList.remove("show");
+  }, 5000);
+}
+
+function hideToast() {
+  if (toast) toast.classList.remove("show");
+}
+
+if (toastClose) {
+  toastClose.addEventListener("click", hideToast);
+}
+
+if (contactForm) {
+  contactForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(contactForm);
+    const submitBtn = contactForm.querySelector('button[type="submit"]');
+    const originalText = submitBtn ? submitBtn.innerHTML : "";
+
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = "Sending...";
+    }
+
+    try {
+      const response = await fetch("https://formspree.io/f/moeqorlg", {
+        method: "POST",
+        body: formData,
+        headers: {
+          Accept: "application/json"
+        }
+      });
+
+      if (response.ok) {
+        contactForm.reset();
+        showToast();
+      } else {
+        const data = await response.json();
+        if (data.errors) {
+          alert(data.errors.map(err => err.message).join(", "));
+        } else {
+          alert("Something went wrong. Please try again.");
+        }
+      }
+    } catch (error) {
+      console.error("Form error:", error);
+      alert("Network error. Please try again later.");
+    } finally {
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalText;
+      }
+    }
+  });
+}
 window.addEventListener("load", () => setTimeout(restoreWalletConnection, 500));
