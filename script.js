@@ -2452,6 +2452,18 @@ if (contactForm) {
     e.preventDefault();
 
     const formData = new FormData(contactForm);
+
+    // Web3Forms Access Key
+    formData.append(
+      "access_key",
+      "4e7b3454-aa3f-4366-b470-d0b95067e033"
+    );
+
+    formData.append(
+      "from_name",
+      "The Last Chick Website"
+    );
+
     const submitBtn = contactForm.querySelector('button[type="submit"]');
     const originalText = submitBtn ? submitBtn.innerHTML : "";
 
@@ -2461,28 +2473,34 @@ if (contactForm) {
     }
 
     try {
-      const response = await fetch("https://formspree.io/f/moeqorlg", {
-        method: "POST",
-        body: formData,
-        headers: {
-          Accept: "application/json"
+      const response = await fetch(
+        "https://api.web3forms.com/submit",
+        {
+          method: "POST",
+          body: formData,
+          headers: {
+            Accept: "application/json"
+          }
         }
-      });
+      );
 
-      if (response.ok) {
+      const data = await response.json();
+
+      if (response.ok && data.success) {
         contactForm.reset();
         showToast();
       } else {
-        const data = await response.json();
-        if (data.errors) {
-          alert(data.errors.map(err => err.message).join(", "));
+        if (data.message) {
+          alert(data.message);
         } else {
           alert("Something went wrong. Please try again.");
         }
       }
+
     } catch (error) {
       console.error("Form error:", error);
       alert("Network error. Please try again later.");
+
     } finally {
       if (submitBtn) {
         submitBtn.disabled = false;
