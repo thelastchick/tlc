@@ -257,6 +257,7 @@
         <a href="#token" data-i18n="nav_token">Token</a>
         <a href="#presale" data-i18n="nav_presale">Presale</a>
         <a href="#roadmap" data-i18n="nav_roadmap">Roadmap</a>
+        <a href="#contact" data-i18n="nav_contact">Contact</a>
     </nav>
     <div class="header-right">
         <div class="language">
@@ -1406,6 +1407,60 @@
     }
 }
 </style>
+
+<!-- ==================== CONTACT SECTION ==================== -->
+<section id="contact" class="contact-section">
+    <h2 data-i18n="contact_title">Contact Us</h2>
+    <p class="contact-subtitle" data-i18n="contact_subtitle">
+        Please select the relevant department and send us your message.
+    </p>
+
+    <div class="contact-card">
+        <form action="https://formspree.io/f/moeqorlg" method="POST" class="contact-form">
+            
+            <!-- Department -->
+            <div class="form-group">
+                <label data-i18n="contact_department">Department</label>
+                <select name="department" required>
+                    <option value="" disabled selected data-i18n="contact_select">Select the department that best fits your inquiry</option>
+                    <option value="Support">Support — Game, Website, Buy TLC, Wallet, Bug Report</option>
+                    <option value="Partnerships">Partnerships — Collaborations, NFTs, Games, Influencers, Sponsorships</option>
+                    <option value="Business">Business — Advertising, Investment, B2B, Commercial Proposals</option>
+                    <option value="General">General Contact</option>
+                </select>
+            </div>
+
+            <!-- Name -->
+            <div class="form-group">
+                <label data-i18n="contact_name">Your Name</label>
+                <input type="text" name="name" placeholder="Enter your name" required>
+            </div>
+
+            <!-- Email -->
+            <div class="form-group">
+                <label data-i18n="contact_email">Your Email</label>
+                <input type="email" name="email" placeholder="Enter your email" required>
+            </div>
+
+            <!-- Subject -->
+            <div class="form-group">
+                <label data-i18n="contact_subject">Subject</label>
+                <input type="text" name="subject" placeholder="Enter the subject of your message" required>
+            </div>
+
+            <!-- Message -->
+            <div class="form-group">
+                <label data-i18n="contact_message">Message</label>
+                <textarea name="message" rows="5" placeholder="Type your message here..." required></textarea>
+            </div>
+
+            <button type="submit" class="contact-submit-btn" data-i18n="contact_send">
+                Send Message
+            </button>
+        </form>
+    </div>
+</section>
+    
 <div class="newsletter-container">
     <div class="newsletter-card">
         <img
