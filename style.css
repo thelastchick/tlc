@@ -994,3 +994,110 @@ footer {
 }
 
 
+/* ==================== CONTACT SECTION ==================== */
+.contact-section {
+    padding: 80px 20px;
+    background: #050505;
+    text-align: center;
+}
+
+.contact-section h2 {
+    font-size: 36px;
+    color: #ffd700;
+    margin-bottom: 12px;
+}
+
+.contact-subtitle {
+    color: #a0a5b1;
+    font-size: 16px;
+    margin-bottom: 40px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.contact-card {
+    max-width: 580px;
+    margin: 0 auto;
+    background: linear-gradient(145deg, #16181d 0%, #0c0d0f 100%);
+    border: 1px solid rgba(255, 204, 0, 0.35);
+    border-radius: 20px;
+    padding: 40px 32px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+}
+
+.contact-form .form-group {
+    margin-bottom: 22px;
+    text-align: left;
+}
+
+.contact-form label {
+    display: block;
+    color: #ffd700;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
+    width: 100%;
+    padding: 14px 16px;
+    background: #111;
+    border: 1px solid #333;
+    border-radius: 12px;
+    color: #fff;
+    font-size: 15px;
+    outline: none;
+    transition: border-color 0.25s;
+}
+
+.contact-form input:focus,
+.contact-form select:focus,
+.contact-form textarea:focus {
+    border-color: #ffd700;
+}
+
+.contact-form select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23ffd700' d='M1.41 0L6 4.58 10.59 0 12 1.41l-6 6-6-6z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+}
+
+.contact-form textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.contact-submit-btn {
+    width: 100%;
+    padding: 16px;
+    background: #ffd700;
+    color: #000;
+    font-size: 16px;
+    font-weight: 700;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.25s;
+    margin-top: 10px;
+}
+
+.contact-submit-btn:hover {
+    background: #ffe45c;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 215, 0, 0.3);
+}
+
+@media (max-width: 600px) {
+    .contact-card {
+        padding: 30px 20px;
+    }
+    
+    .contact-section h2 {
+        font-size: 28px;
+    }
+}
