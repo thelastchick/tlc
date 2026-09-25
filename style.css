@@ -745,6 +745,9 @@ footer {
     scroll-margin-top: 90px;
 }
 
+#game {
+    scroll-margin-top: 140px;
+}
 /* Responsive */
 @media (max-width: 1024px) {
     header {
