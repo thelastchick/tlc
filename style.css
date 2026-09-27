@@ -1189,3 +1189,116 @@ footer {
     max-width: none;
   }
 }
+
+/* ========================================================= */
+/* TELEGRAM EGG BUTTON                                        */
+/* ========================================================= */
+
+.play-game {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    margin: 30px auto 20px;
+}
+
+.telegram-egg-wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.telegram-egg-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+}
+
+.telegram-egg-btn:hover {
+    transform: scale(1.06);
+}
+
+.egg-img {
+    width: 140px;
+    height: auto;
+    filter: drop-shadow(0 0 18px rgba(255, 215, 0, 0.55));
+    animation: eggPulse 2.8s ease-in-out infinite, eggFloat 4s ease-in-out infinite;
+}
+
+.egg-label {
+    margin-top: 12px;
+    color: #ffd700;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
+}
+
+/* Yellow soft pulse glow */
+@keyframes eggPulse {
+    0%, 100% {
+        filter: drop-shadow(0 0 12px rgba(255, 215, 0, 0.45));
+    }
+    50% {
+        filter: drop-shadow(0 0 28px rgba(255, 215, 0, 0.85));
+    }
+}
+
+/* Very subtle floating movement */
+@keyframes eggFloat {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    25% {
+        transform: translateY(-4px) rotate(0.6deg);
+    }
+    75% {
+        transform: translateY(3px) rotate(-0.6deg);
+    }
+}
+
+/* Tooltip */
+.telegram-tooltip {
+    position: absolute;
+    bottom: calc(100% + 18px);
+    left: 50%;
+    transform: translateX(-50%) scale(0.95);
+    width: 340px;
+    max-width: 90vw;
+    background: rgba(12, 12, 15, 0.97);
+    border: 1px solid rgba(255, 215, 0, 0.45);
+    border-radius: 16px;
+    padding: 18px 20px;
+    color: #eee;
+    font-size: 13.5px;
+    line-height: 1.65;
+    white-space: pre-line;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    z-index: 50;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
+}
+
+.telegram-egg-wrapper:hover .telegram-tooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) scale(1);
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    .egg-img {
+        width: 120px;
+    }
+    
+    .telegram-tooltip {
+        width: 300px;
+        font-size: 13px;
+        padding: 15px;
+    }
+}
