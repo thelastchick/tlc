@@ -27,6 +27,19 @@ const translations = {
     hero_desc: "More than a meme coin — a community-driven Web3 movement built on hope, resilience and purpose.",
     btn_buy: "BUY TLC",
     btn_play: "🐥 PLAY 🐥",
+    btn_telegram: "Play on Telegram",
+    telegram_tooltip: `🎮 Why this game? Why TLC?
+
+This is not just a simple game — it’s the first step to building and growing the powerful The Last Chick community.
+We created this bot so we can all gather together, play, have fun, and collect TLC tokens at the same time.
+
+🏆 Weekly Competition & Real Rewards
+Every week, the top 3 players on the leaderboard will receive valuable rewards in TLC tokens.
+
+💎 TLC is not just a token
+TLC is the hope you collect bit by bit today, and a secure investment for a not-so-distant future.
+
+Join now, strengthen our community, and build your share of the future! 🚀`,
     about_title: "About The Last Chick",
     about_p1: "The Last Chick (TLC) is more than a meme coin — it is the beginning of a community-driven movement built on hope, resilience, and purpose.",
     about_p2: "Built on the Base network, TLC brings together <strong>meme culture, NFTs, gaming, and Web3 experiences</strong> to create a growing ecosystem with a vision that goes beyond a single token.",
@@ -175,6 +188,19 @@ const translations = {
     hero_desc: "بیش از یک میم‌کوین — جنبشی جامعه‌محور در وب۳ که بر پایه امید، مقاومت و هدف بنا شده است.",
     btn_buy: "خرید TLC",
     btn_play: "🐥 بازی کن 🐥",
+    btn_telegram: "بازی در تلگرام",
+    telegram_tooltip: `🎮 چرا این بازی؟ چرا TLC؟
+
+این فقط یک بازی ساده نیست؛ اولین قدم برای ساخت و رشد جامعه قدرتمند The Last Chick است.
+ما این ربات رو ساختیم تا همگی دور هم جمع بشیم، بازی کنیم، لذت ببریم و همزمان توکن‌های TLC جمع کنیم.
+
+🏆 رقابت هفتگی و جوایز واقعی
+هر هفته ۳ نفر برتر جدول، جوایز ارزشمند به صورت توکن TLC دریافت می‌کنن.
+
+💎 TLC فقط یک توکن نیست
+TLC امیدی‌ست که امروز ذره‌ذره جمعش می‌کنی و سرمایه‌ای مطمئن برای آینده‌ای نزدیک خواهد بود.
+
+همین حالا وارد شو، جامعه رو قوی‌تر کن و سهم خودت از آینده رو بساز! 🚀`,
     about_title: "درباره آخرین جوجه",
     about_p1: "آخرین جوجه (TLC) فقط یک میم‌کوین نیست؛ آغاز یک جنبش جامعه‌محور است که بر امید، مقاومت و هدف استوار شده.",
     about_p2: "ساخته‌شده روی شبکه Base، TLC فرهنگ میم، NFT، بازی و تجربیات وب۳ را در یک اکوسیستم رو به رشد گرد هم آورده؛ اکوسیستمی با چشم‌اندازی فراتر از یک توکن.",
