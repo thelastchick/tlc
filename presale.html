@@ -1,41 +1,76 @@
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-i18n="presale_title">TLC Public Presale | The Last Chick</title>
-    <meta name="description" content="Join The Last Chick (TLC) public presale on Base. Connect your wallet, approve USDC and purchase TLC directly through the official presale smart contract.">
+
+    <title data-i18n="presale_title">The Last Chick (TLC) Presale on Base | Official TLC Token Sale</title>
+
+    <meta name="description" content="Explore the official The Last Chick (TLC) token presale on Base. Review the TLC sale price, 100 million TLC allocation, total token supply and official presale contract.">
+
     <meta name="robots" content="index, follow, max-image-preview:large">
+
     <link rel="canonical" href="https://thelastchick.com/presale">
+
     <link rel="icon" type="image/png" href="https://thelastchick.com/assets/tlc-logo.png">
+
     <meta name="theme-color" content="#050505">
+
+    <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="The Last Chick">
-    <meta property="og:title" content="TLC Public Presale | The Last Chick">
-    <meta property="og:description" content="Join The Last Chick (TLC) public presale on Base and purchase TLC through the official presale smart contract.">
+    <meta property="og:title" content="The Last Chick (TLC) Presale on Base | Official Token Sale">
+    <meta property="og:description" content="Explore the official The Last Chick (TLC) presale on Base. Review token price, public allocation, total supply and official smart contract details.">
     <meta property="og:url" content="https://thelastchick.com/presale">
     <meta property="og:image" content="https://thelastchick.com/assets/tlc-presale-coin.png">
-    <link rel="stylesheet" href="style.css">
-    <script src="https://cdn.jsdelivr.net/npm/ethers@6.13.4/dist/ethers.umd.min.js"></script>
+    <meta property="og:image:alt" content="The Last Chick TLC token presale coin">
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="The Last Chick (TLC) Presale on Base">
+    <meta name="twitter:description" content="Official TLC token presale information, token price, allocation and smart contract details on Base.">
+    <meta name="twitter:image" content="https://thelastchick.com/assets/tlc-presale-coin.png">
+
+    <!-- Structured Data -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "WebPage",
-      "name": "TLC Public Presale",
+      "name": "The Last Chick (TLC) Presale on Base",
+      "headline": "The Last Chick (TLC) Presale on Base",
       "url": "https://thelastchick.com/presale",
-      "description": "Official public presale information and wallet purchase interface for The Last Chick (TLC) on Base.",
-      "isPartOf": {"@type": "WebSite", "name": "The Last Chick", "url": "https://thelastchick.com/"},
-      "inLanguage": "en"
+      "description": "Official information about The Last Chick (TLC) token presale on Base, including token allocation, total supply, USDC purchase details and smart contract information.",
+      "inLanguage": "en",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "The Last Chick",
+        "url": "https://thelastchick.com/"
+      },
+      "about": {
+        "@type": "Thing",
+        "name": "The Last Chick (TLC)",
+        "alternateName": "TLC Token",
+        "description": "The Last Chick is an ERC-20 token on the Base network.",
+        "identifier": "0x04B757D7Cb621BFb846d47B161857D5E59F5D40C"
+      }
     }
     </script>
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/ethers@6.13.4/dist/ethers.umd.min.js"></script>
 </head>
+
 <body>
+
 <div id="tlc-ambient-particles" aria-hidden="true">
     <span></span><span></span><span></span><span></span><span></span>
     <span></span><span></span><span></span><span></span><span></span>
     <span></span><span></span><span></span><span></span><span></span>
     <span></span><span></span><span></span><span></span><span></span>
 </div>
+
 <header>
 
     <a href="/"
@@ -58,8 +93,8 @@
         </a>
 
         <a href="/tokenomics" data-i18n="nav_token">
-    Tokenomics
-</a>
+            Tokenomics
+        </a>
 
         <a href="/presale"
            data-i18n="nav_presale">
@@ -135,7 +170,7 @@
 
         <img
             src="assets/tlc-presale-coin.png"
-            alt="TLC token coin"
+            alt="The Last Chick TLC token coin"
             class="presale-coin-img"
             loading="lazy"
             decoding="async">
@@ -198,9 +233,7 @@
     </div>
 
 
-    <!-- ========================================================= -->
-    <!-- PRESALE TRANSPARENCY                                      -->
-    <!-- ========================================================= -->
+    <!-- PRESALE TRANSPARENCY -->
 
     <div class="presale-transparency">
 
@@ -317,9 +350,7 @@
     </div>
 
 
-    <!-- ========================================================= -->
-    <!-- BUY WIDGET                                                -->
-    <!-- ========================================================= -->
+    <!-- BUY WIDGET -->
 
     <div class="buy-widget"
          id="buy">
@@ -364,9 +395,7 @@
         </p>
 
 
-        <!-- ===================================================== -->
-        <!-- TOKEN INFORMATION                                     -->
-        <!-- ===================================================== -->
+        <!-- TOKEN INFORMATION -->
 
         <div id="token"
              class="token-info-box">
@@ -434,9 +463,7 @@
         </div>
 
 
-        <!-- ===================================================== -->
-        <!-- WALLET STATUS                                          -->
-        <!-- ===================================================== -->
+        <!-- WALLET STATUS -->
 
         <div class="wallet-status"
              id="walletStatus">
@@ -454,9 +481,7 @@
         </div>
 
 
-        <!-- ===================================================== -->
-        <!-- BUY FORM                                               -->
-        <!-- ===================================================== -->
+        <!-- BUY FORM -->
 
         <div id="buyForm"
              style="display:none;">
@@ -539,9 +564,7 @@
     </div>
 
 
-    <!-- ========================================================= -->
-    <!-- PRESALE PURPOSE                                           -->
-    <!-- ========================================================= -->
+    <!-- PRESALE PURPOSE -->
 
     <h3
         style="margin-top:50px;"
@@ -574,13 +597,30 @@
 </section>
 
 <footer style="padding:30px 20px;text-align:center;background:#050505;color:#aaa;">
-    <a href="/" style="color:#ffd700;text-decoration:none;">The Last Chick</a>
+
+    <a href="/" style="color:#ffd700;text-decoration:none;">
+        The Last Chick
+    </a>
+
     <span> · </span>
-    <a href="/tokenomics" style="color:#aaa;text-decoration:none;" data-i18n="nav_token">Tokenomics</a>
+
+    <a href="/tokenomics"
+       style="color:#aaa;text-decoration:none;"
+       data-i18n="nav_token">
+        Tokenomics
+    </a>
+
     <span> · </span>
-    <a href="/presale" style="color:#aaa;text-decoration:none;" data-i18n="nav_presale">Presale</a>
+
+    <a href="/presale"
+       style="color:#aaa;text-decoration:none;"
+       data-i18n="nav_presale">
+        Presale
+    </a>
+
 </footer>
 
 <script src="script.js"></script>
+
 </body>
 </html>
