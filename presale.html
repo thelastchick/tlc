@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="presale_title">TLC Public Presale | The Last Chick</title>
+    <meta name="description" content="Join The Last Chick (TLC) public presale on Base. Connect your wallet, approve USDC and purchase TLC directly through the official presale smart contract.">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <link rel="canonical" href="https://thelastchick.com/presale">
+    <link rel="icon" type="image/png" href="https://thelastchick.com/assets/tlc-logo.png">
+    <meta name="theme-color" content="#050505">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="The Last Chick">
+    <meta property="og:title" content="TLC Public Presale | The Last Chick">
+    <meta property="og:description" content="Join The Last Chick (TLC) public presale on Base and purchase TLC through the official presale smart contract.">
+    <meta property="og:url" content="https://thelastchick.com/presale">
+    <meta property="og:image" content="https://thelastchick.com/assets/tlc-presale-coin.png">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/ethers@6.13.4/dist/ethers.umd.min.js"></script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "TLC Public Presale",
+      "url": "https://thelastchick.com/presale",
+      "description": "Official public presale information and wallet purchase interface for The Last Chick (TLC) on Base.",
+      "isPartOf": {"@type": "WebSite", "name": "The Last Chick", "url": "https://thelastchick.com/"},
+      "inLanguage": "en"
+    }
+    </script>
+</head>
+<body>
+<div id="tlc-ambient-particles" aria-hidden="true">
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+</div>
+<header>
+
+    <a href="/"
+       class="logo"
+       aria-label="The Last Chick homepage">
+        THE LAST CHICK
+    </a>
+
+    <nav id="navMenu"
+         aria-label="Main navigation">
+
+        <a href="/#about"
+           data-i18n="nav_about">
+            About
+        </a>
+
+        <a href="/#story"
+           data-i18n="nav_story">
+            Story
+        </a>
+
+        <a href="/tokenomics" data-i18n="nav_token">
+    Tokenomics
+</a>
+
+        <a href="/presale"
+           data-i18n="nav_presale">
+            Presale
+        </a>
+
+        <a href="/#game">
+            Game
+        </a>
+
+        <a href="/#nft">
+            NFT
+        </a>
+
+        <a href="/#roadmap"
+           data-i18n="nav_roadmap">
+            Roadmap
+        </a>
+
+        <a href="/#contact"
+           data-i18n="nav_contact">
+            Contact
+        </a>
+
+    </nav>
+
+    <div class="header-right">
+
+        <div class="language">
+            <select
+                id="languageSelect"
+                aria-label="Select language">
+
+                <option value="en">🇺🇸 English</option>
+                <option value="fa">🇮🇷 فارسی</option>
+                <option value="ar">🇸🇦 العربية</option>
+                <option value="es">🇪🇸 Español</option>
+                <option value="fr">🇫🇷 Français</option>
+                <option value="de">🇩🇪 Deutsch</option>
+                <option value="tr">🇹🇷 Türkçe</option>
+                <option value="pt">🇧🇷 Português</option>
+                <option value="ru">🇷🇺 Русский</option>
+                <option value="zh">🇨🇳 中文</option>
+                <option value="ja">🇯🇵 日本語</option>
+                <option value="hi">🇮🇳 हिन्दी</option>
+
+            </select>
+        </div>
+
+        <button
+            type="button"
+            class="menu-toggle"
+            id="menuToggle"
+            aria-label="Open navigation menu">
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </button>
+
+    </div>
+
+</header>
+
+<section id="presale"
+         class="presale-section"
+         style="padding-top:150px;"
+         aria-labelledby="presale-title">
+
+    <h2 id="presale-title"
+        class="presale-title-with-image">
+
+        <img
+            src="assets/tlc-presale-coin.png"
+            alt="TLC token coin"
+            class="presale-coin-img"
+            loading="lazy"
+            decoding="async">
+
+        <span data-i18n="presale_title">
+            TLC Public Presale
+        </span>
+
+    </h2>
+
+    <h3 data-i18n="presale_subtitle">
+        The First Step of The Last Chick Journey
+    </h3>
+
+    <p class="presale-text"
+       data-i18n="presale_p1">
+        The TLC Public Presale is the first opportunity for early supporters
+        to become part of the TLC ecosystem.
+    </p>
+
+    <p class="presale-text"
+       data-i18n="presale_p2">
+        From the total supply of
+        <strong>1,000,000,000 TLC</strong>,
+        a limited allocation of
+        <strong>100,000,000 TLC (10%)</strong>
+        is reserved for the public presale phase.
+    </p>
+
+    <div class="presale-card">
+
+        <div class="presale-item">
+            <span data-i18n="presale_allocation">
+                🐥 Allocation
+            </span>
+            <strong>100,000,000 TLC</strong>
+        </div>
+
+        <div class="presale-item">
+            <span data-i18n="presale_supply">
+                📊 Supply
+            </span>
+            <strong>10%</strong>
+        </div>
+
+        <div class="presale-item">
+            <span data-i18n="presale_price">
+                💎 Price
+            </span>
+            <strong>1 TLC = 0.001 USDC</strong>
+        </div>
+
+        <div class="presale-item">
+            <span data-i18n="presale_network">
+                🌐 Network
+            </span>
+            <strong>Base Chain</strong>
+        </div>
+
+    </div>
+
+
+    <!-- ========================================================= -->
+    <!-- PRESALE TRANSPARENCY                                      -->
+    <!-- ========================================================= -->
+
+    <div class="presale-transparency">
+
+        <div class="transparency-icon">
+            🔒
+        </div>
+
+        <h3 data-i18n="transparency_title">
+            Presale Transparency
+        </h3>
+
+        <h4 data-i18n="transparency_subtitle">
+            Your trust comes first.
+        </h4>
+
+        <p data-i18n="transparency_p1">
+            The full
+            <strong>100,000,000 TLC</strong>
+            presale allocation has been deposited into the
+            <strong>TLC Presale Smart Contract</strong>
+            before the public sale begins.
+        </p>
+
+        <p data-i18n="transparency_p2">
+            During the active presale, the TLC held by the sale contract
+            cannot be withdrawn or manually redistributed by the team.
+            The presale contract also contains
+            <strong>no Mint function</strong>,
+            meaning it cannot create additional TLC tokens.
+        </p>
+
+        <div class="transparency-points">
+
+            <div class="transparency-point">
+                <span>✓</span>
+                <p data-i18n="transparency_point1">
+                    No hidden presale allocation.
+                </p>
+            </div>
+
+            <div class="transparency-point">
+                <span>✓</span>
+                <p data-i18n="transparency_point2">
+                    No additional minting through the sale contract.
+                </p>
+            </div>
+
+            <div class="transparency-point">
+                <span>✓</span>
+                <p data-i18n="transparency_point3">
+                    No manual withdrawal during the active presale.
+                </p>
+            </div>
+
+            <div class="transparency-point">
+                <span>✓</span>
+                <p data-i18n="transparency_point4">
+                    Everything is verifiable on-chain.
+                </p>
+            </div>
+
+        </div>
+
+        <div class="transparency-quote"
+             data-i18n="transparency_quote">
+            “We don't ask you to trust us.
+            We let the blockchain prove it.”
+        </div>
+
+        <div class="transparency-stats">
+
+            <div>
+                <span data-i18n="transparency_presale">
+                    Presale Allocation
+                </span>
+                <strong>100,000,000 TLC</strong>
+            </div>
+
+            <div>
+                <span data-i18n="transparency_total">
+                    Total Supply
+                </span>
+                <strong>1,000,000,000 TLC</strong>
+            </div>
+
+            <div>
+                <span data-i18n="transparency_price">
+                    Presale Price
+                </span>
+                <strong>0.001 USDC</strong>
+            </div>
+
+            <div>
+                <span data-i18n="transparency_network">
+                    Network
+                </span>
+                <strong>Base</strong>
+            </div>
+
+        </div>
+
+        <a
+            href="https://basescan.org/address/0xb7fD96B6800dbEFD6Ba97A5a3c58e4209D7FA73A"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="verify-presale-btn"
+            data-i18n="verify_presale"
+            aria-label="Verify TLC presale contract on BaseScan">
+
+            🔎 Verify on BaseScan
+
+        </a>
+
+    </div>
+
+
+    <!-- ========================================================= -->
+    <!-- BUY WIDGET                                                -->
+    <!-- ========================================================= -->
+
+    <div class="buy-widget"
+         id="buy">
+
+        <div class="buy-title">
+
+            <img
+                src="assets/buy-tlc-left.png"
+                class="buy-title-chick"
+                alt=""
+                aria-hidden="true"
+                loading="lazy"
+                decoding="async">
+
+            <h3 data-i18n="buy_now">
+                Buy TLC Now
+            </h3>
+
+            <img
+                src="assets/buy-tlc-right.png"
+                class="buy-title-chick"
+                alt=""
+                aria-hidden="true"
+                loading="lazy"
+                decoding="async">
+
+        </div>
+
+        <p class="network-warning"
+           data-i18n="before_buying">
+
+            <strong>Before buying:</strong>
+            Make sure your wallet is connected to the
+            <strong>Base network</strong>
+            and has enough
+            <strong>USDC on Base</strong>
+            to complete your purchase.
+            You’ll also need a small amount of
+            <strong>ETH on Base</strong>
+            to pay the network gas fee.
+
+        </p>
+
+
+        <!-- ===================================================== -->
+        <!-- TOKEN INFORMATION                                     -->
+        <!-- ===================================================== -->
+
+        <div id="token"
+             class="token-info-box">
+
+            <h2 data-i18n="token_title">
+                The Last Chick (TLC) Token
+            </h2>
+
+            <div class="token-card">
+
+                <p>
+                    <strong data-i18n="token_name">
+                        Name:
+                    </strong>
+                    The Last Chick
+                </p>
+
+                <p>
+                    <strong data-i18n="token_symbol">
+                        Symbol:
+                    </strong>
+                    TLC
+                </p>
+
+                <p>
+                    <strong data-i18n="token_network">
+                        Network:
+                    </strong>
+                    Base
+                </p>
+
+                <p>
+                    <strong data-i18n="token_decimals">
+                        Decimals:
+                    </strong>
+                    18
+                </p>
+
+                <p>
+                    <strong data-i18n="token_contract">
+                        Contract:
+                    </strong>
+                    <br>
+
+                    <span
+                        class="contract-address"
+                        id="contractAddress">
+                        0x04B757D7Cb621BFb846d47B161857D5E59F5D40C
+                    </span>
+
+                </p>
+
+                <button
+                    type="button"
+                    onclick="copyContract()"
+                    data-i18n="btn_copy"
+                    aria-label="Copy TLC token contract address">
+
+                    COPY ADDRESS
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- ===================================================== -->
+        <!-- WALLET STATUS                                          -->
+        <!-- ===================================================== -->
+
+        <div class="wallet-status"
+             id="walletStatus">
+
+            <button
+                type="button"
+                id="connectBtn"
+                class="buy-btn"
+                data-i18n="connect_wallet">
+
+                Connect Wallet
+
+            </button>
+
+        </div>
+
+
+        <!-- ===================================================== -->
+        <!-- BUY FORM                                               -->
+        <!-- ===================================================== -->
+
+        <div id="buyForm"
+             style="display:none;">
+
+            <div class="input-group">
+
+                <label
+                    for="usdcAmount"
+                    data-i18n="you_pay">
+
+                    You Pay (USDC)
+
+                </label>
+
+                <input
+                    type="number"
+                    id="usdcAmount"
+                    placeholder="0.00"
+                    min="1"
+                    step="0.01"
+                    inputmode="decimal"
+                    autocomplete="off">
+
+            </div>
+
+            <div class="input-group">
+
+                <label
+                    for="tlcAmount"
+                    data-i18n="you_receive">
+
+                    You Receive (TLC)
+
+                </label>
+
+                <input
+                    type="text"
+                    id="tlcAmount"
+                    readonly
+                    placeholder="0"
+                    autocomplete="off">
+
+            </div>
+
+            <p
+                class="price-info"
+                data-i18n="price_info">
+
+                1 USDC = 1,000 TLC
+
+            </p>
+
+            <button
+                type="button"
+                id="approveBtn"
+                class="buy-btn"
+                style="display:none;">
+
+                Approve USDC
+
+            </button>
+
+            <button
+                type="button"
+                id="buyBtn"
+                class="buy-btn"
+                data-i18n="buy_tlc">
+
+                Buy TLC
+
+            </button>
+
+            <p
+                id="txStatus"
+                class="tx-status">
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- ========================================================= -->
+    <!-- PRESALE PURPOSE                                           -->
+    <!-- ========================================================= -->
+
+    <h3
+        style="margin-top:50px;"
+        data-i18n="purpose_title">
+
+        Presale Purpose
+
+    </h3>
+
+    <div class="purpose-box">
+
+        <p data-i18n="purpose1">
+            🤝 Build the first TLC community
+        </p>
+
+        <p data-i18n="purpose2">
+            🌱 Support early ecosystem growth
+        </p>
+
+        <p data-i18n="purpose3">
+            💧 Prepare for liquidity expansion
+        </p>
+
+        <p data-i18n="purpose4">
+            🚀 Support future development
+        </p>
+
+    </div>
+
+</section>
+
+<footer style="padding:30px 20px;text-align:center;background:#050505;color:#aaa;">
+    <a href="/" style="color:#ffd700;text-decoration:none;">The Last Chick</a>
+    <span> · </span>
+    <a href="/tokenomics" style="color:#aaa;text-decoration:none;" data-i18n="nav_token">Tokenomics</a>
+    <span> · </span>
+    <a href="/presale" style="color:#aaa;text-decoration:none;" data-i18n="nav_presale">Presale</a>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
