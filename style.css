@@ -1344,3 +1344,145 @@ footer {
         padding: 15px;
     }
 }
+
+/* ========================================================= */
+/* INFO BAR (Date + Time + Prices)                           */
+/* ========================================================= */
+
+#tlc-info-bar {
+    position: sticky;
+    top: 120px; /* ارتفاع هدر */
+    z-index: 900;
+    background: rgba(8, 8, 10, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 204, 0, 0.18);
+    padding: 8px 0;
+}
+
+.info-bar-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 4%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.info-date {
+    color: #e0e0e0;
+    font-size: 13.5px;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.info-time-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#tlc-current-time {
+    color: #ffd700;
+    font-size: 14px;
+    font-weight: 600;
+    min-width: 48px;
+}
+
+#timezoneSelect {
+    background: rgba(0, 0, 0, 0.55);
+    color: #ffaa00;
+    border: 1px solid rgba(255, 170, 0, 0.35);
+    border-radius: 8px;
+    padding: 5px 10px;
+    font-size: 12.5px;
+    outline: none;
+    cursor: pointer;
+    max-width: 180px;
+}
+
+#timezoneSelect:hover {
+    border-color: #ffd700;
+}
+
+.info-prices {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.price-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255, 215, 0, 0.06);
+    border: 1px solid rgba(255, 215, 0, 0.15);
+    border-radius: 20px;
+    padding: 4px 12px;
+}
+
+.price-label {
+    color: #aaa;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.price-value {
+    color: #ffd700;
+    font-size: 13.5px;
+    font-weight: 700;
+    min-width: 70px;
+    text-align: right;
+}
+
+/* موبایل */
+@media (max-width: 1024px) {
+    #tlc-info-bar {
+        top: 80px;
+    }
+}
+
+@media (max-width: 768px) {
+    .info-bar-inner {
+        justify-content: center;
+        gap: 12px;
+    }
+
+    .info-prices {
+        gap: 10px;
+    }
+
+    .price-item {
+        padding: 3px 9px;
+    }
+
+    .price-value {
+        font-size: 12.5px;
+        min-width: 60px;
+    }
+}
+
+@media (max-width: 480px) {
+    #tlc-info-bar {
+        top: 70px;
+        padding: 7px 0;
+    }
+
+    .info-date {
+        font-size: 12.5px;
+        width: 100%;
+        text-align: center;
+    }
+
+    .info-time-wrapper {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .info-prices {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+}
