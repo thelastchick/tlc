@@ -147,6 +147,48 @@ header nav a:hover {
     text-shadow: 0 0 14px #ff6a00;
     background: rgba(255, 80, 0, 0.12);
 }
+
+/* Shop button in nav */
+header nav a.nav-shop-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    color: #ffd700 !important;
+    background: rgba(0, 0, 0, 0.55);
+    border: 1px solid rgba(255, 215, 0, 0.55);
+    border-radius: 999px;
+    padding: 7px 14px 7px 12px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.35);
+    transition: all 0.25s ease;
+}
+
+header nav a.nav-shop-btn:hover {
+    color: #000 !important;
+    background: #ffd700;
+    border-color: #ffd700;
+    text-shadow: none;
+    box-shadow: 0 0 18px rgba(255, 215, 0, 0.45);
+}
+
+header nav a.nav-shop-btn .nav-shop-icon {
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+}
+
+@media (max-width: 1024px) {
+    header nav a.nav-shop-btn {
+        width: fit-content;
+        margin-top: 6px;
+        padding: 10px 16px;
+        font-size: 15px;
+    }
+}
+
 .header-right {
     display: flex;
     align-items: center;
