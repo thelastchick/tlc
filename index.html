@@ -406,6 +406,56 @@
 
 
 <!-- ========================================================= -->
+<!-- DATE + TIME + PRICES BAR                                  -->
+<!-- ========================================================= -->
+
+<div id="tlc-info-bar">
+    <div class="info-bar-inner">
+
+        <!-- تاریخ -->
+        <div class="info-date">
+            <span id="tlc-current-date">Sunday, 1 November 2026</span>
+        </div>
+
+        <!-- ساعت + منطقه زمانی -->
+        <div class="info-time-wrapper">
+            <span id="tlc-current-time">23:49</span>
+            <select id="timezoneSelect" aria-label="Select timezone">
+                <option value="Europe/Berlin">Berlin (CET)</option>
+                <option value="Asia/Tehran">Tehran (IRST)</option>
+                <option value="Asia/Dubai">Dubai (GST)</option>
+                <option value="Europe/Istanbul">Istanbul (TRT)</option>
+                <option value="Europe/London">London (GMT)</option>
+                <option value="America/New_York">New York (EST)</option>
+                <option value="America/Los_Angeles">Los Angeles (PST)</option>
+                <option value="Asia/Tokyo">Tokyo (JST)</option>
+                <option value="Asia/Shanghai">Shanghai (CST)</option>
+                <option value="Australia/Sydney">Sydney (AEDT)</option>
+                <option value="UTC">UTC</option>
+            </select>
+        </div>
+
+        <!-- قیمت‌ها -->
+        <div class="info-prices">
+            <div class="price-item">
+                <span class="price-label">BTC</span>
+                <span class="price-value" id="price-btc">—</span>
+            </div>
+            <div class="price-item">
+                <span class="price-label">ETH</span>
+                <span class="price-value" id="price-eth">—</span>
+            </div>
+            <div class="price-item">
+                <span class="price-label">GOLD</span>
+                <span class="price-value" id="price-gold">—</span>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- ========================================================= -->
 <!-- HERO                                                       -->
 <!-- ========================================================= -->
 
