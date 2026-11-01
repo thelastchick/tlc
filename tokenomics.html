@@ -15,6 +15,8 @@
 <div id="tlc-ambient-particles" aria-hidden="true">
     <span></span><span></span><span></span><span></span><span></span>
     <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
 </div>
 
 <!-- Header -->
@@ -41,82 +43,72 @@
     </div>
 </header>
 
-<!-- Main Content -->
-<section style="padding: 140px 5% 80px; max-width: 1000px; margin: 0 auto;">
+<!-- Tokenomics Section -->
+<section class="tokenomics" style="padding-top: 150px;">
 
-    <h1 style="color:#ffd700; font-size:42px; text-align:center; margin-bottom:15px; text-shadow:0 0 20px gold;">
+    <h1 style="font-size: 45px; color: #ffd700; text-shadow: 0 0 20px gold; text-align: center; margin-bottom: 15px;">
         TLC Tokenomics
     </h1>
 
-    <p style="text-align:center; color:#ccc; max-width:700px; margin:0 auto 50px; font-size:17px; line-height:1.7;">
+    <p class="token-subtitle" style="max-width: 700px; margin: 0 auto 50px;">
         Transparent token distribution designed for community growth and long-term ecosystem development on the Base network.
     </p>
 
-    <!-- Total Supply Box -->
-    <div style="background:linear-gradient(145deg,#16181d,#0f1013); border:1px solid rgba(255,204,0,0.4); border-radius:20px; padding:35px; text-align:center; margin-bottom:50px; box-shadow:0 0 30px rgba(255,215,0,0.15);">
-        <div style="font-size:14px; color:#888; margin-bottom:8px; letter-spacing:1px;">TOTAL SUPPLY</div>
-        <div style="font-size:38px; font-weight:800; color:#ffd700;">1,000,000,000 TLC</div>
-        <div style="font-size:14px; color:#888; margin-top:8px;">Fixed Supply • No Additional Minting</div>
+    <!-- Visual Chart -->
+    <div class="token-chart">
+        <div class="center-token">
+            <img src="assets/tlc-presale-coin.png" alt="TLC token coin" loading="lazy">
+            <h3>TLC</h3>
+            <strong>1,000,000,000</strong>
+            <span>Total Supply</span>
+        </div>
+
+        <div class="slice presale"><b>10%</b><span>Presale</span></div>
+        <div class="slice liquidity"><b>25%</b><span>Liquidity</span></div>
+        <div class="slice marketing"><b>20%</b><span>Marketing</span></div>
+        <div class="slice development"><b>15%</b><span>Development</span></div>
+        <div class="slice ecosystem"><b>20%</b><span>Ecosystem</span></div>
+        <div class="slice team"><b>10%</b><span>Team</span></div>
     </div>
 
-    <h2 style="color:#ffd700; font-size:28px; margin-bottom:30px; text-align:center;">Token Distribution</h2>
-
-    <div style="display:grid; gap:16px; max-width:800px; margin:0 auto;">
-
-        <div style="background:#111; padding:22px 26px; border-radius:14px; border:1px solid rgba(255,204,0,0.2); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
-            <div>
-                <h3 style="margin:0 0 6px; font-size:18px; color:#fff;">💧 Liquidity</h3>
-                <p style="margin:0; color:#999; font-size:14px;">250,000,000 TLC — Strong and stable liquidity on Base</p>
-            </div>
-            <span style="color:#ffd700; font-weight:800; font-size:22px;">25%</span>
+    <!-- Distribution Cards -->
+    <div class="token-info" style="margin-top: 70px;">
+        <div>
+            <h3>💧 Liquidity</h3>
+            <p>25%</p>
+            <small style="color:#999; font-size:13px;">250,000,000 TLC</small>
         </div>
-
-        <div style="background:#111; padding:22px 26px; border-radius:14px; border:1px solid rgba(255,204,0,0.2); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
-            <div>
-                <h3 style="margin:0 0 6px; font-size:18px; color:#fff;">🌎 Ecosystem</h3>
-                <p style="margin:0; color:#999; font-size:14px;">200,000,000 TLC — Future development & partnerships</p>
-            </div>
-            <span style="color:#ffd700; font-weight:800; font-size:22px;">20%</span>
+        <div>
+            <h3>🌎 Ecosystem</h3>
+            <p>20%</p>
+            <small style="color:#999; font-size:13px;">200,000,000 TLC</small>
         </div>
-
-        <div style="background:#111; padding:22px 26px; border-radius:14px; border:1px solid rgba(255,204,0,0.2); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
-            <div>
-                <h3 style="margin:0 0 6px; font-size:18px; color:#fff;">📢 Marketing</h3>
-                <p style="margin:0; color:#999; font-size:14px;">200,000,000 TLC — Community growth & campaigns</p>
-            </div>
-            <span style="color:#ffd700; font-weight:800; font-size:22px;">20%</span>
+        <div>
+            <h3>📢 Marketing</h3>
+            <p>20%</p>
+            <small style="color:#999; font-size:13px;">200,000,000 TLC</small>
         </div>
-
-        <div style="background:#111; padding:22px 26px; border-radius:14px; border:1px solid rgba(255,204,0,0.2); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
-            <div>
-                <h3 style="margin:0 0 6px; font-size:18px; color:#fff;">🛠 Development</h3>
-                <p style="margin:0; color:#999; font-size:14px;">150,000,000 TLC — Game, NFTs & platform features</p>
-            </div>
-            <span style="color:#ffd700; font-weight:800; font-size:22px;">15%</span>
+        <div>
+            <h3>🛠 Development</h3>
+            <p>15%</p>
+            <small style="color:#999; font-size:13px;">150,000,000 TLC</small>
         </div>
-
-        <div style="background:#111; padding:22px 26px; border-radius:14px; border:1px solid rgba(255,204,0,0.2); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
-            <div>
-                <h3 style="margin:0 0 6px; font-size:18px; color:#fff;">🐥 Presale</h3>
-                <p style="margin:0; color:#999; font-size:14px;">100,000,000 TLC — Public presale at 0.001 USDC</p>
-            </div>
-            <span style="color:#ffd700; font-weight:800; font-size:22px;">10%</span>
+        <div>
+            <h3>🐥 Presale</h3>
+            <p>10%</p>
+            <small style="color:#999; font-size:13px;">100,000,000 TLC</small>
         </div>
-
-        <div style="background:#111; padding:22px 26px; border-radius:14px; border:1px solid rgba(255,204,0,0.2); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
-            <div>
-                <h3 style="margin:0 0 6px; font-size:18px; color:#fff;">👥 Team</h3>
-                <p style="margin:0; color:#999; font-size:14px;">100,000,000 TLC — Long-term project development</p>
-            </div>
-            <span style="color:#ffd700; font-weight:800; font-size:22px;">10%</span>
+        <div>
+            <h3>👥 Team</h3>
+            <p>10%</p>
+            <small style="color:#999; font-size:13px;">100,000,000 TLC</small>
         </div>
-
     </div>
 
     <!-- Key Points -->
-    <div style="margin-top:60px; background:#111; border:1px solid rgba(255,204,0,0.25); border-radius:16px; padding:30px;">
-        <h3 style="color:#ffd700; margin:0 0 20px; font-size:22px;">Key Points</h3>
-        <ul style="color:#ccc; line-height:2; padding-left:20px; margin:0;">
+    <div style="max-width: 800px; margin: 70px auto 0; background: #111; border: 1px solid rgba(255,204,0,0.25); border-radius: 16px; padding: 35px 30px;">
+        <h3 style="color:#ffd700; margin: 0 0 22px; font-size: 24px; text-align: center;">Key Points</h3>
+        <ul style="color:#ccc; line-height: 2.1; padding-left: 22px; margin: 0; font-size: 16px;">
             <li>Total supply is fixed at <strong style="color:#fff;">1,000,000,000 TLC</strong></li>
             <li>No additional tokens can be minted</li>
             <li>Presale allocation is secured in a smart contract</li>
@@ -126,9 +118,9 @@
     </div>
 
     <!-- Buttons -->
-    <div style="margin-top:50px; display:flex; gap:15px; justify-content:center; flex-wrap:wrap;">
+    <div style="margin-top: 55px; display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
         <a href="/" class="btn">← Back to Home</a>
-        <a href="/how-to-buy" class="btn" style="background:transparent; color:#ffd700; border:1px solid #ffd700;">How to Buy TLC →</a>
+        <a href="/how-to-buy" class="btn" style="background: transparent; color: #ffd700; border: 1px solid #ffd700;">How to Buy TLC →</a>
     </div>
 
 </section>
@@ -138,10 +130,10 @@
 </footer>
 
 <script>
-    // Simple mobile menu toggle
+    // Mobile menu
     const menuToggle = document.getElementById('menuToggle');
     const navMenu = document.getElementById('navMenu');
-    if(menuToggle){
+    if (menuToggle && navMenu) {
         menuToggle.addEventListener('click', () => {
             navMenu.classList.toggle('active');
             menuToggle.classList.toggle('active');
