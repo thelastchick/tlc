@@ -2884,3 +2884,100 @@ if (contactForm) {
   });
 }
 window.addEventListener("load", () => setTimeout(restoreWalletConnection, 500));
+
+/* ========================================================= */
+/* DATE + TIMEZONE + LIVE PRICES                             */
+/* ========================================================= */
+
+(function () {
+  const dateEl = document.getElementById("tlc-current-date");
+  const timeEl = document.getElementById("tlc-current-time");
+  const tzSelect = document.getElementById("timezoneSelect");
+  const btcEl = document.getElementById("price-btc");
+  const ethEl = document.getElementById("price-eth");
+  const goldEl = document.getElementById("price-gold");
+
+  if (!dateEl || !timeEl || !tzSelect) return;
+
+  // ذخیره منطقه زمانی انتخاب‌شده
+  let currentTz = localStorage.getItem("tlc_timezone") || "Europe/Berlin";
+  tzSelect.value = currentTz;
+
+  function updateDateTime() {
+    try {
+      const now = new Date();
+
+      // تاریخ میلادی
+      const dateOptions = {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        timeZone: currentTz
+      };
+      dateEl.textContent = now.toLocaleDateString("en-GB", dateOptions);
+
+      // ساعت
+      const timeOptions = {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: false,
+        timeZone: currentTz
+      };
+      timeEl.textContent = now.toLocaleTimeString("en-GB", timeOptions);
+    } catch (e) {
+      console.warn("Date/Time error:", e);
+    }
+  }
+
+  // تغییر منطقه زمانی
+  tzSelect.addEventListener("change", () => {
+    currentTz = tzSelect.value;
+    localStorage.setItem("tlc_timezone", currentTz);
+    updateDateTime();
+  });
+
+  // آپدیت ساعت هر ۳۰ ثانیه
+  updateDateTime();
+  setInterval(updateDateTime, 30000);
+
+  // ========== قیمت‌های زنده ==========
+  async function fetchPrices() {
+    try {
+      // بیت‌کوین و اتریوم از CoinGecko
+      const cryptoRes = await fetch(
+        "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=usd&include_24hr_change=false"
+      );
+      const cryptoData = await cryptoRes.json();
+
+      if (btcEl && cryptoData.bitcoin) {
+        btcEl.textContent = "$" + Math.round(cryptoData.bitcoin.usd).toLocaleString();
+      }
+      if (ethEl && cryptoData.ethereum) {
+        ethEl.textContent = "$" + Math.round(cryptoData.ethereum.usd).toLocaleString();
+      }
+    } catch (err) {
+      console.warn("Crypto price error:", err);
+    }
+
+    try {
+      // طلا از xaus.com (رایگان و بدون کلید)
+      const goldRes = await fetch("https://xaus.com/api/v1/spot");
+      const goldData = await goldRes.json();
+
+      if (goldEl && goldData.spot_usd_oz) {
+        goldEl.textContent = "$" + Math.round(goldData.spot_usd_oz).toLocaleString();
+      } else if (goldEl && goldData.xau?.price) {
+        goldEl.textContent = "$" + Math.round(goldData.xau.price).toLocaleString();
+      }
+    } catch (err) {
+      console.warn("Gold price error:", err);
+    }
+  }
+
+  // اولین بار
+  fetchPrices();
+
+  // آپدیت هر ۵۰ ثانیه
+  setInterval(fetchPrices, 50000);
+})();
