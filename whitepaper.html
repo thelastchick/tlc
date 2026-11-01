@@ -1,51 +1,260 @@
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Last Chick (TLC) | Official Whitepaper</title>
-    <meta name="description" content="Read and download the official The Last Chick (TLC) whitepaper.">
+
+    <!-- SEO TITLE -->
+    <title>The Last Chick (TLC) Whitepaper | Official Project PDF</title>
+
+    <!-- META DESCRIPTION -->
+    <meta name="description" content="Read the official The Last Chick (TLC) whitepaper. Explore the TLC crypto project, Base network token, vision, ecosystem, tokenomics and roadmap. View or download the official PDF.">
+
+    <meta name="robots" content="index, follow, max-image-preview:large">
+
     <meta name="theme-color" content="#050505">
-    <link rel="canonical" href="https://thelastchick.com/whitepaper.html">
+
+    <!-- CANONICAL -->
+    <link rel="canonical" href="https://thelastchick.com/whitepaper">
+
+    <!-- FAVICON -->
+    <link rel="icon" type="image/png" href="https://thelastchick.com/assets/tlc-logo.png">
+
+    <!-- OPEN GRAPH -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="The Last Chick">
+    <meta property="og:title" content="The Last Chick (TLC) Official Whitepaper">
+    <meta property="og:description" content="Discover the official The Last Chick (TLC) whitepaper, including the project's vision, ecosystem, tokenomics and roadmap.">
+    <meta property="og:url" content="https://thelastchick.com/whitepaper">
+    <meta property="og:image" content="https://thelastchick.com/assets/tlc-logo.png">
+    <meta property="og:image:alt" content="The Last Chick TLC project logo">
+
+    <!-- TWITTER / X -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="The Last Chick (TLC) Official Whitepaper">
+    <meta name="twitter:description" content="Read the official TLC whitepaper and explore The Last Chick crypto project, tokenomics, ecosystem and roadmap.">
+    <meta name="twitter:image" content="https://thelastchick.com/assets/tlc-logo.png">
+
+    <!-- STRUCTURED DATA -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "The Last Chick (TLC) Official Whitepaper",
+      "headline": "The Last Chick (TLC) Official Whitepaper",
+      "url": "https://thelastchick.com/whitepaper",
+      "description": "The official whitepaper of The Last Chick (TLC), covering the project's vision, ecosystem, tokenomics and roadmap.",
+      "inLanguage": "en",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "The Last Chick",
+        "url": "https://thelastchick.com/"
+      },
+      "about": {
+        "@type": "Thing",
+        "name": "The Last Chick (TLC)",
+        "description": "The Last Chick is a crypto project with an ERC-20 token on the Base network."
+      },
+      "mainEntity": {
+        "@type": "DigitalDocument",
+        "name": "The Last Chick Official Whitepaper PDF",
+        "url": "https://thelastchick.com/whitepaper.pdf",
+        "contentUrl": "https://thelastchick.com/whitepaper.pdf",
+        "encodingFormat": "application/pdf",
+        "inLanguage": "en"
+      }
+    }
+    </script>
+
     <link rel="stylesheet" href="/style.css">
+
     <script src="https://cdn.jsdelivr.net/npm/ethers@6.13.4/dist/ethers.umd.min.js"></script>
+
     <style>
-        body { min-height: 100vh; background: #050505; color: #fff; }
-        .wp-page { max-width: 1120px; margin: 0 auto; padding: 150px 22px 70px; }
-        .wp-heading { text-align: center; margin: 0 auto 28px; }
-        .wp-eyebrow { color: #d6ad45; letter-spacing: 3px; font-size: 12px; font-weight: 700; }
-        .wp-heading h1 { color: #ffd700; font-size: clamp(30px, 5vw, 48px); margin: 8px 0 6px; }
-        .wp-heading p { color: #c7c0b2; font-size: 15px; }
-        .wp-actions { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; margin: 24px 0 30px; }
-        .wp-btn { display: inline-flex; align-items: center; justify-content: center; gap: 9px; padding: 13px 24px; border: 1px solid #c99f36; border-radius: 8px; color: #ffd76a; background: linear-gradient(135deg, #211806, #090909); text-decoration: none; font-weight: 700; transition: .2s ease; }
-        .wp-btn:hover { background: #3a2a0b; border-color: #ffe08a; color: #fff0bd; transform: translateY(-2px); }
-        .wp-btn.primary { background: linear-gradient(135deg, #d6ad45, #8b6417); color: #100d06; border-color: #e8c66c; }
-        .wp-viewer { overflow: hidden; border: 1px solid rgba(214,173,69,.55); border-radius: 12px; background: #171717; box-shadow: 0 12px 45px rgba(0,0,0,.45); }
-        .wp-viewer iframe { display: block; width: 100%; height: min(78vh, 1000px); min-height: 620px; border: 0; background: #fff; }
-        .wp-note { color: #888; font-size: 12px; text-align: center; margin-top: 14px; }
-        .wp-back { display: inline-block; color: #d6ad45; text-decoration: none; margin-top: 26px; }
-        .wp-back:hover { color: #ffe08a; }
-        @media (max-width: 1024px) { .wp-page { padding-top: 110px; } }
-        @media (max-width: 600px) { .wp-page { padding: 100px 14px 45px; } .wp-viewer iframe { min-height: 520px; height: 72vh; } .wp-btn { width: 100%; } }
+        body {
+            min-height: 100vh;
+            background: #050505;
+            color: #fff;
+        }
+
+        .wp-page {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 150px 22px 70px;
+        }
+
+        .wp-heading {
+            text-align: center;
+            margin: 0 auto 28px;
+        }
+
+        .wp-eyebrow {
+            color: #d6ad45;
+            letter-spacing: 3px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .wp-heading h1 {
+            color: #ffd700;
+            font-size: clamp(30px, 5vw, 48px);
+            margin: 8px 0 6px;
+        }
+
+        .wp-heading p {
+            color: #c7c0b2;
+            font-size: 15px;
+        }
+
+        .wp-actions {
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+            flex-wrap: wrap;
+            margin: 24px 0 30px;
+        }
+
+        .wp-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            padding: 13px 24px;
+            border: 1px solid #c99f36;
+            border-radius: 8px;
+            color: #ffd76a;
+            background: linear-gradient(135deg, #211806, #090909);
+            text-decoration: none;
+            font-weight: 700;
+            transition: .2s ease;
+        }
+
+        .wp-btn:hover {
+            background: #3a2a0b;
+            border-color: #ffe08a;
+            color: #fff0bd;
+            transform: translateY(-2px);
+        }
+
+        .wp-btn.primary {
+            background: linear-gradient(135deg, #d6ad45, #8b6417);
+            color: #100d06;
+            border-color: #e8c66c;
+        }
+
+        .wp-viewer {
+            overflow: hidden;
+            border: 1px solid rgba(214,173,69,.55);
+            border-radius: 12px;
+            background: #171717;
+            box-shadow: 0 12px 45px rgba(0,0,0,.45);
+        }
+
+        .wp-viewer iframe {
+            display: block;
+            width: 100%;
+            height: min(78vh, 1000px);
+            min-height: 620px;
+            border: 0;
+            background: #fff;
+        }
+
+        .wp-note {
+            color: #888;
+            font-size: 12px;
+            text-align: center;
+            margin-top: 14px;
+        }
+
+        .wp-back {
+            display: inline-block;
+            color: #d6ad45;
+            text-decoration: none;
+            margin-top: 26px;
+        }
+
+        .wp-back:hover {
+            color: #ffe08a;
+        }
+
+        @media (max-width: 1024px) {
+            .wp-page {
+                padding-top: 110px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .wp-page {
+                padding: 100px 14px 45px;
+            }
+
+            .wp-viewer iframe {
+                min-height: 520px;
+                height: 72vh;
+            }
+
+            .wp-btn {
+                width: 100%;
+            }
+        }
     </style>
 </head>
+
 <body>
+
     <header>
-        <a href="/" class="logo" aria-label="The Last Chick homepage">THE LAST CHICK</a>
+
+        <a href="/" class="logo" aria-label="The Last Chick homepage">
+            THE LAST CHICK
+        </a>
+
         <nav id="navMenu" aria-label="Main navigation">
-            <a href="/#about" data-i18n="nav_about">About</a>
-            <a href="/#story" data-i18n="nav_story">Story</a>
-            <a href="/tokenomics" data-i18n="nav_token">Tokenomics</a>
-            <a href="/presale" data-i18n="nav_presale">Presale</a>
-            <a href="/#game">Game</a>
-            <a href="/#nft">NFT</a>
-            <a href="/#roadmap" data-i18n="nav_roadmap">Roadmap</a>
-            <a href="/#contact" data-i18n="nav_contact">Contact</a>
-            <a href="/whitepaper.html" data-i18n="nav_whitepaper">Whitepaper</a>
+
+            <a href="/#about" data-i18n="nav_about">
+                About
+            </a>
+
+            <a href="/#story" data-i18n="nav_story">
+                Story
+            </a>
+
+            <a href="/tokenomics" data-i18n="nav_token">
+                Tokenomics
+            </a>
+
+            <a href="/presale" data-i18n="nav_presale">
+                Presale
+            </a>
+
+            <a href="/#game">
+                Game
+            </a>
+
+            <a href="/#nft">
+                NFT
+            </a>
+
+            <a href="/#roadmap" data-i18n="nav_roadmap">
+                Roadmap
+            </a>
+
+            <a href="/#contact" data-i18n="nav_contact">
+                Contact
+            </a>
+
+            <a href="/whitepaper" data-i18n="nav_whitepaper">
+                Whitepaper
+            </a>
+
         </nav>
+
         <div class="header-right">
+
             <div class="language">
+
                 <select id="languageSelect" aria-label="Select language">
+
                     <option value="en">🇺🇸 English</option>
                     <option value="fa">🇮🇷 فارسی</option>
                     <option value="ar">🇸🇦 العربية</option>
@@ -58,38 +267,104 @@
                     <option value="zh">🇨🇳 中文</option>
                     <option value="ja">🇯🇵 日本語</option>
                     <option value="hi">🇮🇳 हिन्दी</option>
+
                 </select>
+
             </div>
-            <button type="button" class="menu-toggle" id="menuToggle" aria-label="Open navigation menu">
-                <span></span><span></span><span></span>
+
+            <button
+                type="button"
+                class="menu-toggle"
+                id="menuToggle"
+                aria-label="Open navigation menu">
+
+                <span></span>
+                <span></span>
+                <span></span>
+
             </button>
+
         </div>
+
     </header>
 
+
     <main class="wp-page">
+
         <section class="wp-heading">
-            <div class="wp-eyebrow">THE LAST CHICK · TLC</div>
-            <h1>Official Whitepaper</h1>
-            <p>Explore the vision, ecosystem, tokenomics and roadmap of The Last Chick.</p>
-            <div class="wp-actions">
-                <a class="wp-btn primary" href="/whitepaper.pdf" download="The_Last_Chick_Official_Whitepaper.pdf">
-                    <span aria-hidden="true">↓</span> Download PDF
-                </a>
-                <a class="wp-btn" href="/whitepaper.pdf" target="_blank" rel="noopener">
-                    <span aria-hidden="true">↗</span> Open PDF
-                </a>
+
+            <div class="wp-eyebrow">
+                THE LAST CHICK · TLC
             </div>
+
+            <h1>
+                The Last Chick (TLC) Official Whitepaper
+            </h1>
+
+            <p>
+                Read the official whitepaper for The Last Chick (TLC),
+                a crypto project on the Base network.
+                Explore its vision, ecosystem, tokenomics and roadmap.
+            </p>
+
+            <div class="wp-actions">
+
+                <a
+                    class="wp-btn primary"
+                    href="/whitepaper.pdf"
+                    download="The_Last_Chick_Official_Whitepaper.pdf">
+
+                    <span aria-hidden="true">↓</span>
+                    Download PDF
+
+                </a>
+
+                <a
+                    class="wp-btn"
+                    href="/whitepaper.pdf"
+                    target="_blank"
+                    rel="noopener">
+
+                    <span aria-hidden="true">↗</span>
+                    Open PDF
+
+                </a>
+
+            </div>
+
         </section>
 
-        <section class="wp-viewer" aria-label="Official whitepaper PDF viewer">
-            <iframe src="/whitepaper.pdf#toolbar=1&navpanes=0&view=FitH" title="The Last Chick Official Whitepaper PDF">
-                Your browser cannot display PDF files. Use the Download PDF link above.
+
+        <section
+            class="wp-viewer"
+            aria-label="Official whitepaper PDF viewer">
+
+            <iframe
+                src="/whitepaper.pdf#toolbar=1&amp;navpanes=0&amp;view=FitH"
+                title="The Last Chick Official Whitepaper PDF">
+
+                Your browser cannot display PDF files.
+                Use the Download PDF link above.
+
             </iframe>
+
         </section>
-        <p class="wp-note">If the document does not appear in the viewer, use the Download PDF button above.</p>
-        <a class="wp-back" href="/">← Back to The Last Chick</a>
+
+
+        <p class="wp-note">
+            If the document does not appear in the viewer,
+            use the Download PDF button above.
+        </p>
+
+
+        <a class="wp-back" href="/">
+            ← Back to The Last Chick
+        </a>
+
     </main>
 
+
     <script src="/script.js"></script>
+
 </body>
 </html>
