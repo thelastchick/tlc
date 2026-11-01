@@ -2886,67 +2886,176 @@ if (contactForm) {
 window.addEventListener("load", () => setTimeout(restoreWalletConnection, 500));
 
 /* ========================================================= */
-/* DATE + TIMEZONE + LIVE PRICES                             */
+/* DATE + SEARCHABLE TIMEZONE + LIVE PRICES                  */
 /* ========================================================= */
 
 (function () {
   const dateEl = document.getElementById("tlc-current-date");
   const timeEl = document.getElementById("tlc-current-time");
-  const tzSelect = document.getElementById("timezoneSelect");
+  const searchInput = document.getElementById("tzSearchInput");
+  const dropdown = document.getElementById("tzDropdown");
   const btcEl = document.getElementById("price-btc");
   const ethEl = document.getElementById("price-eth");
   const goldEl = document.getElementById("price-gold");
 
-  if (!dateEl || !timeEl || !tzSelect) return;
+  if (!dateEl || !timeEl || !searchInput || !dropdown) return;
 
-  // ذخیره منطقه زمانی انتخاب‌شده
-  let currentTz = localStorage.getItem("tlc_timezone") || "Europe/Berlin";
-  tzSelect.value = currentTz;
+  // لیست کامل منطقه زمانی (مرتب بر اساس حروف الفبا)
+  const timezones = [
+    { value: "Africa/Algiers", label: "Algeria - Algiers" },
+    { value: "America/Anchorage", label: "USA - Anchorage" },
+    { value: "Asia/Amman", label: "Jordan - Amman" },
+    { value: "Europe/Amsterdam", label: "Netherlands - Amsterdam" },
+    { value: "Asia/Baghdad", label: "Iraq - Baghdad" },
+    { value: "Asia/Bahrain", label: "Bahrain" },
+    { value: "Asia/Baku", label: "Azerbaijan - Baku" },
+    { value: "Asia/Bangkok", label: "Thailand - Bangkok" },
+    { value: "Asia/Beirut", label: "Lebanon - Beirut" },
+    { value: "Europe/Berlin", label: "Germany - Berlin" },
+    { value: "America/Bogota", label: "Colombia - Bogotá" },
+    { value: "Europe/Brussels", label: "Belgium - Brussels" },
+    { value: "Europe/Bucharest", label: "Romania - Bucharest" },
+    { value: "Europe/Budapest", label: "Hungary - Budapest" },
+    { value: "America/Buenos_Aires", label: "Argentina - Buenos Aires" },
+    { value: "Africa/Cairo", label: "Egypt - Cairo" },
+    { value: "America/Caracas", label: "Venezuela - Caracas" },
+    { value: "Africa/Casablanca", label: "Morocco - Casablanca" },
+    { value: "America/Chicago", label: "USA - Chicago" },
+    { value: "Asia/Colombo", label: "Sri Lanka - Colombo" },
+    { value: "Europe/Copenhagen", label: "Denmark - Copenhagen" },
+    { value: "Asia/Damascus", label: "Syria - Damascus" },
+    { value: "America/Denver", label: "USA - Denver" },
+    { value: "Asia/Dhaka", label: "Bangladesh - Dhaka" },
+    { value: "Europe/Dublin", label: "Ireland - Dublin" },
+    { value: "Asia/Dubai", label: "UAE - Dubai" },
+    { value: "Pacific/Fiji", label: "Fiji" },
+    { value: "Europe/Helsinki", label: "Finland - Helsinki" },
+    { value: "Asia/Hong_Kong", label: "Hong Kong" },
+    { value: "America/Honolulu", label: "USA - Honolulu" },
+    { value: "Asia/Tehran", label: "Iran - Tehran" },
+    { value: "Europe/Istanbul", label: "Turkey - Istanbul" },
+    { value: "Asia/Jakarta", label: "Indonesia - Jakarta" },
+    { value: "Asia/Jerusalem", label: "Israel - Jerusalem" },
+    { value: "Africa/Johannesburg", label: "South Africa - Johannesburg" },
+    { value: "Asia/Kabul", label: "Afghanistan - Kabul" },
+    { value: "Asia/Karachi", label: "Pakistan - Karachi" },
+    { value: "Asia/Kathmandu", label: "Nepal - Kathmandu" },
+    { value: "Europe/Kiev", label: "Ukraine - Kyiv" },
+    { value: "Asia/Kolkata", label: "India - Kolkata" },
+    { value: "Asia/Kuala_Lumpur", label: "Malaysia - Kuala Lumpur" },
+    { value: "Asia/Kuwait", label: "Kuwait" },
+    { value: "Africa/Lagos", label: "Nigeria - Lagos" },
+    { value: "America/Lima", label: "Peru - Lima" },
+    { value: "Europe/Lisbon", label: "Portugal - Lisbon" },
+    { value: "Europe/London", label: "United Kingdom - London" },
+    { value: "America/Los_Angeles", label: "USA - Los Angeles" },
+    { value: "Europe/Madrid", label: "Spain - Madrid" },
+    { value: "Asia/Manila", label: "Philippines - Manila" },
+    { value: "Australia/Melbourne", label: "Australia - Melbourne" },
+    { value: "America/Mexico_City", label: "Mexico - Mexico City" },
+    { value: "Europe/Minsk", label: "Belarus - Minsk" },
+    { value: "Europe/Moscow", label: "Russia - Moscow" },
+    { value: "Africa/Nairobi", label: "Kenya - Nairobi" },
+    { value: "America/New_York", label: "USA - New York" },
+    { value: "Europe/Oslo", label: "Norway - Oslo" },
+    { value: "Europe/Paris", label: "France - Paris" },
+    { value: "Australia/Perth", label: "Australia - Perth" },
+    { value: "Europe/Prague", label: "Czech Republic - Prague" },
+    { value: "Asia/Qatar", label: "Qatar - Doha" },
+    { value: "Asia/Riyadh", label: "Saudi Arabia - Riyadh" },
+    { value: "Europe/Rome", label: "Italy - Rome" },
+    { value: "America/Santiago", label: "Chile - Santiago" },
+    { value: "America/Sao_Paulo", label: "Brazil - São Paulo" },
+    { value: "Asia/Seoul", label: "South Korea - Seoul" },
+    { value: "Asia/Shanghai", label: "China - Shanghai" },
+    { value: "Asia/Singapore", label: "Singapore" },
+    { value: "Europe/Sofia", label: "Bulgaria - Sofia" },
+    { value: "Europe/Stockholm", label: "Sweden - Stockholm" },
+    { value: "Australia/Sydney", label: "Australia - Sydney" },
+    { value: "Asia/Taipei", label: "Taiwan - Taipei" },
+    { value: "Asia/Tashkent", label: "Uzbekistan - Tashkent" },
+    { value: "Asia/Tbilisi", label: "Georgia - Tbilisi" },
+    { value: "Asia/Tokyo", label: "Japan - Tokyo" },
+    { value: "America/Toronto", label: "Canada - Toronto" },
+    { value: "Africa/Tunis", label: "Tunisia - Tunis" },
+    { value: "UTC", label: "UTC" },
+    { value: "America/Vancouver", label: "Canada - Vancouver" },
+    { value: "Europe/Vienna", label: "Austria - Vienna" },
+    { value: "Asia/Vladivostok", label: "Russia - Vladivostok" },
+    { value: "Europe/Warsaw", label: "Poland - Warsaw" },
+    { value: "Asia/Yangon", label: "Myanmar - Yangon" },
+    { value: "Asia/Yekaterinburg", label: "Russia - Yekaterinburg" },
+    { value: "Asia/Yerevan", label: "Armenia - Yerevan" },
+    { value: "Europe/Zurich", label: "Switzerland - Zurich" },
+    { value: "Pacific/Auckland", label: "New Zealand - Auckland" }
+  ];
+
+  // مرتب‌سازی الفبایی
+  timezones.sort((a, b) => a.label.localeCompare(b.label));
+
+  let currentTz = localStorage.getItem("tlc_timezone") || "Asia/Tehran";
+  let selectedLabel = timezones.find(t => t.value === currentTz)?.label || "Iran - Tehran";
+
+  // مقدار اولیه اینپوت
+  searchInput.value = selectedLabel;
 
   function updateDateTime() {
     try {
       const now = new Date();
-
-      // تاریخ میلادی
-      const dateOptions = {
-        weekday: "long",
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-        timeZone: currentTz
-      };
-      dateEl.textContent = now.toLocaleDateString("en-GB", dateOptions);
-
-      // ساعت
-      const timeOptions = {
-        hour: "2-digit",
-        minute: "2-digit",
-        hour12: false,
-        timeZone: currentTz
-      };
-      timeEl.textContent = now.toLocaleTimeString("en-GB", timeOptions);
+      dateEl.textContent = now.toLocaleDateString("en-GB", {
+        weekday: "long", year: "numeric", month: "long", day: "numeric", timeZone: currentTz
+      });
+      timeEl.textContent = now.toLocaleTimeString("en-GB", {
+        hour: "2-digit", minute: "2-digit", hour12: false, timeZone: currentTz
+      });
     } catch (e) {
       console.warn("Date/Time error:", e);
     }
   }
 
-  // تغییر منطقه زمانی
-  tzSelect.addEventListener("change", () => {
-    currentTz = tzSelect.value;
+  function renderOptions(filter = "") {
+    const q = filter.toLowerCase().trim();
+    const filtered = timezones.filter(t => t.label.toLowerCase().includes(q));
+    
+    dropdown.innerHTML = filtered.map(t => 
+      `<div class="tz-option" data-value="${t.value}">${t.label}</div>`
+    ).join("");
+
+    dropdown.style.display = filtered.length ? "block" : "none";
+  }
+
+  // رویدادها
+  searchInput.addEventListener("focus", () => renderOptions(searchInput.value));
+  searchInput.addEventListener("input", () => renderOptions(searchInput.value));
+
+  dropdown.addEventListener("click", (e) => {
+    const option = e.target.closest(".tz-option");
+    if (!option) return;
+
+    currentTz = option.dataset.value;
+    selectedLabel = option.textContent;
+    searchInput.value = selectedLabel;
     localStorage.setItem("tlc_timezone", currentTz);
+    dropdown.style.display = "none";
     updateDateTime();
   });
 
-  // آپدیت ساعت هر ۳۰ ثانیه
+  // بستن دراپ‌داون با کلیک بیرون
+  document.addEventListener("click", (e) => {
+    if (!e.target.closest(".tz-search-wrapper")) {
+      dropdown.style.display = "none";
+    }
+  });
+
+  // آپدیت ساعت
   updateDateTime();
   setInterval(updateDateTime, 30000);
 
   // ========== قیمت‌های زنده ==========
   async function fetchPrices() {
     try {
-      // بیت‌کوین و اتریوم از CoinGecko
       const cryptoRes = await fetch(
-        "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=usd&include_24hr_change=false"
+        "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=usd"
       );
       const cryptoData = await cryptoRes.json();
 
@@ -2961,7 +3070,6 @@ window.addEventListener("load", () => setTimeout(restoreWalletConnection, 500));
     }
 
     try {
-      // طلا از xaus.com (رایگان و بدون کلید)
       const goldRes = await fetch("https://xaus.com/api/v1/spot");
       const goldData = await goldRes.json();
 
@@ -2975,9 +3083,7 @@ window.addEventListener("load", () => setTimeout(restoreWalletConnection, 500));
     }
   }
 
-  // اولین بار
   fetchPrices();
-
-  // آپدیت هر ۵۰ ثانیه
   setInterval(fetchPrices, 50000);
 })();
+
