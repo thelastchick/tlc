@@ -417,22 +417,22 @@
             <span id="tlc-current-date">Sunday, 1 November 2026</span>
         </div>
 
-        <!-- ساعت + منطقه زمانی -->
+        <!-- ساعت + منطقه زمانی (قابل جستجو) -->
         <div class="info-time-wrapper">
-            <span id="tlc-current-time">23:49</span>
-            <select id="timezoneSelect" aria-label="Select timezone">
-                <option value="Europe/Berlin">Berlin (CET)</option>
-                <option value="Asia/Tehran">Tehran (IRST)</option>
-                <option value="Asia/Dubai">Dubai (GST)</option>
-                <option value="Europe/Istanbul">Istanbul (TRT)</option>
-                <option value="Europe/London">London (GMT)</option>
-                <option value="America/New_York">New York (EST)</option>
-                <option value="America/Los_Angeles">Los Angeles (PST)</option>
-                <option value="Asia/Tokyo">Tokyo (JST)</option>
-                <option value="Asia/Shanghai">Shanghai (CST)</option>
-                <option value="Australia/Sydney">Sydney (AEDT)</option>
-                <option value="UTC">UTC</option>
-            </select>
+            <span id="tlc-current-time">00:00</span>
+
+            <div class="tz-search-wrapper">
+                <input 
+                    type="text" 
+                    id="tzSearchInput" 
+                    placeholder="Search city or country..." 
+                    autocomplete="off"
+                    aria-label="Search timezone">
+                
+                <div id="tzDropdown" class="tz-dropdown" style="display: none;">
+                    <!-- گزینه‌ها با جاوااسکریپت پر می‌شوند -->
+                </div>
+            </div>
         </div>
 
         <!-- قیمت‌ها -->
