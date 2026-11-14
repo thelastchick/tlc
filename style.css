@@ -1051,7 +1051,16 @@ footer {
     color: #ffd700;
     margin-bottom: 12px;
 }
+.contact-official-email {
+    text-align: center !important;
+    width: 100%;
+    display: block;
+    margin: 5px auto 16px auto !important;
+}
 
+.contact-official-email a {
+    display: inline-block;
+}
 .contact-subtitle {
     color: #a0a5b1;
     font-size: 16px;
